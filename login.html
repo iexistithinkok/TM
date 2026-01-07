@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Login — Transform Multimedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-env.js" defer></script>
+    <script src="supabase-auth.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-grid tron-grid"></div>
+
+    <header class="site-header">
+      <nav class="nav">
+        <a class="logo" href="index.html" aria-label="Transform Multimedia home">
+          <img class="logo-mark" src="assets/logo.svg" alt="Transform Multimedia logo" />
+          <span class="logo-text">Transform Multimedia</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="section page-hero">
+        <div class="section-header">
+          <p class="eyebrow">Client Portal</p>
+          <h1>Sign in to review your latest cuts and deliverables.</h1>
+          <p>
+            This is a static demo layout only — no authentication logic is connected.
+          </p>
+        </div>
+      </section>
+
+      <section class="section portal">
+        <div class="portal-grid">
+          <article class="portal-card">
+            <h2>Client Login</h2>
+            <p>
+              Access your project dashboard, secure previews, and final delivery folders.
+            </p>
+            <form class="portal-form" data-portal-form data-auth-mode="login">
+              <label>
+                Email address
+                <input type="email" name="login-email" placeholder="you@company.com" required />
+              </label>
+              <label>
+                Password
+                <input type="password" name="login-password" placeholder="Enter your password" required />
+              </label>
+              <div class="form-actions">
+                <button class="primary-btn" type="submit">Sign In</button>
+                <button class="ghost-btn" type="button">Reset Password</button>
+              </div>
+            </form>
+            <p class="portal-note">
+              Need access? Visit the <a href="portal.html">signup page</a> or email
+              <a href="mailto:ahutchmedia@gmail.com">ahutchmedia@gmail.com</a>.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <img class="logo-mark" src="assets/logo.svg" alt="Transform Multimedia logo" />
+            <span>Transform Multimedia</span>
+          </div>
+          <p>Creative studio for future-forward visual storytelling.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
+          <a href="https://www.vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
+        </div>
+      </div>
+      <p class="footer-meta">© 2024 Transform Multimedia. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

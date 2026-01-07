@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Portal — Transform Multimedia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-env.js" defer></script>
+    <script src="supabase-auth.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-grid tron-grid"></div>
+
+    <header class="site-header">
+      <nav class="nav">
+        <a class="logo" href="index.html" aria-label="Transform Multimedia home">
+          <img class="logo-mark" src="assets/logo.svg" alt="Transform Multimedia logo" />
+          <span class="logo-text">Transform Multimedia</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html#about">About</a>
+          <a href="index.html#showcase">Showcase</a>
+          <a href="index.html#gallery">Image Gallery</a>
+          <a href="index.html#services">Services</a>
+          <a href="workflow.html">Workflow</a>
+          <a href="music.html">Original Music</a>
+          <a href="portal.html">Client Login</a>
+          <a href="index.html#contact" class="nav-cta">Start a Project</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="section page-hero">
+        <div class="section-header">
+          <p class="eyebrow">Client Portal</p>
+          <h1>Log in to review your latest cuts and deliverables.</h1>
+          <p>
+            Access your project dashboard, secure previews, and final downloads in one
+            centralized space.
+          </p>
+        </div>
+      </section>
+
+      <section class="section portal">
+        <div class="portal-grid">
+          <article class="portal-card">
+            <h2>Client Login</h2>
+            <p>
+              Sign in to view approved edits, feedback requests, and final delivery folders.
+            </p>
+            <form class="portal-form" data-portal-form data-auth-mode="login">
+              <label>
+                Email address
+                <input type="email" name="login-email" placeholder="you@company.com" required />
+              </label>
+              <label>
+                Password
+                <input type="password" name="login-password" placeholder="Enter your password" required />
+              </label>
+              <div class="form-actions">
+                <button class="primary-btn" type="submit">Sign In</button>
+                <button class="ghost-btn" type="button">Reset Password</button>
+              </div>
+            </form>
+            <p class="portal-note">
+              Access is provisioned by Transform Multimedia. Need help? Email
+              <a href="mailto:ahutchmedia@gmail.com">ahutchmedia@gmail.com</a> or
+              <a href="login.html">use the client login</a>.
+            </p>
+          </article>
+
+          <article class="portal-card">
+            <h2>Request Access</h2>
+            <p>
+              New client? Submit your info and we’ll activate your portal within one business
+              day.
+            </p>
+            <form class="portal-form" data-portal-form data-auth-mode="signup">
+              <label>
+                Full name
+                <input type="text" name="signup-name" placeholder="Your name" required />
+              </label>
+              <label>
+                Company
+                <input type="text" name="signup-company" placeholder="Organization" />
+              </label>
+              <label>
+                Email address
+                <input type="email" name="signup-email" placeholder="you@company.com" required />
+              </label>
+              <label>
+                Create password
+                <input
+                  type="password"
+                  name="signup-password"
+                  placeholder="Create a password"
+                  required
+                />
+              </label>
+              <label>
+                Project details
+                <textarea
+                  name="signup-details"
+                  rows="4"
+                  placeholder="Tell us which project you want to access."
+                  required
+                ></textarea>
+              </label>
+              <div class="form-actions">
+                <button class="secondary-btn" type="submit">Request Portal Access</button>
+              </div>
+            </form>
+            <p class="portal-note">
+              This is a visual demo only. Form submissions are not stored or transmitted.
+              Already have access? <a href="login.html">Sign in here</a>.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="cta-content">
+          <h2>Need a secure review link?</h2>
+          <p>
+            We can spin up a private review space for teams, stakeholders, and client
+            approvals.
+          </p>
+          <div class="cta-actions">
+            <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email the Team</a>
+            <a class="ghost-btn" href="index.html#showcase">View Demos</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <img class="logo-mark" src="assets/logo.svg" alt="Transform Multimedia logo" />
+            <span>Transform Multimedia</span>
+          </div>
+          <p>Creative studio for future-forward visual storytelling.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
+          <a href="https://www.vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
+        </div>
+      </div>
+      <p class="footer-meta">© 2024 Transform Multimedia. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
