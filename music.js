@@ -1,15 +1,15 @@
 const musicVideos = [
   {
-    title: "Mama’s Table",
-    description: "A warm, soulful tribute to family and shared meals.",
-    youtube: "dQw4w9WgXcQ",
-    thumb: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+    title: "Tarpon Springs Featured music by AJH:2025",
+    description: "Featuring the Tarpon Springs Area",
+    youtube: "pdizDfkGhoi9IFkp",
+    thumb: "https://img.youtube.com/vi/pdizDfkGhoi9IFkp/hqdefault.jpg"
   },
   {
-    title: "Opa Opa",
+    title: "Mamas Table",
     description: "High-energy Greek celebration track.",
-    youtube: "9bZkp7q19f0",
-    thumb: "https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg"
+    youtube: "N4E0EgTPu00",
+    thumb: "https://img.youtube.com/vi/N4E0EgTPu00/hqdefault.jpg"
   },
   {
     title: "Tarpon Springs Anthem",
