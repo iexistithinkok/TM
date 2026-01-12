@@ -18,7 +18,7 @@ const redirectToLogin = () => {
 
 if (window.__SUPABASE_URL__ && window.__SUPABASE_ANON_KEY__) {
   const supabase = window.supabase.createClient(
-    window.__SUPABASE_URL__,
+    window.https://odbcpoxlapcxzwiqjmyw.supabase.co,
     window.__SUPABASE_ANON_KEY__
   );
 
