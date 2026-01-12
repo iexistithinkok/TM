@@ -122,6 +122,22 @@ img {
   animation: pulse-glow 8s ease-in-out infinite;
   pointer-events: none;
 }
+.side-logo-link a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: rgba(8, 11, 22, 0.6);
+  border: 1px solid rgba(118, 244, 255, 0.25);
+  color: var(--muted);
+  font-size: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.side-logo-link a:hover {
+  color: var(--text);
+  background: rgba(118, 244, 255, 0.15);
+  box-shadow: 0 0 12px rgba(118, 244, 255, 0.35);
+}
 
 .side-logo-link {
   position: fixed;
