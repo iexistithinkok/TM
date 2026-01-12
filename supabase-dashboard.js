@@ -18,8 +18,8 @@ const redirectToLogin = () => {
 
 if (window.__SUPABASE_URL__ && window.__SUPABASE_ANON_KEY__) {
   const supabase = window.supabase.createClient(
-    window.https://odbcpoxlapcxzwiqjmyw.supabase.co,
-    window.sb_publishable_uPFq7zPYedEfaMOdleSSKg_LvSowQE-
+    window.__SUPABASE_URL__,
+    window.__SUPABASE_ANON_KEY__-
   );
 
   const initDashboard = async () => {
