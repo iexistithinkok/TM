@@ -14,19 +14,19 @@ const musicVideos = [
   {
     title: "Tarpon Springs Anthem",
     description: "A cinematic anthem for the heart of Tarpon Springs.",
-    youtube: "3tmd-ClpJxA",
+    youtube: "",
     thumb: "https://img.youtube.com/vi/3tmd-ClpJxA/hqdefault.jpg"
   },
   {
     title: "The Sea Remembers Us",
     description: "Moody coastal storytelling and ambient emotion.",
-    youtube: "JGwWNGJdvx8",
+    youtube: "",
     thumb: "https://img.youtube.com/vi/JGwWNGJdvx8/hqdefault.jpg"
   },
   {
     title: "Paradise in Tarpon Springs",
     description: "Bright, sunlit celebration of Florida coastal life.",
-    youtube: "LgWX2pZQsE",
+    youtube: "",
     thumb: "https://img.youtube.com/vi/LgWX2pZQsE/hqdefault.jpg"
   }
 ];
