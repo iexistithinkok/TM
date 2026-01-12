@@ -2,8 +2,8 @@ const musicVideos = [
   {
     title: "Tarpon Springs Featured music by AJH:2025",
     description: "Featuring the Tarpon Springs Area",
-    youtube: "mgEGTzAbEOw",
-    thumb: "https://img.youtube.com/vi/mgEGTzAbEOw/hqdefault.jpg"
+    youtube: "ipGBFYpiZbd4vL7z",
+    thumb: "https://img.youtube.com/vi/ipGBFYpiZbd4vL7z/hqdefault.jpg"
   },
   {
     title: "Mamas Table",
