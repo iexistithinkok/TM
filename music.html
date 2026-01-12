@@ -15,6 +15,16 @@
 <div class="ambient-glow"></div>
 <div class="ambient-grid tron-grid"></div>
 
+<!-- Cinematic background projector -->
+<div class="background-reel">
+  <iframe
+    title="Transform Multimedia music projection"
+    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ&modestbranding=1&playsinline=1&rel=0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    loading="lazy">
+  </iframe>
+</div>
+
 <header class="site-header">
   <nav class="nav">
     <a class="logo" href="index.html">
@@ -36,45 +46,59 @@
 
 <main id="top">
 
-<section class="section page-hero">
-  <div class="section-header">
+<section class="hero">
+  <div class="hero-content">
     <p class="eyebrow">Original Music</p>
-    <h1>Transform Multimedia Sound Library</h1>
-    <p>Stream our cinematic music videos, jingles, and original compositions.</p>
+    <h1>Cinematic scores, jingles, and sonic branding.</h1>
+    <p class="hero-subtitle">
+      Browse our original music catalog — crafted for brands, film, and destination storytelling.
+    </p>
+    <div class="hero-actions">
+      <a class="primary-btn" href="#music-showcase">Listen</a>
+      <a class="ghost-btn" href="#contact">Commission a Track</a>
+    </div>
   </div>
 </section>
 
-<section class="section music-hub">
-  <div class="music-player-layout">
+<section id="music-showcase" class="section showcase">
+  <div class="section-header">
+    <h2>Music Video Library</h2>
+    <p>Select a track to load it into the featured player.</p>
+  </div>
 
-    <!-- Main Video -->
-    <div class="music-video-frame">
-      <iframe id="ytPlayer"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+  <div class="video-showcase">
+    <div class="featured-video">
+      <div class="featured-meta">
+        <span class="tag">Now Playing</span>
+        <h3 id="music-featured-title">Loading…</h3>
+        <p id="music-featured-description">Loading…</p>
+        <div class="featured-actions">
+          <button class="secondary-btn" type="button" id="music-prev">Previous</button>
+          <button class="secondary-btn" type="button" id="music-next">Next</button>
+        </div>
+      </div>
+
+      <div class="featured-player">
+        <div class="player-shell">
+          <iframe
+            id="music-featured-iframe"
+            title="Featured music video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
     </div>
 
-    <!-- Playlist -->
-    <div class="music-playlist">
-      <h3>Now Playing</h3>
-      <ul id="musicList">
-        <li class="active" data-video="dQw4w9WgXcQ">Mama’s Table</li>
-        <li data-video="9bZkp7q19f0">Opa Opa</li>
-        <li data-video="3tmd-ClpJxA">Tarpon Springs Anthem</li>
-        <li data-video="JGwWNGJdvx8">The Sea Remembers Us</li>
-        <li data-video="LgWX2pZQsE">Paradise in Tarpon Springs</li>
-      </ul>
-    </div>
-
+    <div class="video-grid" id="music-video-grid"></div>
   </div>
 </section>
 
-<section class="section cta">
+<section id="contact" class="section cta">
   <div class="cta-content">
-    <h2>Need a custom audio identity?</h2>
-    <p>We compose original music for brands, film, and destinations.</p>
+    <h2>Need a custom sound?</h2>
+    <p>We create original music tailored to your brand, story, and audience.</p>
     <div class="cta-actions">
       <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email the Team</a>
       <a class="ghost-btn" href="index.html#contact">Contact Options</a>
@@ -101,21 +125,6 @@
   </div>
   <p class="footer-meta">© 2024 Transform Multimedia. All rights reserved.</p>
 </footer>
-
-<script>
-const player = document.getElementById("ytPlayer");
-const tracks = document.querySelectorAll("#musicList li");
-
-tracks.forEach(track => {
-  track.addEventListener("click", () => {
-    tracks.forEach(t => t.classList.remove("active"));
-    track.classList.add("active");
-
-    const video = track.dataset.video;
-    player.src = `https://www.youtube.com/embed/${video}?autoplay=1&rel=0`;
-  });
-});
-</script>
 
 </body>
 </html>
