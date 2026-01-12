@@ -1,18 +1,10 @@
-console.log("Dashboard script loading...");
+console.log("Dashboard loading");
 
-if (!window.__SUPABASE_URL__ || !window.__SUPABASE_ANON_KEY__) {
-  console.error("Supabase env not loaded");
-  alert("Supabase env missing");
-}
-
-const supabase = window.supabase.createClient(
-  window.__SUPABASE_URL__,
-  window.__SUPABASE_ANON_KEY__
-);
+const supabase = window.supabaseClient;
 
 function renderRole(role) {
-  const indicator = document.querySelector("[data-role-indicator]");
-  if (indicator) indicator.textContent = "Detected role: " + role;
+  document.querySelector("[data-role-indicator]").textContent =
+    "Detected role: " + role;
 
   document.querySelectorAll("[data-role]").forEach(el => {
     el.hidden = el.dataset.role !== role;
@@ -24,17 +16,14 @@ function redirectToLogin() {
 }
 
 async function loadDashboard() {
-  console.log("Checking session...");
+  const { data: { session } } = await supabase.auth.getSession();
 
-  const { data: { session }, error } = await supabase.auth.getSession();
-
-  if (error || !session) {
-    console.warn("No session");
-    return redirectToLogin();
+  if (!session) {
+    redirectToLogin();
+    return;
   }
 
   const userId = session.user.id;
-  console.log("User:", userId);
 
   let { data: profile } = await supabase
     .from("profiles")
@@ -52,7 +41,7 @@ async function loadDashboard() {
     profile = data;
   }
 
-  console.log("Role:", profile.role);
+  console.log("ROLE:", profile.role);
   renderRole(profile.role);
 }
 
