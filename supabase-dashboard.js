@@ -1,63 +1,84 @@
-const renderRoleIndicator = (role) => {
-  const indicator = document.querySelector("[data-role-indicator]");
-  if (indicator) indicator.textContent = `Detected role: ${role}`;
-};
+console.log("Dashboard script loading...");
 
-const toggleRoleSections = (role) => {
-  document.querySelectorAll('[data-role="admin"]').forEach(el => {
-    el.hidden = role !== "admin";
-  });
-  document.querySelectorAll('[data-role="client"]').forEach(el => {
-    el.hidden = role !== "client";
-  });
-};
+if (!window.__SUPABASE_URL__ || !window.__SUPABASE_ANON_KEY__) {
+  console.error("Supabase env not loaded");
+  alert("Supabase env missing");
+}
 
-const redirectToLogin = () => {
-  window.location.href = "login.html";
-};
-
-if (window.__SUPABASE_URL__ && window.__SUPABASE_ANON_KEY__) {
-  const supabase = window.supabase.createClient(
+const supabase = window.supabase.createClient(
   window.__SUPABASE_URL__,
   window.__SUPABASE_ANON_KEY__
 );
 
-  );
+// ================== UI HELPERS ==================
 
-  const initDashboard = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return redirectToLogin();
+function renderRole(role) {
+  const indicator = document.querySelector("[data-role-indicator]");
+  if (indicator) indicator.textContent = "Detected role: " + role;
 
-    const userId = session.user.id;
+  document.querySelectorAll("[data-role]").forEach(el => {
+    el.hidden = el.dataset.role !== role;
+  });
+}
 
-    // Try to fetch existing profile
-    let { data: profile, error } = await supabase
+function redirectToLogin() {
+  window.location.href = "login.html";
+}
+
+// ================== MAIN ==================
+
+async function loadDashboard() {
+  console.log("Checking session...");
+
+  const { data: { session }, error } = await supabase.auth.getSession();
+
+  if (error) {
+    console.error("Session error:", error);
+    return redirectToLogin();
+  }
+
+  if (!session) {
+    console.warn("No session");
+    return redirectToLogin();
+  }
+
+  const userId = session.user.id;
+  console.log("User ID:", userId);
+
+  // Fetch profile
+  let { data: profile, error: profileError } = await supabase
+    .from("profiles")
+    .select("id, role")
+    .eq("user_id", userId)
+    .single();
+
+  if (profileError && profileError.code !== "PGRST116") {
+    console.error("Profile fetch error:", profileError);
+    return redirectToLogin();
+  }
+
+  // Create profile if missing
+  if (!profile) {
+    console.log("Creating profile for user");
+
+    const { data: newProfile, error: insertError } = await supabase
       .from("profiles")
-      .select("id, role")
-      .eq("user_id", userId)
+      .insert({ user_id: userId, role: "client" })
+      .select()
       .single();
 
-    // If none exists, create one ONCE
-    if (!profile) {
-      const { data: created, error: insertError } = await supabase
-        .from("profiles")
-        .insert({ user_id: userId, role: "client" })
-        .select("role")
-        .single();
-
-      if (insertError) {
-        console.error(insertError);
-        return redirectToLogin();
-      }
-
-      profile = created;
+    if (insertError) {
+      console.error("Profile create failed:", insertError);
+      return redirectToLogin();
     }
 
-    if (!profile?.role) return redirectToLogin();
+    profile = newProfile;
+  }
 
-    renderRoleIndicator(profile.role);
-    toggleRoleSections(profile.role);
-  };
+  console.log("User role:", profile.role);
 
-  initDashboard();
+  renderRole(profile.role);
 }
+
+// Run
+loadDashboard();
