@@ -1,0 +1,13 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="640" y2="360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D1330" />
+      <stop offset="1" stop-color="#05070D" />
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="28" fill="url(#g)" />
+  <rect x="28" y="28" width="584" height="304" rx="22" stroke="#76F4FF" stroke-opacity="0.35" stroke-width="2" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#B2B8D4" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="22">
+    Replace with gallery-0${i}.jpg
+  </text>
+</svg>
