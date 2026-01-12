@@ -1,302 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Client Dashboard — Transform Multimedia</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-env.js" defer></script>
-    <script src="supabase-session.js" defer></script>
-    <script src="supabase-dashboard.js" defer></script>
-    <script src="supabase-messages.js" defer></script>
-  </head>
-  <body>
-    <div class="ambient-glow"></div>
-    <div class="ambient-grid tron-grid"></div>
+<head>
+  <meta charset="UTF-8" />
+  <title>Client Dashboard — Transform Multimedia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <header class="site-header">
-      <nav class="nav">
-        <a class="logo" href="index.html" aria-label="Transform Multimedia home">
-          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia logo" />
-          <span class="logo-text">Transform Multimedia</span>
-        </a>
-      </nav>
-    </header>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 
-    <main id="top">
-      <section class="section page-hero">
-        <div class="section-header">
-          <p class="eyebrow">Client Dashboard</p>
-          <h1>Welcome back, your project workspace is ready.</h1>
-          <p>
-            Review active edits, leave feedback, and track delivery milestones in one place.
-          </p>
-        </div>
-        <div class="portal-note" data-role-indicator>Detected role: --</div>
-      </section>
+  <!-- 🔑 MUST LOAD FIRST -->
+  <script src="supabase-env.js"></script>
 
-      <section class="section portal" data-role="admin" hidden>
-        <div class="section-header">
-          <p class="eyebrow">Admin Dashboard</p>
-          <h2>Studio-wide oversight and project management.</h2>
-          <p>
-            View all clients, monitor project activity, and assign media across accounts.
-          </p>
-        </div>
-        <div class="portal-grid">
-          <article class="portal-card">
-            <h2>All Clients</h2>
-            <p>Complete roster of active client workspaces.</p>
-            <ul class="portal-list">
-              <li>
-                <strong>Transform Realty</strong>
-                <span>4 active projects</span>
-              </li>
-              <li>
-                <strong>KET/PBS</strong>
-                <span>2 active projects</span>
-              </li>
-              <li>
-                <strong>Horizon Tech</strong>
-                <span>3 active projects</span>
-              </li>
-            </ul>
-          </article>
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-          <article class="portal-card">
-            <h2>All Projects &amp; Media</h2>
-            <p>Review every deliverable, timeline, and asset in production.</p>
-            <ul class="portal-list">
-              <li>
-                <strong>8 active projects</strong>
-                <span>42 media assets in review</span>
-              </li>
-              <li>
-                <strong>Upcoming deliveries</strong>
-                <span>3 launches in the next 14 days</span>
-              </li>
-            </ul>
-          </article>
+  <!-- App logic -->
+  <script src="supabase-session.js" defer></script>
+  <script src="supabase-dashboard.js" defer></script>
+  <script src="supabase-messages.js" defer></script>
+</head>
 
-          <article class="portal-card">
-            <h2>Assign Media</h2>
-            <p>Connect assets to the right client for approval.</p>
-            <div class="portal-note">
-              <strong>Client:</strong> Transform Realty
-              <br />
-              <strong>Asset:</strong> Downtown Walkthrough v3
-            </div>
-            <button class="secondary-btn" type="button">Assign to Client</button>
-          </article>
-          <article class="portal-card">
-            <h2>Asset Library</h2>
-            <p>Access every master file and delivery-ready export.</p>
-            <ul class="asset-list">
-              <li>
-                <div>
-                  <strong>Master Reel 2024</strong>
-                  <span>Master file • 4K ProRes</span>
-                </div>
-                <a class="secondary-btn" href="#" aria-label="Download Master Reel 2024">
-                  Download
-                </a>
-              </li>
-              <li>
-                <div>
-                  <strong>Holiday Spot Cutdown</strong>
-                  <span>Approved • 1080p H.264</span>
-                </div>
-                <a class="secondary-btn" href="#" aria-label="Download Holiday Spot Cutdown">
-                  Download
-                </a>
-              </li>
-              <li>
-                <div>
-                  <strong>Digital Signage Loop</strong>
-                  <span>In review • 4K MP4</span>
-                </div>
-                <a class="secondary-btn" href="#" aria-label="Download Digital Signage Loop">
-                  Download
-                </a>
-              </li>
-            </ul>
-          </article>
-          <article class="portal-card">
-            <h2>Admin Notes</h2>
-            <p>Internal project notes visible only to admins.</p>
-            <div class="message-list" data-admin-notes>
-              <p class="empty-state">No admin notes yet.</p>
-            </div>
-            <form class="message-form" data-admin-note-form>
-              <label>
-                New admin note
-                <textarea name="admin-note" rows="3" placeholder="Add a private admin note." required></textarea>
-              </label>
-              <label>
-                Project ID
-                <input type="text" name="admin-project-id" placeholder="Project UUID" required />
-              </label>
-              <button class="secondary-btn" type="submit">Add Note</button>
-            </form>
-          </article>
-          <article class="portal-card">
-            <h2>Client Messages</h2>
-            <p>Messages sent to clients for project updates.</p>
-            <div class="message-list" data-client-messages>
-              <p class="empty-state">No client messages yet.</p>
-            </div>
-            <form class="message-form" data-client-message-form>
-              <label>
-                New client message
-                <textarea name="client-message" rows="3" placeholder="Share an update for the client." required></textarea>
-              </label>
-              <label>
-                Project ID
-                <input type="text" name="client-project-id" placeholder="Project UUID" required />
-              </label>
-              <button class="secondary-btn" type="submit">Post Message</button>
-            </form>
-          </article>
-        </div>
-      </section>
+<body>
+<div class="ambient-glow"></div>
+<div class="ambient-grid tron-grid"></div>
 
-      <section class="section portal" data-role="client" hidden>
-        <div class="portal-grid">
-          <article class="portal-card">
-            <h2>Project List</h2>
-            <p>Active engagements and deliverables assigned to your account.</p>
-            <ul class="portal-list">
-              <li>
-                <strong>Brand Narrative Film</strong>
-                <span>Cut 2 • Due Oct 18</span>
-              </li>
-              <li>
-                <strong>Digital Signage Loop</strong>
-                <span>Draft 1 • Due Oct 24</span>
-              </li>
-              <li>
-                <strong>Holiday Music Spot</strong>
-                <span>Final Mix • Due Nov 2</span>
-              </li>
-            </ul>
-          </article>
+<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <img class="logo-mark" src="assets/logo.png" />
+      <span>Transform Multimedia</span>
+    </a>
+    <button class="secondary-btn" onclick="dashboardLogout()">Logout</button>
+  </nav>
+</header>
 
-          <article class="portal-card">
-            <h2>Video Preview</h2>
-            <p>Latest approved cut for quick review.</p>
-            <div class="preview-shell">
-              <div class="preview-placeholder">
-                <span>Embed player or preview frame here</span>
-              </div>
-              <button class="secondary-btn" type="button">Open Full Preview</button>
-            </div>
-          </article>
+<main>
+  <section class="section page-hero">
+    <p class="eyebrow">Client Dashboard</p>
+    <h1>Your Project Workspace</h1>
+    <div class="portal-note" data-role-indicator>Detected role: --</div>
+  </section>
 
-          <article class="portal-card">
-            <h2>Status</h2>
-            <p>Current production checkpoints.</p>
-            <div class="status-grid">
-              <div>
-                <span class="status-label">Pre-Production</span>
-                <strong class="status-value">Approved</strong>
-              </div>
-              <div>
-                <span class="status-label">Production</span>
-                <strong class="status-value">In Progress</strong>
-              </div>
-              <div>
-                <span class="status-label">Post</span>
-                <strong class="status-value">Draft 2</strong>
-              </div>
-            </div>
-          </article>
+  <!-- ================= ADMIN ================= -->
+  <section class="section portal" data-role="admin" hidden>
+    <h2>Admin Control Room</h2>
 
-          <article class="portal-card">
-            <h2>Your Assets</h2>
-            <p>Download final exports and review files tied to your account.</p>
-            <ul class="asset-list">
-              <li>
-                <div>
-                  <strong>Brand Narrative Film</strong>
-                  <span>Final delivery • 1080p MP4</span>
-                </div>
-                <a class="secondary-btn" href="#" aria-label="Download Brand Narrative Film">
-                  Download
-                </a>
-              </li>
-              <li>
-                <div>
-                  <strong>Digital Signage Loop</strong>
-                  <span>Draft 1 • 4K MP4</span>
-                </div>
-                <a class="secondary-btn" href="#" aria-label="Download Digital Signage Loop">
-                  Download
-                </a>
-              </li>
-              <li>
-                <div>
-                  <strong>Holiday Music Spot</strong>
-                  <span>Audio mix • WAV</span>
-                </div>
-                <a class="secondary-btn" href="#" aria-label="Download Holiday Music Spot">
-                  Download
-                </a>
-              </li>
-            </ul>
-          </article>
-          <article class="portal-card">
-            <h2>Project Messages</h2>
-            <p>Latest updates from the Transform Multimedia team.</p>
-            <div class="message-list" data-client-message-feed>
-              <p class="empty-state">No updates yet.</p>
-            </div>
-          </article>
+    <div class="portal-grid">
+      <article class="portal-card">
+        <h2>Admin Notes</h2>
+        <div class="message-list" data-admin-notes></div>
 
-          <article class="portal-card">
-            <h2>Notes</h2>
-            <p>Recent updates from the Transform Multimedia team.</p>
-            <div class="notes-stack">
-              <div class="note-item">
-                <strong>Oct 6</strong>
-                <p>Updated lower thirds and color grade per last review.</p>
-              </div>
-              <div class="note-item">
-                <strong>Oct 3</strong>
-                <p>Uploaded new voiceover options for approval.</p>
-              </div>
-              <div class="note-item">
-                <strong>Sep 29</strong>
-                <p>Storyboard locked. Proceeding into capture.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
+        <form class="message-form" data-admin-note-form>
+          <label>Note<textarea name="admin-note" required></textarea></label>
+          <label>Project ID<input name="admin-project-id" required /></label>
+          <button class="secondary-btn">Post Note</button>
+        </form>
+      </article>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>
-          <div class="footer-logo">
-            <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia logo" />
-            <span>Transform Multimedia</span>
-          </div>
-          <p>Creative studio for future-forward visual storytelling.</p>
-        </div>
-        <div class="footer-links">
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
-          <a href="https://www.vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
-        </div>
-      </div>
-      <p class="footer-meta">© 2024 Transform Multimedia. All rights reserved.</p>
-    </footer>
-  </body>
+      <article class="portal-card">
+        <h2>Client Messages</h2>
+        <div class="message-list" data-client-messages></div>
+
+        <form class="message-form" data-client-message-form>
+          <label>Message<textarea name="client-message" required></textarea></label>
+          <label>Project ID<input name="client-project-id" required /></label>
+          <button class="secondary-btn">Send to Client</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= CLIENT ================= -->
+  <section class="section portal" data-role="client" hidden>
+    <h2>Your Project Feed</h2>
+
+    <div class="portal-card">
+      <div class="message-list" data-client-message-feed></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© Transform Multimedia</p>
+</footer>
+
+</body>
 </html>
