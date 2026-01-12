@@ -27,7 +27,7 @@ const musicVideos = [
     title: "Paradise in Tarpon Springs",
     description: "Bright, sunlit celebration of Florida coastal life.",
     youtube: "",
-    thumb: "https://img.youtube.com/vi/LgWX2pZQsE/hqdefault.jpg"
+    thumb: "https://img.youtube.com/vi//hqdefault.jpg"
   }
 ];
 
