@@ -1,19 +1,13 @@
 const renderRoleIndicator = (role) => {
   const indicator = document.querySelector("[data-role-indicator]");
-  if (indicator) {
-    indicator.textContent = `Detected role: ${role}`;
-  }
+  if (indicator) indicator.textContent = `Detected role: ${role}`;
 };
 
 const toggleRoleSections = (role) => {
-  const adminBlocks = document.querySelectorAll('[data-role="admin"]');
-  const clientBlocks = document.querySelectorAll('[data-role="client"]');
-
-  adminBlocks.forEach((el) => {
+  document.querySelectorAll('[data-role="admin"]').forEach(el => {
     el.hidden = role !== "admin";
   });
-
-  clientBlocks.forEach((el) => {
+  document.querySelectorAll('[data-role="client"]').forEach(el => {
     el.hidden = role !== "client";
   });
 };
@@ -22,79 +16,46 @@ const redirectToLogin = () => {
   window.location.href = "login.html";
 };
 
-const clearLocalSession = () => {
-  localStorage.removeItem("DEV_AUTH");
-  sessionStorage.clear();
-};
-
-const logout = async (supabaseClient) => {
-  try {
-    await supabaseClient.auth.signOut();
-  } finally {
-    clearLocalSession();
-    redirectToLogin();
-  }
-};
-
 if (window.__SUPABASE_URL__ && window.__SUPABASE_ANON_KEY__) {
-  const supabaseClient = window.supabase.createClient(
+  const supabase = window.supabase.createClient(
     window.__SUPABASE_URL__,
     window.__SUPABASE_ANON_KEY__
   );
 
-  window.dashboardLogout = () => logout(supabaseClient);
+  const initDashboard = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return redirectToLogin();
 
-  const initializeDashboard = async () => {
-    const { data: sessionData } = await supabaseClient.auth.getSession();
-    const session = sessionData?.session;
+    const userId = session.user.id;
 
-    if (!session) {
-      redirectToLogin();
-      return;
-    }
-
-    const userId = session.user?.id;
-    if (!userId) {
-      redirectToLogin();
-      return;
-    }
-
-    const { data: profile, error } = await supabaseClient
+    // Try to fetch existing profile
+    let { data: profile, error } = await supabase
       .from("profiles")
-      .select("role")
+      .select("id, role")
       .eq("user_id", userId)
-      .maybeSingle();
+      .single();
 
-    if (error) {
-      redirectToLogin();
-      return;
-    }
-
-    let role = profile?.role;
-
-    if (!role) {
-      const { data: created, error: insertError } = await supabaseClient
+    // If none exists, create one ONCE
+    if (!profile) {
+      const { data: created, error: insertError } = await supabase
         .from("profiles")
         .insert({ user_id: userId, role: "client" })
         .select("role")
         .single();
 
       if (insertError) {
-        redirectToLogin();
-        return;
+        console.error(insertError);
+        return redirectToLogin();
       }
 
-      role = created?.role;
+      profile = created;
     }
 
-    if (role !== "admin" && role !== "client") {
-      redirectToLogin();
-      return;
-    }
+    if (!profile?.role) return redirectToLogin();
 
-    renderRoleIndicator(role);
-    toggleRoleSections(role);
+    renderRoleIndicator(profile.role);
+    toggleRoleSections(profile.role);
   };
 
-  initializeDashboard();
+  initDashboard();
 }
