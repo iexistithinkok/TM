@@ -1,424 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transform Multimedia — Cinematic Creative Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="ambient-glow"></div>
-    <div class="ambient-grid tron-grid"></div>
-    <div class="background-reel" aria-hidden="true">
-      <!-- Background projection uses the first featured demo. -->
-      <iframe
-        title="Transform Multimedia background reel"
-        src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0&start=4"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        loading="lazy"
-      ></iframe>
-    </div>
-    <!-- Optional projector startup sound (plays on first user interaction). -->
-    <audio id="projector-audio" src="/assets/projector-startup.mp3" preload="auto"></audio>
-    <header class="site-header">
-      <nav class="nav">
-        <a class="logo" href="#showcase" aria-label="Transform Multimedia demos">
-          <!-- Replace assets/logo.png with the official Transform Multimedia logo if needed. -->
-          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia logo" />
-          <span class="logo-text">Transform Multimedia</span>
-        </a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#showcase">Showcase</a>
-          <a href="#gallery">Image Gallery</a>
-          <a href="#services">Services</a>
-          <a href="workflow.html">Workflow</a>
-          <a href="music.html">Original Music</a>
-          <a href="portal.html">Client Login</a>
-          <a href="#contact" class="nav-cta">Start a Project</a>
-        </div>
-      </nav>
-    </header>
-   <div class="side-logo-link">
-  <img src="assets/logo.svg" alt="Transform Multimedia" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Transform Multimedia — Cinematic Creative Studio</title>
 
-  <a href="#showcase">View Demos</a>
-  <a href="portal.html">Client Login</a>
-  <a href="https://www.youtube.com/@YourChannelName" target="_blank">YouTube</a>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+<div class="ambient-glow"></div>
+<div class="ambient-grid tron-grid"></div>
+
+<!-- Cinematic projector background -->
+<div class="background-reel">
+  <iframe
+    src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
+    allow="autoplay; encrypted-media"
+    loading="lazy">
+  </iframe>
 </div>
 
+<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="#showcase">
+      <img class="logo-mark" src="assets/logo.svg" alt="Transform Multimedia" />
+      <span class="logo-text">Transform Multimedia</span>
     </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#services">Services</a>
+      <a href="workflow.html">Workflow</a>
+      <a href="music.html">Original Music</a>
+      <a href="portal.html">Client Login</a>
+      <a href="#contact" class="nav-cta">Start a Project</a>
+    </div>
+  </nav>
+</header>
 
-    <main id="top">
-      <section class="hero">
-        <div class="hero-content">
-          <p class="eyebrow">Tampa Bay Area</p>
-          <h1>
-            Full-service video production, capture, animation, and original music.
-          </h1>
-          <p class="hero-subtitle">
-            Transform Multimedia delivers commercial demos, documentaries, and training
-            journeys with over 40 years of combined experience and a cinematic edge.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-btn" href="#showcase">Commercial Demos</a>
-            <a class="ghost-btn" href="#contact">Let’s work in partnership</a>
-          </div>
-          <div class="hero-metrics">
-            <div>
-              <h3>40+</h3>
-              <span>Years of combined experience</span>
-            </div>
-            <div>
-              <h3>Full</h3>
-              <span>Production + post workflows</span>
-            </div>
-            <div>
-              <h3>Original</h3>
-              <span>Music + sound design included</span>
-            </div>
-          </div>
-        </div>
-        <!-- Hero visual removed to maximize background projection visibility. -->
-      </section>
+<!-- FLOATING CONTROL DOCK -->
+<div class="side-logo-link">
+  <img src="assets/logo.svg" alt="Transform Multimedia logo" />
+  <a href="#showcase">View Demos</a>
+  <a href="portal.html">Client Login</a>
+  <a href="music.html">Original Music</a>
+  <a href="https://www.youtube.com/@TransformMultimedia" target="_blank">YouTube</a>
+</div>
 
-      <section id="about" class="section about">
-        <div class="section-header">
-          <h2>Transform Multimedia</h2>
-          <p>
-            Transform Multimedia handles full-service video and media production with over 40
-            years of combined experience. From VNR (Video News Releases) and high-end
-            commercials to documentaries that stand the test of time, we specialize in
-            creating compelling content for businesses, organizations, and creatives.
-          </p>
-        </div>
-        <div class="about-grid">
-          <div class="about-card">
-            <h3>Production + Capture</h3>
-            <p>
-              Mobile production, run-and-gun coverage, and high-end capture with a streamlined
-              crew.
-            </p>
-          </div>
-          <div class="about-card">
-            <h3>Animation + GFX</h3>
-            <p>
-              Brand-centered motion graphics, fully custom animation, and bespoke visual
-              systems.
-            </p>
-          </div>
-          <div class="about-card">
-            <h3>Original Music</h3>
-            <p>
-              Original music demos, SFX, and mastering included in every membership.
-            </p>
-          </div>
-        </div>
-      </section>
+<main>
 
-      <section id="showcase" class="section showcase">
-        <div class="section-header">
-          <h2>Commercial Demos</h2>
-          <p>
-            Explore our curated demos and campaign work. Select any thumbnail to load the
-            feature player.
-          </p>
-        </div>
+<section class="hero">
+  <div class="hero-content">
+    <p class="eyebrow">Tampa Bay Area</p>
+    <h1>Full-service video, animation, and original music studio</h1>
+    <p class="hero-subtitle">
+      Transform Multimedia delivers cinematic campaigns, documentaries, and
+      digital storytelling with a projector-room aesthetic.
+    </p>
+    <div class="hero-actions">
+      <a class="primary-btn" href="#showcase">View Demos</a>
+      <a class="ghost-btn" href="#contact">Let’s Work Together</a>
+    </div>
+  </div>
+</section>
 
-        <div class="video-showcase">
-          <div class="featured-video">
-            <div class="featured-meta">
-              <span class="tag">Featured</span>
-              <h3 id="featured-title">Loading...</h3>
-              <p id="featured-description">Loading...</p>
-              <div class="featured-actions">
-                <button class="secondary-btn" type="button" id="prev-video">
-                  Previous
-                </button>
-                <button class="secondary-btn" type="button" id="next-video">Next</button>
-              </div>
-            </div>
-            <div class="featured-player">
-              <div class="player-shell">
-                <iframe
-                  id="featured-iframe"
-                  title="Featured video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
-              </div>
-            </div>
-          </div>
+<section id="about" class="section about">
+  <div class="section-header">
+    <h2>Transform Multimedia</h2>
+    <p>
+      A full-service production studio delivering video, animation, original music,
+      and immersive digital media experiences.
+    </p>
+  </div>
+</section>
 
-          <div class="video-grid" id="video-grid" aria-live="polite"></div>
-        </div>
-        <div class="lightbox" id="lightbox" aria-hidden="true">
-          <div class="lightbox-backdrop" data-lightbox-close></div>
-          <div class="lightbox-content" role="dialog" aria-modal="true">
-            <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image">
-              ✕
-            </button>
-            <img id="lightbox-image" alt="Expanded gallery item" />
-          </div>
-        </div>
-      </section>
+<section id="showcase" class="section showcase">
+  <div class="section-header">
+    <h2>Commercial Demos</h2>
+    <p>Select a thumbnail to load the featured player.</p>
+  </div>
 
-      <section id="services" class="section services">
-        <div class="section-header">
-          <h2>Services &amp; Capabilities</h2>
-          <p>
-            Training videos, learning journeys, documentary production, and full-spectrum
-            digital media coordination.
-          </p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>Video Production</h3>
-            <ul>
-              <li>Run-and-gun shoots: $250/hour</li>
-              <li>Production shoots: $500/half day, $800/full day</li>
-              <li>Stand-alone elements included in memberships</li>
-            </ul>
-          </div>
-          <div class="service-card">
-            <h3>Post-Production</h3>
-            <ul>
-              <li>Video editing: $50/hour</li>
-              <li>Quick edits for run-and-gun: $30/hour</li>
-              <li>Color grading: $55/hour</li>
-              <li>Sound design &amp; mixing: $50/hour</li>
-            </ul>
-          </div>
-          <div class="service-card">
-            <h3>Digital Media Coordination</h3>
-            <ul>
-              <li>Basic sharing (10 groups): $50/post</li>
-              <li>Enhanced sharing (15+ groups): $100/post</li>
-              <li>Original digital signage content systems</li>
-              <li>We love trading services</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="testimonials" class="section testimonials">
-        <div class="section-header">
-          <h2>Client Testimonials</h2>
-          <p>Trusted by brands who need cinematic storytelling and dependable delivery.</p>
-        </div>
-        <div class="testimonial-grid">
-          <article class="testimonial-card">
-            <p>
-              “Transform Multimedia gave us a broadcast-ready campaign with zero stress. The
-              edit pipeline and communication were flawless.”
-            </p>
-            <strong>Marketing Lead, Horizon Tech</strong>
-          </article>
-          <article class="testimonial-card">
-            <p>
-              “They understood our story instantly and delivered visuals that elevated our
-              entire brand.”
-            </p>
-            <strong>Director, KET/PBS Documentary Unit</strong>
-          </article>
-          <article class="testimonial-card">
-            <p>
-              “Fast, cinematic, and reliable. The final assets were ready for launch on
-              schedule and on budget.”
-            </p>
-            <strong>Creative Manager, Transform Realty</strong>
-          </article>
-        </div>
-      </section>
-
-      <section id="gallery" class="section gallery">
-        <div class="section-header">
-          <h2>Image Gallery</h2>
-          <p>
-            Explore stills from our productions. Swap the gallery images by replacing the
-            files named
-            <strong>gallery-01</strong> through <strong>gallery-06</strong> in the assets
-            folder.
-          </p>
-        </div>
-        <div class="gallery-grid">
-          <figure class="gallery-card" data-lightbox="assets/gallery-01.webp">
-            <img src="assets/gallery-01.webp" alt="Gallery placeholder 01" />
-            <figcaption>Launch Highlight</figcaption>
-          </figure>
-          <figure class="gallery-card" data-lightbox="assets/gallery-02.jpeg">
-            <img src="assets/gallery-02.jpeg" alt="Gallery placeholder 02" />
-            <figcaption>Commercial Demo</figcaption>
-          </figure>
-          <figure class="gallery-card" data-lightbox="assets/gallery-03.jpeg">
-            <img src="assets/gallery-03.jpeg" alt="Gallery placeholder 03" />
-            <figcaption>Documentary Moment</figcaption>
-          </figure>
-          <figure class="gallery-card" data-lightbox="assets/gallery-04.jpeg">
-            <img src="assets/gallery-04.jpeg" alt="Gallery placeholder 04" />
-            <figcaption>Motion Graphics</figcaption>
-          </figure>
-          <figure class="gallery-card" data-lightbox="assets/gallery-05.jpeg">
-            <img src="assets/gallery-05.jpeg" alt="Gallery placeholder 05" />
-            <figcaption>Brand Story</figcaption>
-          </figure>
-          <figure class="gallery-card" data-lightbox="assets/gallery-06.jpeg">
-            <img src="assets/gallery-06.jpeg" alt="Gallery placeholder 06" />
-            <figcaption>Digital Signage Loop</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="section pricing">
-        <div class="section-header">
-          <h2>Membership Contracts</h2>
-          <p>Creative brainstorming is always free. Choose a plan and scale from there.</p>
-        </div>
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <h3>Basic Contract</h3>
-            <p class="price">Starting at $1,000/m</p>
-          </div>
-          <div class="pricing-card">
-            <h3>Premium Contract</h3>
-            <p class="price">Starting at $1,350/m</p>
-          </div>
-          <div class="pricing-card">
-            <h3>Elite Contract</h3>
-            <p class="price">Starting at $2,200/m</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section addons">
-        <div class="section-header">
-          <h2>Add-Ons &amp; Extras</h2>
-          <p>Augment your production with specialty services and premium capture.</p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>Add-Ons</h3>
-            <ul>
-              <li>Drone footage: $250/shoot</li>
-              <li>Voiceover recording: $140/session</li>
-              <li>Photo package: $150 (20 high-resolution photos)</li>
-            </ul>
-          </div>
-          <div class="service-card">
-            <h3>Animation &amp; Graphics</h3>
-            <ul>
-              <li>Brand-centered motion graphics: $250/project</li>
-              <li>Fully custom motion graphics: $60/hour</li>
-              <li>GFX included in every membership</li>
-            </ul>
-          </div>
-          <div class="service-card">
-            <h3>Special Projects</h3>
-            <ul>
-              <li>Original music demo to fit your brand</li>
-              <li>Transform Multimedia SFX included in every membership</li>
-              <li>We love trading services</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section offers">
-        <div class="section-header">
-          <h2>Seasonal &amp; Real Estate Offers</h2>
-          <p>Limited-time packages and seasonal storytelling opportunities.</p>
-        </div>
-        <div class="offers-grid">
-          <div class="offer-card">
-            <h3>Original Music Holiday Special</h3>
-            <p>Now - Dec 2025 · Only $99 · Limited time offer</p>
-            <p>
-              Give the gift of a song about your family, favorite place, or brand. For $199 we
-              will turn your song into a holiday card for your clients.
-            </p>
-          </div>
-          <div class="offer-card">
-            <h3>Real Estate Media Memberships</h3>
-            <ul>
-              <li>Starter Plan: Starting at $500/month</li>
-              <li>Growth Plan: Starting at $950/month</li>
-              <li>Elite Plan: Starting at $1,500/month</li>
-            </ul>
-            <p>
-              Includes property tours, walkthrough video, optional voiceover/on-screen text,
-              and agent intro/closing CTA options.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section team">
-        <div class="section-header">
-          <h2>Studio Team</h2>
-          <p>Meet the people behind the lens.</p>
-        </div>
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>S McCameron</h3>
-            <div class="team-avatar" data-label="Headshot placeholder" aria-hidden="true"></div>
-            <p>Executive producer, animator.</p>
-          </div>
-          <div class="service-card">
-            <h3>A Hutchings</h3>
-            <div class="team-avatar" data-label="Headshot placeholder" aria-hidden="true"></div>
-            <p>Producer, videographer, editor, drone pilot.</p>
-          </div>
-          <div class="service-card">
-            <h3>I’m Smudge</h3>
-            <div class="team-avatar" data-label="Cat photo placeholder" aria-hidden="true"></div>
-            <p>THE BOSS!</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section cta">
-        <div class="cta-content">
-          <h2>Let’s work in partnership.</h2>
-          <p>
-            Training videos, documentaries, commercial campaigns, and original music—all
-            delivered with premium production values.
-          </p>
-          <div class="cta-actions">
-            <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">
-              Email the Team
-            </a>
-            <a class="ghost-btn" href="tel:7276332386">Call/Text: 727-633-2386</a>
-            <a class="ghost-btn" href="tel:7273142003">Call/Text: 727-314-2003</a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>
-          <div class="footer-logo">
-            <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia logo" />
-            <span>Transform Multimedia</span>
-          </div>
-          <p>Creative studio for future-forward visual storytelling.</p>
-        </div>
-        <div class="footer-links">
-          <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
-          <a href="https://www.vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
+  <div class="video-showcase">
+    <div class="featured-video">
+      <div class="featured-meta">
+        <span class="tag">Featured</span>
+        <h3 id="featured-title">Loading…</h3>
+        <p id="featured-description">Loading…</p>
+        <div class="featured-actions">
+          <button class="secondary-btn" id="prev-video">Previous</button>
+          <button class="secondary-btn" id="next-video">Next</button>
         </div>
       </div>
-      <p class="footer-meta">© 2024 Transform Multimedia. All rights reserved.</p>
-    </footer>
+      <div class="featured-player">
+        <div class="player-shell">
+          <iframe id="featured-iframe" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="video-grid" id="video-grid"></div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
-  </body>
+<section id="gallery" class="section gallery">
+  <div class="section-header">
+    <h2>Image Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <img src="assets/gallery-01.webp">
+    <img src="assets/gallery-02.jpeg">
+    <img src="assets/gallery-03.jpeg">
+    <img src="assets/gallery-04.jpeg">
+  </div>
+</section>
+
+<section id="services" class="section services">
+  <div class="section-header">
+    <h2>Services</h2>
+    <p>Production, editing, animation, and original music.</p>
+  </div>
+</section>
+
+<section id="contact" class="section cta">
+  <div class="cta-content">
+    <h2>Let’s Work Together</h2>
+    <p>Commercials, documentaries, branding, and sound design.</p>
+    <div class="cta-actions">
+      <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email Us</a>
+      <a class="ghost-btn" href="portal.html">Client Login</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img class="logo-mark" src="assets/logo.svg" />
+        <span>Transform Multimedia</span>
+      </div>
+      <p>Creative studio for future-forward storytelling.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://instagram.com">Instagram</a>
+      <a href="https://youtube.com">YouTube</a>
+      <a href="https://vimeo.com">Vimeo</a>
+    </div>
+  </div>
+  <p class="footer-meta">© 2024 Transform Multimedia</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
 </html>
