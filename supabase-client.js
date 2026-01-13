@@ -5,5 +5,5 @@ if (!window.__SUPABASE_URL__ || !window.__SUPABASE_ANON_KEY__) {
     window.__SUPABASE_URL__,
     window.__SUPABASE_ANON_KEY__
   );
-  console.log("Supabase client ready");
+  console.log("Supabase connected");
 }
