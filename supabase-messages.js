@@ -11,7 +11,6 @@
     hasAdminFeed: !!adminFeed,
     path: window.location.pathname,
   });
+if (clientFeed) clientFeed.insertAdjacentHTML("beforeend", "<p class='muted'>Client feed ready.</p>");
 
-  if (clientFeed) clientFeed.insertAdjacentHTML("beforeend", "<p class='muted'>Client feed ready.</p>");
-  if (adminFeed) adminFeed.insertAdjacentHTML("beforeend", "<p class='muted'>Admin feed ready.</p>");
 })();
