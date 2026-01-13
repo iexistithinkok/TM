@@ -1,6 +1,6 @@
-console.log("Session loaded");
+const { createClient } = supabase;
 
-window.dashboardLogout = async function () {
-  await window.supabase.auth.signOut();
-  window.location.href = "login.html";
-};
+window.supabaseClient = createClient(
+  window.__SUPABASE_URL__,
+  window.__SUPABASE_ANON_KEY__
+);
