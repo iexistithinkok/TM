@@ -1,9 +1,6 @@
-if (!window.__SUPABASE_URL__ || !window.__SUPABASE_ANON_KEY__) {
-  console.error("Supabase env missing");
-} else {
-  window.supabase = supabase.createClient(
-    window.__SUPABASE_URL__,
-    window.__SUPABASE_ANON_KEY__
-  );
-  console.log("Supabase connected");
-}
+console.log("Session loaded");
+
+window.dashboardLogout = async function () {
+  await window.supabase.auth.signOut();
+  window.location.href = "login.html";
+};
