@@ -7,18 +7,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- MUST LOAD FIRST -->
-  <link rel="stylesheet" href="styles.css" />
-<script src="supabase-env.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-client.js"></script>
-<script src="supabase-auth.js" defer></script>
+  <!-- Supabase bootstrap -->
+  <script src="./supabase-env.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
 
-
-
+  <!-- Page logic -->
+  <script src="./supabase-dashboard.js" defer></script>
+  <script src="./supabase-messages.js" defer></script>
 </head>
 
 <body>
@@ -27,15 +29,57 @@
 
   <header class="site-header">
     <nav class="nav">
-      <a class="logo" href="index.html">
-        <img class="logo-mark" src="assets/logo.png" />
+      <a class="logo" href="./index.html">
+        <img class="logo-mark" src="./assets/logo.png" alt="Transform Multimedia Logo" />
         <span>Transform Multimedia</span>
       </a>
-      <button class="secondary-btn" onclick="dashboardLogout()">Logout</button>
+
+      <button class="secondary-btn" type="button" onclick="dashboardLogout()">Logout</button>
     </nav>
   </header>
 
-  <!-- ... keep the rest of your dashboard markup unchanged ... -->
+  <main>
+    <section class="section page-hero">
+      <p class="eyebrow">Client Dashboard</p>
+      <h1>Your Project Workspace</h1>
+      <div class="portal-note" data-role-indicator>Detected role: --</div>
+    </section>
 
+    <!-- ================= ADMIN ================= -->
+    <section class="section portal" data-role="admin" hidden>
+      <h2>Admin Control Room</h2>
+
+      <div class="portal-grid">
+        <article class="portal-card">
+          <h2>Admin Notes</h2>
+          <p class="muted">
+            If you see this section, your profile role is set to <strong>admin</strong>.
+          </p>
+        </article>
+
+        <article class="portal-card">
+          <h2>Client Messages</h2>
+          <div class="message-list" data-admin-message-feed>
+            <p class="muted">Message feed placeholder.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= CLIENT ================= -->
+    <section class="section portal" data-role="client" hidden>
+      <h2>Your Project Feed</h2>
+
+      <div class="portal-card">
+        <div class="message-list" data-client-message-feed>
+          <p class="muted">Message feed placeholder.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© Transform Multimedia</p>
+  </footer>
 </body>
 </html>
