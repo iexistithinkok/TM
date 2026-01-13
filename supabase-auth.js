@@ -4,7 +4,7 @@ const DEV_PASSWORD = "dev123";
 const DEV_SESSION_KEY = "DEV_AUTH";
 
 if (window.__SUPABASE_URL__ && window.__SUPABASE_ANON_KEY__) {
-  const supabaseClient = window.supabase.createClient(
+const supabaseClient = window.supabase;(
     window.__SUPABASE_URL__,
     window.__SUPABASE_ANON_KEY__
   );
