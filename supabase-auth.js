@@ -1,28 +1,20 @@
 /**
  * supabase-auth.js
- * Creates a Supabase client and wires login/signup forms.
+ * Uses the already-created window.supabaseClient from supabase-client.js.
+ * DO NOT create a new client here (prevents multiple GoTrueClient instances).
  */
 (() => {
-  const devModeEnabled = window.__DEV_MODE__ === true;
-  const DEV_EMAIL = "dev@transform.test";
-  const DEV_PASSWORD = "dev123";
-  const DEV_SESSION_KEY = "DEV_AUTH";
-
-  const url = window.__SUPABASE_URL__;
-  const anonKey = window.__SUPABASE_ANON_KEY__;
-
-  if (!url || !anonKey) {
-    console.warn("Supabase env missing: __SUPABASE_URL__ / __SUPABASE_ANON_KEY__");
-    return;
-  }
-  if (!window.supabase?.createClient) {
-    console.warn("Supabase JS not loaded (missing window.supabase.createClient).");
+  const supabaseClient = window.supabaseClient;
+  if (!supabaseClient?.auth?.getSession) {
+    console.error("supabaseClient missing. Load supabase-client.js first.");
     return;
   }
 
-  // Single shared client used across pages.
-  const supabaseClient = window.supabase.createClient(url, anonKey);
-  window.supabaseClient = supabaseClient;
+  // If you're logging this for debugging, it's fine; remove later.
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) console.error(error);
+    console.log("session:", data?.session);
+  });
 
   const forms = document.querySelectorAll("form[data-auth-mode]");
 
@@ -30,18 +22,12 @@
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
-      const mode = form.getAttribute("data-auth-mode");
-      const emailInput = form.querySelector('input[type="email"]');
-      const passwordInput = form.querySelector('input[type="password"]');
+      const mode = form.getAttribute("data-auth-mode"); // "login" or "signup"
+      const email = form.querySelector('input[type="email"]')?.value?.trim() || "";
+      const password = form.querySelector('input[type="password"]')?.value || "";
 
-      if (!emailInput || !passwordInput) return;
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-
-      if (devModeEnabled && email === DEV_EMAIL && password === DEV_PASSWORD) {
-        localStorage.setItem(DEV_SESSION_KEY, "true");
-        window.location.href = "dashboard.html";
+      if (!email || !password) {
+        alert("Email and password are required.");
         return;
       }
 
@@ -56,33 +42,18 @@
 
         window.location.href = "dashboard.html";
       } catch {
-        alert("Unable to authenticate. Please try again.");
+        alert("Login failed. Please try again.");
       }
     });
   });
-const client = window.supabaseClient;
 
-if (!client?.auth?.getSession) {
-  console.error("Supabase client not ready:", {
-    hasSupabaseGlobal: !!window.supabase,
-    hasCreateClient: !!window.supabase?.createClient,
-    hasClient: !!window.supabaseClient,
-    url: window.__SUPABASE_URL__,
-    anonKeyPresent: !!window.__SUPABASE_ANON_KEY__,
-  });
-} else {
-  client.auth.getSession().then(({ data }) => {
-    console.log("session:", data?.session);
-  });
-}
-
+  // Optional: redirect away from login page if already signed in
   supabaseClient.auth.getSession().then(({ data }) => {
-    const isLoginPage =
-      window.location.pathname.endsWith("login.html") ||
-      window.location.pathname.endsWith("client-login.html") ||
-      window.location.pathname.endsWith("portal.html");
+    const path = window.location.pathname.toLowerCase();
+    const isLoginLike =
+      path.endsWith("/login.html") || path.endsWith("/client-login.html") || path.endsWith("/portal.html");
 
-    if (data?.session && isLoginPage) {
+    if (data?.session && isLoginLike) {
       window.location.href = "dashboard.html";
     }
   });
