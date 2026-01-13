@@ -1,39 +1,59 @@
 /**
  * supabase-client.js
- * Create ONE shared Supabase client for the whole page context.
+ * Robust singleton client init that works even if script load order is imperfect.
  *
- * Requirements:
- * - supabase-env.js must set: window.__SUPABASE_URL__ and window.__SUPABASE_ANON_KEY__
- * - Supabase CDN must be loaded before this file
+ * Requires:
+ *  - supabase-env.js sets window.__SUPABASE_URL__ and window.__SUPABASE_ANON_KEY__
+ *  - Supabase CDN provides window.supabase.createClient
  */
 (() => {
-  if (window.supabaseClient) return; // Prevent duplicate clients
+  if (window.getSupabaseClient) return; // already installed
 
-  const url = window.__SUPABASE_URL__;
-  const anonKey = window.__SUPABASE_ANON_KEY__;
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  if (!window.supabase?.createClient) {
-    console.error(
-      "Supabase JS not loaded. Ensure the CDN script (@supabase/supabase-js@2) loads before supabase-client.js"
-    );
-    return;
-  }
-
-  if (!url || !anonKey) {
-    console.error(
-      "Missing Supabase env. Ensure supabase-env.js defines window.__SUPABASE_URL__ and window.__SUPABASE_ANON_KEY__"
-    );
-    return;
-  }
-
-  window.supabaseClient = window.supabase.createClient(url, anonKey);
-
-  // Optional convenience logout you can call from buttons: onclick="dashboardLogout()"
-  window.dashboardLogout = async function dashboardLogout() {
-    try {
-      await window.supabaseClient.auth.signOut();
-    } finally {
-      window.location.href = "login.html";
+  async function waitForDeps({ timeoutMs = 8000, pollMs = 50 } = {}) {
+    const start = Date.now();
+    while (Date.now() - start < timeoutMs) {
+      const hasEnv = !!window.__SUPABASE_URL__ && !!window.__SUPABASE_ANON_KEY__;
+      const hasSDK = !!window.supabase?.createClient;
+      if (hasEnv && hasSDK) return true;
+      await sleep(pollMs);
     }
+    return false;
+  }
+
+  async function initClientOnce() {
+    if (window.supabaseClient) return window.supabaseClient;
+
+    const ok = await waitForDeps();
+    if (!ok) {
+      console.error("Supabase deps not ready:", {
+        urlPresent: !!window.__SUPABASE_URL__,
+        anonKeyPresent: !!window.__SUPABASE_ANON_KEY__,
+        supabaseGlobal: !!window.supabase,
+        createClientPresent: !!window.supabase?.createClient,
+      });
+      return null;
+    }
+
+    if (!window.supabaseClient) {
+      window.supabaseClient = window.supabase.createClient(
+        window.__SUPABASE_URL__,
+        window.__SUPABASE_ANON_KEY__
+      );
+    }
+    return window.supabaseClient;
+  }
+
+  // One shared promise to prevent multiple GoTrueClient instances.
+  const readyPromise = initClientOnce();
+
+  window.getSupabaseClient = () => readyPromise;
+
+  // Optional convenience logout
+  window.dashboardLogout = async function dashboardLogout() {
+    const client = await window.getSupabaseClient();
+    if (client?.auth) await client.auth.signOut();
+    window.location.href = "login.html";
   };
 })();
