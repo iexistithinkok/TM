@@ -60,6 +60,21 @@
       }
     });
   });
+const client = window.supabaseClient;
+
+if (!client?.auth?.getSession) {
+  console.error("Supabase client not ready:", {
+    hasSupabaseGlobal: !!window.supabase,
+    hasCreateClient: !!window.supabase?.createClient,
+    hasClient: !!window.supabaseClient,
+    url: window.__SUPABASE_URL__,
+    anonKeyPresent: !!window.__SUPABASE_ANON_KEY__,
+  });
+} else {
+  client.auth.getSession().then(({ data }) => {
+    console.log("session:", data?.session);
+  });
+}
 
   supabaseClient.auth.getSession().then(({ data }) => {
     const isLoginPage =
