@@ -1,47 +1,61 @@
-console.log("Dashboard loading");
+/**
+ * supabase-dashboard.js
+ * - Requires an active session
+ * - Loads/creates profile in `profiles` table
+ * - Shows either [data-role="admin"] or [data-role="client"]
+ */
+(async () => {
+  const supabase = window.supabaseClient;
+  if (!supabase?.auth?.getSession) {
+    console.error("supabaseClient missing on dashboard. Ensure supabase-client.js is loaded.");
+    return;
+  }
 
-const supabase = window.supabaseClient;
+  const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+  if (sessionError) console.error(sessionError);
 
-async function loadDashboard() {
-  const { data: { session } } = await supabase.auth.getSession();
-
+  const session = sessionData?.session;
   if (!session) {
-    console.log("No session, redirecting");
-    window.location.href = "login.html";
+    window.location.href = "./client-login.html"; // change to your actual login page if different
     return;
   }
 
   const userId = session.user.id;
-  console.log("User:", userId);
 
-  let { data: profile } = await supabase
+  // Get profile
+  let { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role")
+    .select("user_id, role")
     .eq("user_id", userId)
-    .single();
+    .maybeSingle();
 
+  if (profileError) console.error(profileError);
+
+  // Create default profile if missing
   if (!profile) {
-    console.log("Creating profile");
-    const res = await supabase.from("profiles").insert({
-      user_id: userId,
-      role: "client"
-    }).select().single();
+    const { data: created, error: createError } = await supabase
+      .from("profiles")
+      .insert({ user_id: userId, role: "client" })
+      .select("user_id, role")
+      .single();
 
-    profile = res.data;
+    if (createError) {
+      console.error(createError);
+      return;
+    }
+    profile = created;
   }
 
-  console.log("ROLE:", profile.role);
+  const role = (profile?.role || "client").toLowerCase();
 
   const indicator = document.querySelector("[data-role-indicator]");
-  if (indicator) indicator.textContent = "Detected role: " + profile.role;
+  if (indicator) indicator.textContent = `Detected role: ${role}`;
 
-  document.querySelectorAll('[data-role="admin"]').forEach(el => {
-    el.hidden = profile.role !== "admin";
+  document.querySelectorAll('[data-role="admin"]').forEach((el) => {
+    el.hidden = role !== "admin";
   });
 
-  document.querySelectorAll('[data-role="client"]').forEach(el => {
-    el.hidden = profile.role !== "client";
+  document.querySelectorAll('[data-role="client"]').forEach((el) => {
+    el.hidden = role !== "client";
   });
-}
-
-loadDashboard();
+})();
