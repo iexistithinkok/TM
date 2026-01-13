@@ -14,7 +14,7 @@ async function loadDashboard() {
   const userId = session.user.id;
   console.log("User:", userId);
 
-  let { data: profile, error } = await supabase
+  let { data: profile } = await supabase
     .from("profiles")
     .select("role")
     .eq("user_id", userId)
@@ -26,6 +26,7 @@ async function loadDashboard() {
       user_id: userId,
       role: "client"
     }).select().single();
+
     profile = res.data;
   }
 
