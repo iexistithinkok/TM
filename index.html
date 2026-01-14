@@ -1,196 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transform Multimedia — Cinematic Creative Studio</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transform Multimedia — Cinematic Creative Studio</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 
-    <!-- Page scripts (keep these) -->
-    <script src="video-gallery.js" defer></script>
-    <script src="gallery-lightbox.js" defer></script>
-  </head>
+  <!-- Keep these if they exist in your project -->
+  <script src="video-gallery.js" defer></script>
+  <script src="gallery-lightbox.js" defer></script>
 
-  <body>
-    <div class="ambient-glow"></div>
-    <div class="ambient-grid tron-grid"></div>
+  <style>
+    /* Docbox overlay (text dossier / OS window) */
+    [hidden]{display:none !important;}
+    .docbox{
+      position:fixed; inset:0; display:grid; place-items:center; padding:18px;
+      background:rgba(0,0,0,0.82); z-index:10000;
+    }
+    .docbox-close{position:fixed; top:18px; right:18px; z-index:10001;}
+    .docbox-window{
+      width:min(980px,96vw); max-height:86vh; overflow:auto;
+      border-radius:18px; border:1px solid rgba(255,255,255,0.18);
+      background:rgba(0,0,0,0.42); backdrop-filter:blur(14px);
+      box-shadow:0 24px 80px rgba(0,0,0,0.55);
+    }
+    .docbox-titlebar{
+      display:flex; align-items:center; gap:10px; padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,0.14);
+      position:sticky; top:0;
+      background:rgba(0,0,0,0.55); backdrop-filter:blur(14px);
+    }
+    .docbox-dot{width:10px; height:10px; border-radius:999px; border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.08);}
+    .docbox-title{margin:0; font-family:"Orbitron",sans-serif; font-size:16px;}
+    .docbox-content{padding:16px 16px 20px; line-height:1.65;}
+    .docbox-content ul{margin:10px 0 0 20px;}
 
-    <!-- Cinematic projector background -->
-    <div class="background-reel" aria-hidden="true">
-      <iframe
-        title="Transform Multimedia background projection"
-        src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        frameborder="0"
-        loading="lazy"
-      ></iframe>
-    </div>
+    /* Card grid uses your existing service-card styles if you already added them */
+  </style>
+</head>
 
-    <!-- Minimal header (no top nav menu) -->
-    <header class="site-header">
-      <nav class="nav">
-        <a class="logo" href="index.html" aria-label="Transform Multimedia home">
-          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia logo" />
-          <span class="logo-text">Transform Multimedia</span>
-        </a>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="ambient-grid tron-grid"></div>
 
-        <a class="secondary-btn" href="portal.html">Client Login</a>
-      </nav>
-    </header>
+  <div class="background-reel">
+    <iframe
+      src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
+      allow="autoplay; encrypted-media"
+      loading="lazy"></iframe>
+  </div>
 
-    <!-- RIGHT FLOATING SIDE MENU (single menu) -->
-    <nav class="side-logo-link" aria-label="Site menu">
-      <img src="assets/logo.png" alt="Transform Multimedia logo" />
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#videos">Videos</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#workflow">Workflow</a>
-      <a href="#contact" class="nav-cta">Start a Project</a>
-      <div style="height:1px; background:rgba(255,255,255,0.14); width:100%;"></div>
-      <a href="workflow.html">Workflow Page</a>
-      <a href="music.html">Original Music</a>
-      <a href="portal.html">Client Login</a>
-      <a href="https://www.youtube.com/@TransformMultimedia" target="_blank" rel="noreferrer">YouTube</a>
-    </nav>
+  <!-- Right floating menu: anchors + only a few pages -->
+  <nav class="side-logo-link" aria-label="Site menu">
+    <img src="assets/logo.png" alt="Transform Multimedia logo" />
+    <a href="#showcase">Home</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#team">Team</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#contact" class="nav-cta">Start a Project</a>
+    <div style="height:1px; background:rgba(255,255,255,0.14); width:100%;"></div>
+    <a href="workflow.html">Workflow Page</a>
+    <a href="music.html">Original Music</a>
+    <a href="portal.html">Client Login</a>
+  </nav>
 
-    <main id="top">
-      <!-- HERO -->
-      <section class="section page-hero" id="home" data-section="home">
-        <p class="eyebrow">Cinematic Creative Studio</p>
-        <h1>Transform Multimedia</h1>
-        <p class="muted" style="max-width: 70ch;">
-          Story-first video, design, and multimedia production. Built for brands that need work that looks premium and
-          converts.
+  <main>
+    <section class="hero" id="showcase">
+      <div class="hero-content">
+        <p class="eyebrow">Tampa Bay Area</p>
+        <h1>Full-service video, animation, and original music studio</h1>
+        <p class="hero-subtitle">
+          Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
+          With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media,
+          and provide digital media coordination and placement for organizations of all sizes.
         </p>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
-          <a class="secondary-btn" href="#videos">View Work</a>
-          <a class="secondary-btn" href="#contact">Get a Quote</a>
-          <a class="secondary-btn" href="portal.html">Client Login</a>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#services">Services</a>
+          <a class="ghost-btn" href="#contact">Let’s Work Together</a>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SERVICES -->
-      <section class="section" id="services" data-section="services">
-        <div class="section-header">
-          <h2>Services</h2>
-          <p class="muted">Production, post, and motion — end-to-end.</p>
+    <section id="services" class="section services">
+      <div class="section-header">
+        <h2>Services</h2>
+        <p>Click a service to open the full-screen “file”.</p>
+      </div>
+
+      <div class="service-grid">
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Video Production"
+          data-doc-body="
+            <ul>
+              <li>Pre-production planning</li>
+              <li>On-location / studio shooting</li>
+              <li>Interview + documentary storytelling</li>
+              <li>Broadcast-ready exports</li>
+            </ul>">
+          <div class="service-card-top"><span class="service-chip">PRODUCTION</span><span class="service-meta">.doc</span></div>
+          <h3 class="service-title">Video Production</h3>
+          <p class="service-subtitle">Concept → shoot → deliver</p>
+        </button>
+
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Editing & Post"
+          data-doc-body="
+            <ul>
+              <li>Editorial (short + long form)</li>
+              <li>Color correction + grade</li>
+              <li>Audio cleanup + mix</li>
+              <li>Captions + deliverables</li>
+            </ul>">
+          <div class="service-card-top"><span class="service-chip">POST</span><span class="service-meta">.pdf</span></div>
+          <h3 class="service-title">Editing & Post</h3>
+          <p class="service-subtitle">Cut + color + clean audio</p>
+        </button>
+
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Animation & Motion Graphics"
+          data-doc-body="
+            <ul>
+              <li>Titles + lower thirds</li>
+              <li>Explainers + brand motion</li>
+              <li>Compositing + polish</li>
+              <li>Social-ready packages</li>
+            </ul>">
+          <div class="service-card-top"><span class="service-chip">MOTION</span><span class="service-meta">.sys</span></div>
+          <h3 class="service-title">Animation</h3>
+          <p class="service-subtitle">OS-native motion vibe</p>
+        </button>
+      </div>
+    </section>
+
+    <section id="gallery" class="section gallery">
+      <div class="section-header">
+        <h2>Image Gallery</h2>
+        <p>Click an image to view full size.</p>
+      </div>
+
+      <!-- Correct filenames from snapshot: 01-06.webp -->
+      <div class="gallery-grid" data-gallery-grid>
+        <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
+        <img src="assets/gallery-02.webp" alt="Gallery image 2" loading="lazy" />
+        <img src="assets/gallery-03.webp" alt="Gallery image 3" loading="lazy" />
+        <img src="assets/gallery-04.webp" alt="Gallery image 4" loading="lazy" />
+        <img src="assets/gallery-05.webp" alt="Gallery image 5" loading="lazy" />
+        <img src="assets/gallery-06.webp" alt="Gallery image 6" loading="lazy" />
+      </div>
+
+      <!-- Lightbox (required by gallery-lightbox.js) -->
+      <div class="lightbox" data-lightbox hidden>
+        <button class="lightbox-close secondary-btn" type="button" data-lightbox-close>Close</button>
+        <img class="lightbox-image" data-lightbox-image alt="Expanded gallery view" />
+      </div>
+    </section>
+
+    <section id="team" class="section team">
+      <div class="section-header">
+        <h2>Team</h2>
+        <p>Click a profile to open the full-screen dossier.</p>
+      </div>
+
+      <div class="service-grid">
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Your Name — Producer / Director / Editor"
+          data-doc-body="
+            <p><strong>Bio:</strong> Replace with your bio.</p>
+            <ul>
+              <li><strong>Experience:</strong> ___ years</li>
+              <li><strong>Specialties:</strong> commercials, docs, broadcast delivery</li>
+              <li><strong>Highlights:</strong> clients / networks / awards</li>
+            </ul>">
+          <div class="service-card-top"><span class="service-chip">PROFILE</span><span class="service-meta">.bio</span></div>
+          <h3 class="service-title">Your Name</h3>
+          <p class="service-subtitle">Producer • Director • Editor</p>
+        </button>
+
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Aaron — Animator / Editor / Composer"
+          data-doc-body="
+            <p><strong>Bio:</strong> Replace with Aaron’s bio.</p>
+            <ul>
+              <li><strong>Experience:</strong> ___ years</li>
+              <li><strong>Specialties:</strong> motion graphics, post, original music</li>
+              <li><strong>Highlights:</strong> notable work / platforms</li>
+            </ul>">
+          <div class="service-card-top"><span class="service-chip">PROFILE</span><span class="service-meta">.bio</span></div>
+          <h3 class="service-title">Aaron</h3>
+          <p class="service-subtitle">Animator • Editor • Composer</p>
+        </button>
+      </div>
+    </section>
+
+    <section id="workflow" class="section workflow">
+      <div class="section-header">
+        <h2>Workflow</h2>
+        <p>Short version here — full detail on the Workflow Page.</p>
+      </div>
+
+      <div class="service-grid">
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="1) Project Request"
+          data-doc-body="<p>All projects begin with a written request so nothing gets lost.</p>">
+          <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">01</span></div>
+          <h3 class="service-title">Project Request</h3>
+          <p class="service-subtitle">Email initiation</p>
+        </button>
+
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="2) PREVIS"
+          data-doc-body="<p>We confirm direction, branding, messaging, and deliverables before production.</p>">
+          <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">02</span></div>
+          <h3 class="service-title">Pre-Production</h3>
+          <p class="service-subtitle">Planning stage</p>
+        </button>
+
+        <a class="secondary-btn" href="workflow.html" style="display:inline-flex; align-items:center; justify-content:center;">
+          Open Full Workflow Page
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="section cta">
+      <div class="cta-content">
+        <h2>Let’s Work Together</h2>
+        <p>Commercials, documentaries, branding, and sound design.</p>
+        <div class="cta-actions">
+          <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email Us</a>
+          <a class="ghost-btn" href="portal.html">Client Login</a>
         </div>
+      </div>
+    </section>
+  </main>
 
-        <div class="portal-grid">
-          <article class="portal-card">
-            <h3>Video Production</h3>
-            <p class="muted">Commercials, promos, social deliverables, documentary-style storytelling.</p>
-          </article>
-          <article class="portal-card">
-            <h3>Motion Graphics</h3>
-            <p class="muted">Launch visuals, reels, lower thirds, logo animation, explainers.</p>
-          </article>
-          <article class="portal-card">
-            <h3>Music &amp; Sound</h3>
-            <p class="muted">Original music, sound design, mixes optimized for web + broadcast.</p>
-          </article>
-        </div>
-      </section>
+  <!-- DOC LIGHTBOX (single) -->
+  <div class="docbox" data-docbox hidden>
+    <button class="docbox-close secondary-btn" type="button" data-docbox-close>Close</button>
 
-      <!-- VIDEO GALLERY (playlist feel + thumbnails) -->
-      <section class="section" id="videos" data-section="videos">
-        <div class="section-header">
-          <h2>Featured Work</h2>
-          <p class="muted">Click a thumbnail to switch the featured video.</p>
-        </div>
-
-        <div class="video-gallery">
-          <div class="video-player-wrap">
-            <iframe
-              data-video-player
-              title="Transform Multimedia video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-
-          <div class="video-thumbnails" data-video-thumbnails></div>
-        </div>
-      </section>
-
-      <!-- IMAGE GALLERY -->
-      <section class="section gallery" id="gallery" data-section="gallery">
-        <div class="section-header">
-          <h2>Image Gallery</h2>
-          <p class="muted">Click an image to view full-size.</p>
-        </div>
-
-        <div class="gallery-grid" data-gallery-grid>
-          <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
-          <img src="assets/gallery-02.webp" alt="Gallery image 2" loading="lazy" />
-          <img src="assets/gallery-03.webp" alt="Gallery image 3" loading="lazy" />
-          <img src="assets/gallery-04.webp" alt="Gallery image 4" loading="lazy" />
-          <img src="assets/gallery-05.webp" alt="Gallery image 5" loading="lazy" />
-          <img src="assets/gallery-06.webp" alt="Gallery image 6" loading="lazy" />
-        </div>
-      </section>
-
-      <!-- WORKFLOW (single workflow section) -->
-      <section class="section" id="workflow" data-section="workflow">
-        <div class="section-header">
-          <h2>Workflow</h2>
-          <p class="muted">Clear steps, clear approvals, clean delivery.</p>
-        </div>
-
-        <div class="portal-grid">
-          <article class="portal-card">
-            <h3>1) Discovery</h3>
-            <p class="muted">We align on goals, tone, deliverables, and timeline.</p>
-          </article>
-          <article class="portal-card">
-            <h3>2) Production</h3>
-            <p class="muted">Capture + creation (shoot, design, animation, sound).</p>
-          </article>
-          <article class="portal-card">
-            <h3>3) Review</h3>
-            <p class="muted">Clean feedback loops, tracked revisions, stakeholder approvals.</p>
-          </article>
-          <article class="portal-card">
-            <h3>4) Delivery</h3>
-            <p class="muted">Final exports in the right formats for web, broadcast, and social.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section" id="contact" data-section="contact">
-        <div class="section-header">
-          <h2>Contact</h2>
-          <p class="muted">Tell us what you’re building — we’ll reply with next steps.</p>
-        </div>
-
-        <div class="portal-card">
-          <p class="muted" style="margin:0;">
-            Email: <a href="mailto:ahutchmedia@gmail.com">ahutchmedia@gmail.com</a><br />
-            Client portal: <a href="portal.html">portal.html</a>
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>© Transform Multimedia</p>
-    </footer>
-
-    <!-- Lightbox -->
-    <div class="lightbox" data-lightbox hidden>
-      <button class="lightbox-close secondary-btn" type="button" data-lightbox-close>Close</button>
-      <img class="lightbox-image" data-lightbox-image alt="Expanded gallery view" />
+    <div class="docbox-window" role="dialog" aria-modal="true" aria-labelledby="docbox-title">
+      <div class="docbox-titlebar">
+        <span class="docbox-dot"></span><span class="docbox-dot"></span><span class="docbox-dot"></span>
+        <h3 id="docbox-title" class="docbox-title" data-docbox-title>Document</h3>
+      </div>
+      <div class="docbox-content" data-docbox-content></div>
     </div>
-  </body>
+  </div>
+
+  <script>
+    // Docbox logic (self-contained)
+    (() => {
+      const box = document.querySelector("[data-docbox]");
+      const closeBtn = document.querySelector("[data-docbox-close]");
+      const titleEl = document.querySelector("[data-docbox-title]");
+      const contentEl = document.querySelector("[data-docbox-content]");
+      if (!box || !closeBtn || !titleEl || !contentEl) return;
+
+      let lastActive = null;
+
+      const open = (btn) => {
+        lastActive = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        titleEl.textContent = btn.getAttribute("data-doc-title") || "Document";
+        contentEl.innerHTML = btn.getAttribute("data-doc-body") || "";
+        box.hidden = false;
+        document.documentElement.style.overflow = "hidden";
+        closeBtn.focus();
+      };
+
+      const close = () => {
+        box.hidden = true;
+        document.documentElement.style.overflow = "";
+        contentEl.innerHTML = "";
+        if (lastActive) lastActive.focus();
+      };
+
+      document.addEventListener("click", (e) => {
+        const t = e.target;
+        if (!(t instanceof HTMLElement)) return;
+        const opener = t.closest("[data-doc-open]");
+        if (opener instanceof HTMLElement) open(opener);
+        if (t === box) close();
+      });
+
+      closeBtn.addEventListener("click", close);
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && box.hidden === false) close();
+      });
+    })();
+  </script>
+</body>
 </html>
