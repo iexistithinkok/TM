@@ -1297,3 +1297,58 @@ main {
     transform: none;
   }
 }
+/* ---------- Right floating menu (backup/index.html system) ---------- */
+.side-logo-link {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+
+  display: grid;
+  gap: 10px;
+
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+
+  max-width: 220px;
+}
+
+.side-logo-link a {
+  text-decoration: none;
+}
+
+.side-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Orbitron", sans-serif;
+}
+
+.side-brand img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.side-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  margin: 6px 0;
+}
+
+@media (max-width: 900px) {
+  .side-logo-link {
+    top: auto;
+    bottom: 12px;
+    transform: none;
+    max-width: 200px;
+  }
+
+  .side-brand span {
+    display: none;
+  }
+}
