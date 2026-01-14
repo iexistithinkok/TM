@@ -1,162 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Transform Multimedia — Cinematic Creative Studio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transform Multimedia — Cinematic Creative Studio</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <div class="ambient-glow"></div>
+  <div class="ambient-grid tron-grid"></div>
 
-<div class="ambient-glow"></div>
-<div class="ambient-grid tron-grid"></div>
+  <!-- Cinematic projector background -->
+  <div class="background-reel">
+    <iframe
+      src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
+      allow="autoplay; encrypted-media"
+      loading="lazy">
+    </iframe>
+  </div>
 
-<!-- Cinematic projector background -->
-<div class="background-reel">
-  <iframe
-    src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
-    allow="autoplay; encrypted-media"
-    loading="lazy">
-  </iframe>
-</div>
-
-<header class="site-header">
-  <nav class="nav">
-    <a class="logo" href="#showcase">
-      <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
-      <span class="logo-text">Transform Multimedia</span>
+  <!-- FLOATING RIGHT MENU (replaces top menu) -->
+  <nav class="side-logo-link" aria-label="Site menu">
+    <a class="side-brand" href="#showcase">
+      <img src="assets/logo.png" alt="Transform Multimedia logo" />
+      <span>Transform Multimedia</span>
     </a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#showcase">Showcase</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#services">Services</a>
-      <a href="workflow.html">Workflow</a>
-      <a href="music.html">Original Music</a>
-      <a href="portal.html">Client Login</a>
-      <a href="#contact" class="nav-cta">Start a Project</a>
-    </div>
+
+    <a href="#about">About</a>
+    <a href="#showcase">Showcase</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#services">Services</a>
+    <a href="workflow.html">Workflow</a>
+    <a href="music.html">Original Music</a>
+    <a href="portal.html">Client Login</a>
+    <a href="#contact" class="nav-cta">Start a Project</a>
+
+    <div class="side-divider"></div>
+
+    <a href="https://www.youtube.com/@TransformMultimedia" target="_blank" rel="noreferrer">YouTube</a>
   </nav>
-</header>
 
-<!-- FLOATING CONTROL DOCK -->
-<div class="side-logo-link">
-  <img src="assets/logo.png" alt="Transform Multimedia logo" />
-  <a href="#showcase">View Demos</a>
-  <a href="portal.html">Client Login</a>
-  <a href="music.html">Original Music</a>
-  <a href="https://www.youtube.com/@TransformMultimedia" target="_blank">YouTube</a>
-</div>
-
-<main>
-
-<section class="hero">
-  <div class="hero-content">
-    <p class="eyebrow">Tampa Bay Area</p>
-    <h1>Full-service video, animation, and original music studio</h1>
-    <p class="hero-subtitle">
-     Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
-With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media, and provide digital media coordination and placement for organizations of all sizes.
-    </p>
-    <div class="hero-actions">
-      <a class="primary-btn" href="#showcase">View Demos</a>
-      <a class="ghost-btn" href="#contact">Let’s Work Together</a>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="section about">
-  <div class="section-header">
-    <h2>Transform Multimedia</h2>
-    <p>
-      A full-service production studio delivering video, animation, original music,
-      and immersive digital media experiences.
-    </p>
-  </div>
-</section>
-
-<section id="showcase" class="section showcase">
-  <div class="section-header">
-    <h2>Commercial Demos</h2>
-    <p>Select a thumbnail to load the featured player.</p>
-  </div>
-
-  <div class="video-showcase">
-    <div class="featured-video">
-      <div class="featured-meta">
-        <span class="tag">Featured</span>
-        <h3 id="featured-title">Loading…</h3>
-        <p id="featured-description">Loading…</p>
-        <div class="featured-actions">
-          <button class="secondary-btn" id="prev-video">Previous</button>
-          <button class="secondary-btn" id="next-video">Next</button>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">Tampa Bay Area</p>
+        <h1>Full-service video, animation, and original music studio</h1>
+        <p class="hero-subtitle">
+          Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
+          With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media,
+          and provide digital media coordination and placement for organizations of all sizes.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#showcase">View Demos</a>
+          <a class="ghost-btn" href="#contact">Let’s Work Together</a>
         </div>
       </div>
-      <div class="featured-player">
-        <div class="player-shell">
-          <iframe id="featured-iframe" allowfullscreen></iframe>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="section-header">
+        <h2>Transform Multimedia</h2>
+        <p>
+          A full-service production studio delivering video, animation, original music,
+          and immersive digital media experiences.
+        </p>
+      </div>
+    </section>
+
+    <section id="showcase" class="section showcase">
+      <div class="section-header">
+        <h2>Commercial Demos</h2>
+        <p>Select a thumbnail to load the featured player.</p>
+      </div>
+
+      <div class="video-showcase">
+        <div class="featured-video">
+          <div class="featured-meta">
+            <span class="tag">Featured</span>
+            <h3 id="featured-title">Loading…</h3>
+            <p id="featured-description">Loading…</p>
+            <div class="featured-actions">
+              <button class="secondary-btn" id="prev-video" type="button">Previous</button>
+              <button class="secondary-btn" id="next-video" type="button">Next</button>
+            </div>
+          </div>
+          <div class="featured-player">
+            <div class="player-shell">
+              <iframe id="featured-iframe" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="video-grid" id="video-grid"></div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section gallery">
+      <div class="section-header">
+        <h2>Image Gallery</h2>
+      </div>
+      <div class="gallery-grid">
+        <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
+        <img src="assets/gallery-02.jpeg" alt="Gallery image 2" loading="lazy" />
+        <img src="assets/gallery-03.jpeg" alt="Gallery image 3" loading="lazy" />
+        <img src="assets/gallery-04.jpeg" alt="Gallery image 4" loading="lazy" />
+      </div>
+    </section>
+
+    <section id="services" class="section services">
+      <div class="section-header">
+        <h2>Services</h2>
+        <p>Production, editing, animation, and original music.</p>
+      </div>
+    </section>
+
+    <section id="contact" class="section cta">
+      <div class="cta-content">
+        <h2>Let’s Work Together</h2>
+        <p>Commercials, documentaries, branding, and sound design.</p>
+        <div class="cta-actions">
+          <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email Us</a>
+          <a class="ghost-btn" href="portal.html">Client Login</a>
         </div>
       </div>
-    </div>
-    <div class="video-grid" id="video-grid"></div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<section id="gallery" class="section gallery">
-  <div class="section-header">
-    <h2>Image Gallery</h2>
-  </div>
-  <div class="gallery-grid">
-    <img src="assets/gallery-01.webp">
-    <img src="assets/gallery-02.jpeg">
-    <img src="assets/gallery-03.jpeg">
-    <img src="assets/gallery-04.jpeg">
-  </div>
-</section>
-
-<section id="services" class="section services">
-  <div class="section-header">
-    <h2>Services</h2>
-    <p>Production, editing, animation, and original music.</p>
-  </div>
-</section>
-
-<section id="contact" class="section cta">
-  <div class="cta-content">
-    <h2>Let’s Work Together</h2>
-    <p>Commercials, documentaries, branding, and sound design.</p>
-    <div class="cta-actions">
-      <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email Us</a>
-      <a class="ghost-btn" href="portal.html">Client Login</a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <div class="footer-logo">
-        <img class="logo-mark" src="assets/logo.png" />
-        <span>Transform Multimedia</span>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
+          <span>Transform Multimedia</span>
+        </div>
+        <p>Creative studio for future-forward storytelling.</p>
       </div>
-      <p>Creative studio for future-forward storytelling.</p>
+      <div class="footer-links">
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="https://instagram.com">Instagram</a>
-      <a href="https://youtube.com">YouTube</a>
-      <a href="https://vimeo.com">Vimeo</a>
-    </div>
-  </div>
-  <p class="footer-meta">© 2024 Transform Multimedia</p>
-</footer>
+    <p class="footer-meta">© 2024 Transform Multimedia</p>
+  </footer>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
