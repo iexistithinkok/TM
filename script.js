@@ -174,3 +174,51 @@ if (projectorAudio) {
   };
   window.addEventListener("pointerdown", playOnce, { once: true });
 }
+/**
+ * Services "document lightbox"
+ * Opens a full-screen overlay using the HTML `hidden` attribute.
+ */
+(() => {
+  const box = document.querySelector("[data-docbox]");
+  const closeBtn = document.querySelector("[data-docbox-close]");
+  const titleEl = document.querySelector("[data-docbox-title]");
+  const contentEl = document.querySelector("[data-docbox-content]");
+
+  if (!box || !closeBtn || !titleEl || !contentEl) return;
+
+  let lastActive = null;
+
+  const open = (btn) => {
+    lastActive = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    titleEl.textContent = btn.getAttribute("data-doc-title") || "Document";
+    contentEl.innerHTML = btn.getAttribute("data-doc-body") || "";
+
+    box.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+    closeBtn.focus();
+  };
+
+  const close = () => {
+    box.hidden = true;
+    document.documentElement.style.overflow = "";
+    contentEl.innerHTML = "";
+    if (lastActive) lastActive.focus();
+  };
+
+  document.addEventListener("click", (e) => {
+    const t = e.target;
+    if (!(t instanceof HTMLElement)) return;
+
+    const opener = t.closest("[data-doc-open]");
+    if (opener instanceof HTMLElement) open(opener);
+
+    if (t === box) close();
+  });
+
+  closeBtn.addEventListener("click", close);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && box.hidden === false) close();
+  });
+})();
