@@ -1548,3 +1548,18 @@ main {
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(0, 0, 0, 0.34);
 }
+/* Make video gallery match service-card vibe */
+.video-player-wrap iframe {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.video-thumb-card {
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.video-thumb-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.34);
+}
