@@ -1,787 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transform Multimedia — Cinematic Creative Studio</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transform Multimedia — Cinematic Creative Studio</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
 
-  <!-- ADDITIONS: Services/Team cards + modal (kept inline so you only paste ONE file) -->
-  <style>
-    /* Always honor HTML hidden */
-    [hidden] { display: none !important; }
+    <!-- Page scripts (keep these) -->
+    <script src="video-gallery.js" defer></script>
+    <script src="gallery-lightbox.js" defer></script>
+  </head>
 
-    /* Cards */
-    .tm-card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin-top: 18px;
-    }
+  <body>
+    <div class="ambient-glow"></div>
+    <div class="ambient-grid tron-grid"></div>
 
-    .tm-card {
-      text-align: left;
-      border-radius: 18px;
-      padding: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      background: rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(10px);
-      cursor: pointer;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-    }
+    <!-- Cinematic projector background -->
+    <div class="background-reel" aria-hidden="true">
+      <iframe
+        title="Transform Multimedia background projection"
+        src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        frameborder="0"
+        loading="lazy"
+      ></iframe>
+    </div>
 
-    .tm-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.28);
-      background: rgba(0, 0, 0, 0.34);
-    }
+    <!-- Minimal header (no top nav menu) -->
+    <header class="site-header">
+      <nav class="nav">
+        <a class="logo" href="index.html" aria-label="Transform Multimedia home">
+          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia logo" />
+          <span class="logo-text">Transform Multimedia</span>
+        </a>
 
-    .tm-card:focus-visible {
-      outline: 2px solid rgba(255, 255, 255, 0.55);
-      outline-offset: 3px;
-    }
+        <a class="secondary-btn" href="portal.html">Client Login</a>
+      </nav>
+    </header>
 
-    .tm-card-badge {
-      display: inline-flex;
-      width: fit-content;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(0, 0, 0, 0.25);
-      font-family: "Orbitron", sans-serif;
-      letter-spacing: 0.06em;
-      font-size: 12px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
+    <!-- RIGHT FLOATING SIDE MENU (single menu) -->
+    <nav class="side-logo-link" aria-label="Site menu">
+      <img src="assets/logo.png" alt="Transform Multimedia logo" />
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#videos">Videos</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#contact" class="nav-cta">Start a Project</a>
+      <div style="height:1px; background:rgba(255,255,255,0.14); width:100%;"></div>
+      <a href="workflow.html">Workflow Page</a>
+      <a href="music.html">Original Music</a>
+      <a href="portal.html">Client Login</a>
+      <a href="https://www.youtube.com/@TransformMultimedia" target="_blank" rel="noreferrer">YouTube</a>
+    </nav>
 
-    .tm-card-title {
-      font-family: "Orbitron", sans-serif;
-      font-size: 18px;
-      line-height: 1.2;
-      margin: 0;
-    }
-
-    .tm-card-subtitle {
-      opacity: 0.85;
-      font-size: 14px;
-      line-height: 1.5;
-      margin: 10px 0 0 0;
-    }
-
-    .tm-card-cta {
-      display: inline-block;
-      margin-top: 14px;
-      font-family: "Orbitron", sans-serif;
-      font-size: 12px;
-      opacity: 0.9;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    /* Team variant */
-    .tm-card--team {
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .tm-card-media {
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .tm-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transform: scale(1.02);
-      transition: transform 220ms ease;
-    }
-
-    .tm-card--team:hover .tm-card-media img {
-      transform: scale(1.06);
-    }
-
-    .tm-card-pad {
-      padding: 16px 18px;
-    }
-
-    /* Modal */
-    .tm-modal-overlay {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      padding: 18px;
-      background: rgba(0, 0, 0, 0.82);
-      z-index: 10000;
-    }
-
-    .tm-modal {
-      width: min(980px, 96vw);
-      max-height: 90vh;
-      overflow: auto;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(0, 0, 0, 0.42);
-      backdrop-filter: blur(14px);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
-      padding: 18px;
-      animation: tmModalIn 160ms ease;
-    }
-
-    @keyframes tmModalIn {
-      from { transform: translateY(8px) scale(0.99); opacity: 0.6; }
-      to { transform: translateY(0) scale(1); opacity: 1; }
-    }
-
-    .tm-modal-close {
-      position: sticky;
-      top: 0;
-      margin-left: auto;
-      display: block;
-    }
-
-    .tm-modal-body {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: 1fr;
-      padding-top: 12px;
-    }
-
-    .tm-modal-media {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .tm-modal-media img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .tm-modal-title {
-      font-family: "Orbitron", sans-serif;
-      font-size: 22px;
-      margin: 0;
-    }
-
-    .tm-modal-subtitle {
-      margin-top: 6px;
-      opacity: 0.85;
-    }
-
-    .tm-modal-rich {
-      margin-top: 12px;
-      line-height: 1.6;
-    }
-
-    .tm-modal-rich ul {
-      margin: 10px 0 0 20px;
-    }
-
-    @media (min-width: 860px) {
-      .tm-modal-body {
-        grid-template-columns: 0.9fr 1.1fr;
-        align-items: start;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="ambient-glow"></div>
-  <div class="ambient-grid tron-grid"></div>
-
-  <!-- Cinematic projector background -->
-  <div class="background-reel">
-    <iframe
-      src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
-      allow="autoplay; encrypted-media"
-      loading="lazy">
-    </iframe>
-  </div>
-
-  <!-- RIGHT FLOATING SIDE MENU -->
-  <nav class="side-logo-link" aria-label="Site menu">
-    <a class="side-brand" href="#showcase" style="display:flex; align-items:center; gap:10px; font-family:'Orbitron',sans-serif;">
-      <img src="assets/logo.png" alt="Transform Multimedia logo" style="width:34px; height:34px; object-fit:contain;" />
-      <span>Transform Multimedia</span>
-    </a>
-
-    <a href="#about">About</a>
-    <a href="#showcase">Showcase</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#services">Services</a>
-    <a href="#team">Team</a>
-    <a href="#workflow">Workflow</a>
-    <a href="workflow.html">Client Workflow Page</a>
-    <a href="music.html">Original Music</a>
-    <a href="portal.html">Client Login</a>
-    <a href="#contact" class="nav-cta">Start a Project</a>
-
-    <div style="height:1px; background:rgba(255,255,255,0.14); margin:6px 0;"></div>
-
-    <a href="https://www.youtube.com/@TransformMultimedia" target="_blank" rel="noreferrer">YouTube</a>
-  </nav>
-
-  <main>
-    <section class="hero" id="showcase">
-      <div class="hero-content">
-        <p class="eyebrow">Tampa Bay Area</p>
-        <h1>Full-service video, animation, and original music studio</h1>
-        <p class="hero-subtitle">
-          Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
-          With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media,
-          and provide digital media coordination and placement for organizations of all sizes.
+    <main id="top">
+      <!-- HERO -->
+      <section class="section page-hero" id="home" data-section="home">
+        <p class="eyebrow">Cinematic Creative Studio</p>
+        <h1>Transform Multimedia</h1>
+        <p class="muted" style="max-width: 70ch;">
+          Story-first video, design, and multimedia production. Built for brands that need work that looks premium and
+          converts.
         </p>
-        <div class="hero-actions">
-          <a class="primary-btn" href="#showcase">View Demos</a>
-          <a class="ghost-btn" href="#contact">Let’s Work Together</a>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
+          <a class="secondary-btn" href="#videos">View Work</a>
+          <a class="secondary-btn" href="#contact">Get a Quote</a>
+          <a class="secondary-btn" href="portal.html">Client Login</a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="about" class="section about">
-      <div class="section-header">
-        <h2>Transform Multimedia</h2>
-        <p>
-          A full-service production studio delivering video, animation, original music,
-          and immersive digital media experiences.
-        </p>
-      </div>
-    </section>
-
-    <section class="section showcase">
-      <div class="section-header">
-        <h2>Commercial Demos</h2>
-        <p>Select a thumbnail to load the featured player.</p>
-      </div>
-
-      <div class="video-showcase">
-        <div class="featured-video">
-          <div class="featured-meta">
-            <span class="tag">Featured</span>
-            <h3 id="featured-title">Loading…</h3>
-            <p id="featured-description">Loading…</p>
-            <div class="featured-actions">
-              <button class="secondary-btn" id="prev-video" type="button">Previous</button>
-              <button class="secondary-btn" id="next-video" type="button">Next</button>
-            </div>
-          </div>
-          <div class="featured-player">
-            <div class="player-shell">
-              <iframe id="featured-iframe" allowfullscreen></iframe>
-            </div>
-          </div>
+      <!-- SERVICES -->
+      <section class="section" id="services" data-section="services">
+        <div class="section-header">
+          <h2>Services</h2>
+          <p class="muted">Production, post, and motion — end-to-end.</p>
         </div>
-        <div class="video-grid" id="video-grid"></div>
-      </div>
-    </section>
 
-    <section id="gallery" class="section gallery">
-      <div class="section-header">
-        <h2>Image Gallery</h2>
-      </div>
-      <div class="gallery-grid">
-        <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
-        <img src="assets/gallery-02.jpeg" alt="Gallery image 2" loading="lazy" />
-        <img src="assets/gallery-03.jpeg" alt="Gallery image 3" loading="lazy" />
-        <img src="assets/gallery-04.jpeg" alt="Gallery image 4" loading="lazy" />
-      </div>
-    </section>
-<!-- BEGIN SERVICES -->
-<section id="services" class="section services">
-  <div class="section-header">
-    <h2>Services</h2>
-    <p>Click a service to open the full-screen “file”.</p>
-  </div>
+        <div class="portal-grid">
+          <article class="portal-card">
+            <h3>Video Production</h3>
+            <p class="muted">Commercials, promos, social deliverables, documentary-style storytelling.</p>
+          </article>
+          <article class="portal-card">
+            <h3>Motion Graphics</h3>
+            <p class="muted">Launch visuals, reels, lower thirds, logo animation, explainers.</p>
+          </article>
+          <article class="portal-card">
+            <h3>Music &amp; Sound</h3>
+            <p class="muted">Original music, sound design, mixes optimized for web + broadcast.</p>
+          </article>
+        </div>
+      </section>
 
-  <div class="service-grid" data-service-grid>
-    <button
-      class="service-card"
-      type="button"
-      data-doc-open
-      data-doc-title="Video Production"
-      data-doc-body="
-        <p><strong>What you get:</strong> a cinematic production pipeline from concept to delivery.</p>
-        <ul>
-          <li>Pre-production: planning, scripting, shot lists</li>
-          <li>On-location or studio shooting</li>
-          <li>Interview + documentary storytelling</li>
-          <li>Broadcast-ready exports</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">PRODUCTION</span>
-        <span class="service-meta">.doc</span>
-      </div>
-      <h3 class="service-title">Video Production</h3>
-      <p class="service-subtitle">Concept → shoot → deliver</p>
-    </button>
+      <!-- VIDEO GALLERY (playlist feel + thumbnails) -->
+      <section class="section" id="videos" data-section="videos">
+        <div class="section-header">
+          <h2>Featured Work</h2>
+          <p class="muted">Click a thumbnail to switch the featured video.</p>
+        </div>
 
-    <button
-      class="service-card"
-      type="button"
-      data-doc-open
-      data-doc-title="Editing & Post"
-      data-doc-body="
-        <p><strong>Polish and pacing</strong> that makes content feel expensive.</p>
-        <ul>
-          <li>Editorial (short + long form)</li>
-          <li>Color correction + cinematic grading</li>
-          <li>Audio cleanup + mix</li>
-          <li>Captions + delivery formats</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">POST</span>
-        <span class="service-meta">.pdf</span>
-      </div>
-      <h3 class="service-title">Editing & Post</h3>
-      <p class="service-subtitle">Cut + color + clean audio</p>
-    </button>
-
-    <button
-      class="service-card"
-      type="button"
-      data-doc-open
-      data-doc-title="Animation & Motion Graphics"
-      data-doc-body="
-        <p><strong>UI-ready motion</strong> that matches the futuristic theme.</p>
-        <ul>
-          <li>Title sequences + lower thirds</li>
-          <li>Explainers + brand motion</li>
-          <li>Compositing + VFX polish</li>
-          <li>Social-ready motion packages</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">MOTION</span>
-        <span class="service-meta">.sys</span>
-      </div>
-      <h3 class="service-title">Animation</h3>
-      <p class="service-subtitle">Graphics that feel “OS-native”</p>
-    </button>
-
-    <button
-      class="service-card"
-      type="button"
-      data-doc-open
-      data-doc-title="Original Music & Sound Design"
-      data-doc-body="
-        <p><strong>Custom sound</strong> built to picture (not stock).</p>
-        <ul>
-          <li>Original score for ads + docs</li>
-          <li>Sound design: impacts, transitions, texture</li>
-          <li>Mixing + mastering</li>
-          <li>Brand sonic identity</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">AUDIO</span>
-        <span class="service-meta">.wav</span>
-      </div>
-      <h3 class="service-title">Original Music</h3>
-      <p class="service-subtitle">Score + sound that hits</p>
-    </button>
-  </div>
-</section>
-<!-- END SERVICES -->
-
-    <!-- SERVICES (cards expand on click) -->
-<!-- BEGIN TEAM -->
-  <div class="section-header">
-    <h2>Team</h2>
-    <p>Click a profile to open the full-screen dossier.</p>
-  </div>
-
-  <div class="service-grid">
-    <button
-      class="service-card"
-      type="button"
-      data-doc-open
-      data-doc-title="Your Name — Producer / Director / Editor"
-      data-doc-body="
-        <div class='profile-doc'>
-          <div class='profile-head'>
-            <img class='profile-photo' src='assets/team-you.jpg' alt='Your Name' />
-            <div>
-              <p class='profile-role'>Producer • Director • Editor</p>
-              <p class='profile-meta'>Tampa Bay Area • Available for projects</p>
-            </div>
+        <div class="video-gallery">
+          <div class="video-player-wrap">
+            <iframe
+              data-video-player
+              title="Transform Multimedia video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
 
-          <h4>Bio</h4>
-          <p>Replace this paragraph with your bio. Keep it confident, short, and story-driven.</p>
-
-          <h4>Experience</h4>
-          <ul>
-            <li>___ years in production, editing, and delivery</li>
-            <li>Broadcast + web campaigns</li>
-            <li>Documentary and brand storytelling</li>
-          </ul>
-
-          <h4>Highlights</h4>
-          <ul>
-            <li>Notable clients / networks / awards</li>
-            <li>Specialty: cinematic interviews + narrative structure</li>
-          </ul>
+          <div class="video-thumbnails" data-video-thumbnails></div>
         </div>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">PROFILE</span>
-        <span class="service-meta">.bio</span>
-      </div>
-      <h3 class="service-title">Your Name</h3>
-      <p class="service-subtitle">Producer • Director • Editor</p>
-      <span class="tm-card-cta">Click for resume</span>
-    </button>
+      </section>
 
-    <button
-      class="service-card"
-      type="button"
-      data-doc-open
-      data-doc-title="Aaron — Animator / Editor / Composer"
-      data-doc-body="
-        <div class='profile-doc'>
-          <div class='profile-head'>
-            <img class='profile-photo' src='assets/team-aaron.jpg' alt='Aaron' />
-            <div>
-              <p class='profile-role'>Animator • Editor • Composer</p>
-              <p class='profile-meta'>Motion + sound built for story</p>
-            </div>
-          </div>
-
-          <h4>Bio</h4>
-          <p>Replace this paragraph with Aaron’s bio.</p>
-
-          <h4>Experience</h4>
-          <ul>
-            <li>___ years in motion, post, and audio</li>
-            <li>Brand motion systems + explainer graphics</li>
-            <li>Original music and sound design</li>
-          </ul>
-
-          <h4>Highlights</h4>
-          <ul>
-            <li>Notable projects / platforms</li>
-            <li>Specialty: clean motion + punchy sound</li>
-          </ul>
+      <!-- IMAGE GALLERY -->
+      <section class="section gallery" id="gallery" data-section="gallery">
+        <div class="section-header">
+          <h2>Image Gallery</h2>
+          <p class="muted">Click an image to view full-size.</p>
         </div>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">PROFILE</span>
-        <span class="service-meta">.bio</span>
-      </div>
-      <h3 class="service-title">Aaron</h3>
-      <p class="service-subtitle">Animator • Editor • Composer</p>
-      <span class="tm-card-cta">Click for resume</span>
-    </button>
-  </div>
-    <section id="workflow" class="section workflow">
-  <div class="section-header">
-    <h2>Workflow</h2>
-    <p>Clear steps, clear approvals, clean delivery.</p>
-  </div>
 
-  <div class="service-grid">
-    <button class="service-card" type="button"
-      data-doc-open
-      data-doc-title="1) Discovery"
-      data-doc-body="
-        <p>We align on the objective, audience, creative direction, timeline, and deliverables.</p>
-        <ul>
-          <li>Goals + audience</li>
-          <li>Creative direction</li>
-          <li>Schedule + milestones</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">STEP</span>
-        <span class="service-meta">01</span>
-      </div>
-      <h3 class="service-title">Discovery</h3>
-      <p class="service-subtitle">Goals, tone, timeline</p>
-    </button>
-
-    <button class="service-card" type="button"
-      data-doc-open
-      data-doc-title="2) Production"
-      data-doc-body="
-        <p>We capture and create assets efficiently with a cinematic eye.</p>
-        <ul>
-          <li>Shooting / recording</li>
-          <li>Asset capture</li>
-          <li>Creative build</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">STEP</span>
-        <span class="service-meta">02</span>
-      </div>
-      <h3 class="service-title">Production</h3>
-      <p class="service-subtitle">Capture + creation</p>
-    </button>
-
-    <button class="service-card" type="button"
-      data-doc-open
-      data-doc-title="3) Review"
-      data-doc-body="
-        <p>We keep feedback clean and approvals organized.</p>
-        <ul>
-          <li>Versioning</li>
-          <li>Revision rounds</li>
-          <li>Final approval</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">STEP</span>
-        <span class="service-meta">03</span>
-      </div>
-      <h3 class="service-title">Review</h3>
-      <p class="service-subtitle">Feedback + revisions</p>
-    </button>
-
-    <button class="service-card" type="button"
-      data-doc-open
-      data-doc-title="4) Delivery"
-      data-doc-body="
-        <p>Final exports delivered in the right formats, labeled cleanly.</p>
-        <ul>
-          <li>Platform formats</li>
-          <li>Broadcast/web specs</li>
-          <li>Handoff links</li>
-        </ul>
-      "
-    >
-      <div class="service-card-top">
-        <span class="service-chip">STEP</span>
-        <span class="service-meta">04</span>
-      </div>
-      <h3 class="service-title">Delivery</h3>
-      <p class="service-subtitle">Final exports + handoff</p>
-    </button>
-  </div>
-</section>
-
-</section>
-<!-- END TEAM -->
-
-
-    <!-- TEAM (cards expand on click) -->
-
-
-    <!-- WORKFLOW (re-added) -->
-    <section id="workflow" class="section workflow">
-      <div class="section-header">
-        <h2>Workflow</h2>
-        <p>Clear steps, clear approvals, clean delivery.</p>
-      </div>
-
-      <div class="tm-card-grid" role="list">
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="1) Discovery"
-          data-tm-subtitle="Goals, tone, deliverables, timeline"
-          data-tm-body="<p>We align on the objective, audience, creative direction, schedule, and success metrics. You’ll know exactly what’s happening and when.</p>"
-        >
-          <div class="tm-card-badge">Step 1</div>
-          <h3 class="tm-card-title">Discovery</h3>
-          <p class="tm-card-subtitle">Align on goals and plan the story</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
-
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="2) Production"
-          data-tm-subtitle="Capture + creation"
-          data-tm-body="<p>We shoot/record/create assets efficiently and with a cinematic eye—fast iteration when needed.</p>"
-        >
-          <div class="tm-card-badge">Step 2</div>
-          <h3 class="tm-card-title">Production</h3>
-          <p class="tm-card-subtitle">Capture and build the raw materials</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
-
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="3) Review"
-          data-tm-subtitle="Feedback, revisions, approvals"
-          data-tm-body="<p>We share cuts, track revisions, and keep approvals organized so you’re never guessing what’s current.</p>"
-        >
-          <div class="tm-card-badge">Step 3</div>
-          <h3 class="tm-card-title">Review</h3>
-          <p class="tm-card-subtitle">Clean feedback loops and clear approvals</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
-
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="4) Delivery"
-          data-tm-subtitle="Final exports + handoff"
-          data-tm-body="<p>Final files, platform formats, and handoff links delivered cleanly and labeled clearly.</p>"
-        >
-          <div class="tm-card-badge">Step 4</div>
-          <h3 class="tm-card-title">Delivery</h3>
-          <p class="tm-card-subtitle">Ready-to-publish files in the right formats</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
-      </div>
-    </section>
-
-    <section id="contact" class="section cta">
-      <div class="cta-content">
-        <h2>Let’s Work Together</h2>
-        <p>Commercials, documentaries, branding, and sound design.</p>
-        <div class="cta-actions">
-          <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email Us</a>
-          <a class="ghost-btn" href="portal.html">Client Login</a>
+        <div class="gallery-grid" data-gallery-grid>
+          <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
+          <img src="assets/gallery-02.webp" alt="Gallery image 2" loading="lazy" />
+          <img src="assets/gallery-03.webp" alt="Gallery image 3" loading="lazy" />
+          <img src="assets/gallery-04.webp" alt="Gallery image 4" loading="lazy" />
+          <img src="assets/gallery-05.webp" alt="Gallery image 5" loading="lazy" />
+          <img src="assets/gallery-06.webp" alt="Gallery image 6" loading="lazy" />
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">
-          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
-          <span>Transform Multimedia</span>
+      <!-- WORKFLOW (single workflow section) -->
+      <section class="section" id="workflow" data-section="workflow">
+        <div class="section-header">
+          <h2>Workflow</h2>
+          <p class="muted">Clear steps, clear approvals, clean delivery.</p>
         </div>
-        <p>Creative studio for future-forward storytelling.</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-        <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
-        <a href="https://vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
-      </div>
+
+        <div class="portal-grid">
+          <article class="portal-card">
+            <h3>1) Discovery</h3>
+            <p class="muted">We align on goals, tone, deliverables, and timeline.</p>
+          </article>
+          <article class="portal-card">
+            <h3>2) Production</h3>
+            <p class="muted">Capture + creation (shoot, design, animation, sound).</p>
+          </article>
+          <article class="portal-card">
+            <h3>3) Review</h3>
+            <p class="muted">Clean feedback loops, tracked revisions, stakeholder approvals.</p>
+          </article>
+          <article class="portal-card">
+            <h3>4) Delivery</h3>
+            <p class="muted">Final exports in the right formats for web, broadcast, and social.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact" data-section="contact">
+        <div class="section-header">
+          <h2>Contact</h2>
+          <p class="muted">Tell us what you’re building — we’ll reply with next steps.</p>
+        </div>
+
+        <div class="portal-card">
+          <p class="muted" style="margin:0;">
+            Email: <a href="mailto:ahutchmedia@gmail.com">ahutchmedia@gmail.com</a><br />
+            Client portal: <a href="portal.html">portal.html</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© Transform Multimedia</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" data-lightbox hidden>
+      <button class="lightbox-close secondary-btn" type="button" data-lightbox-close>Close</button>
+      <img class="lightbox-image" data-lightbox-image alt="Expanded gallery view" />
     </div>
-    <p class="footer-meta">© 2024 Transform Multimedia</p>
-  </footer>
-
-  <!-- EXPAND MODAL -->
-  <div class="tm-modal-overlay" data-tm-overlay hidden>
-    <div class="tm-modal" role="dialog" aria-modal="true" aria-labelledby="tm-modal-title">
-      <button class="tm-modal-close secondary-btn" type="button" data-tm-close aria-label="Close">Close</button>
-
-      <div class="tm-modal-body">
-        <div class="tm-modal-media" data-tm-media hidden>
-          <img data-tm-image alt="" />
-        </div>
-
-        <div>
-          <h3 class="tm-modal-title" id="tm-modal-title" data-tm-title></h3>
-          <p class="tm-modal-subtitle" data-tm-subtitle></p>
-          <div class="tm-modal-rich" data-tm-rich></div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- BEGIN DOC LIGHTBOX -->
-<div class="docbox" data-docbox hidden>
-  <button class="docbox-close secondary-btn" type="button" data-docbox-close>Close</button>
-
-  <div class="docbox-window" role="dialog" aria-modal="true" aria-labelledby="docbox-title">
-    <div class="docbox-titlebar">
-      <span class="docbox-dot"></span>
-      <span class="docbox-dot"></span>
-      <span class="docbox-dot"></span>
-      <h3 id="docbox-title" class="docbox-title" data-docbox-title>Document</h3>
-    </div>
-
-    <div class="docbox-content" data-docbox-content></div>
-  </div>
-</div>
-<!-- END DOC LIGHTBOX -->
-
-  <!-- Your existing JS (video showcase, etc.) -->
-  <script src="script.js"></script>
-
-  <!-- Modal logic (inline to avoid another file) -->
-  <script>
-    (() => {
-      const overlay = document.querySelector("[data-tm-overlay]");
-      const closeBtn = document.querySelector("[data-tm-close]");
-      const titleEl = document.querySelector("[data-tm-title]");
-      const subtitleEl = document.querySelector("[data-tm-subtitle]");
-      const richEl = document.querySelector("[data-tm-rich]");
-      const mediaWrap = document.querySelector("[data-tm-media]");
-      const imgEl = document.querySelector("[data-tm-image]");
-
-      if (!overlay || !closeBtn || !titleEl || !subtitleEl || !richEl || !mediaWrap || !imgEl) return;
-
-      let lastActive = null;
-
-      const open = (btn) => {
-        lastActive = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-
-        titleEl.textContent = btn.getAttribute("data-tm-title") || "";
-        subtitleEl.textContent = btn.getAttribute("data-tm-subtitle") || "";
-        richEl.innerHTML = btn.getAttribute("data-tm-body") || "";
-
-        const src = btn.getAttribute("data-tm-image") || "";
-        if (src) {
-          imgEl.src = src;
-          imgEl.alt = titleEl.textContent || "Expanded view";
-          mediaWrap.hidden = false;
-        } else {
-          imgEl.src = "";
-          imgEl.alt = "";
-          mediaWrap.hidden = true;
-        }
-
-        overlay.hidden = false;
-        document.documentElement.style.overflow = "hidden";
-        closeBtn.focus();
-      };
-
-      const close = () => {
-        overlay.hidden = true;
-        document.documentElement.style.overflow = "";
-        richEl.innerHTML = "";
-        imgEl.src = "";
-        imgEl.alt = "";
-        mediaWrap.hidden = true;
-        if (lastActive) lastActive.focus();
-      };
-
-      document.addEventListener("click", (e) => {
-        const target = e.target;
-
-        if (target instanceof HTMLElement && target.matches("[data-tm-open]")) {
-          open(target);
-          return;
-        }
-
-        if (target === overlay) close();
-      });
-
-      closeBtn.addEventListener("click", close);
-
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && overlay.hidden === false) close();
-      });
-    })();
-  </script>
-</body>
+  </body>
 </html>
