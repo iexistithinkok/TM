@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Supabase bootstrap -->
+    <!-- Supabase bootstrap (order matters) -->
     <script src="supabase-env.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
@@ -43,7 +43,7 @@
           <span>Transform Multimedia</span>
         </a>
 
-        <div style="display:flex; gap:10px; align-items:center;">
+        <div style="display: flex; gap: 10px; align-items: center;">
           <button class="secondary-btn" type="button" data-toggle-preview hidden>
             Preview Client View
           </button>
@@ -62,10 +62,10 @@
 
       <!-- ================= ADMIN VIEW ================= -->
       <section class="section portal" data-role="admin" hidden>
-        <div class="portal-card" style="margin-bottom:16px;">
-          <h2 style="margin-bottom:10px;">Admin Tools</h2>
+        <div class="portal-card" style="margin-bottom: 16px;">
+          <h2 style="margin-bottom: 10px;">Admin Tools</h2>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <button class="secondary-btn" type="button" data-tab="admin-projects">Projects</button>
             <button class="secondary-btn" type="button" data-tab="admin-members">Members</button>
             <button class="secondary-btn" type="button" data-tab="admin-notes">Updates</button>
@@ -73,44 +73,14 @@
             <button class="secondary-btn" type="button" data-tab="admin-files">Files</button>
           </div>
 
-          <p class="muted" style="margin-top:10px;">
+          <p class="muted" style="margin-top: 10px;">
             Tip: pick an Active Project first. Everything you post applies to that project.
           </p>
         </div>
 
         <div class="portal-grid">
           <!-- Projects -->
-<article class="portal-card" data-panel="admin-members" hidden>
-  <h2>Project Members</h2>
-  <p class="muted">Start typing an email, select it, then click Add.</p>
-
-  <label>
-    Client email
-    <input
-      list="client-list"
-      data-client-search
-      placeholder="client@email.com"
-      autocomplete="off"
-    />
-    <datalist id="client-list" data-client-datalist></datalist>
-  </label>
-
-  <form class="message-form" data-add-member-form>
-    <!-- kept for compatibility (filled automatically) -->
-    <input type="hidden" name="user_id" />
-
-    <label style="display:flex; gap:10px; align-items:center;">
-      <input type="checkbox" name="make_admin" />
-      Make admin
-    </label>
-
-    <button class="secondary-btn" type="submit">Add Member</button>
-  </form>
-
-  <div class="message-list" data-project-members>
-    <p class="muted">Select a project to load members.</p>
-  </div>
-</article>
+          <article class="portal-card" data-panel="admin-projects">
             <h2>Projects</h2>
 
             <label>
@@ -132,33 +102,26 @@
           <!-- Members -->
           <article class="portal-card" data-panel="admin-members" hidden>
             <h2>Project Members</h2>
+            <p class="muted">Start typing an email, select it, then click Add.</p>
 
             <label>
-              Find client (email)
-              <input list="client-list" data-client-search placeholder="client@email.com" />
+              Client email
+              <input list="client-list" data-client-search placeholder="client@email.com" autocomplete="off" />
               <datalist id="client-list" data-client-datalist></datalist>
             </label>
+
+            <form class="message-form" data-add-member-form>
+              <input type="hidden" name="user_id" />
+              <label style="display: flex; gap: 10px; align-items: center;">
+                <input type="checkbox" name="make_admin" />
+                Make admin
+              </label>
+              <button class="secondary-btn" type="submit">Add Member</button>
+            </form>
 
             <div class="message-list" data-project-members>
               <p class="muted">Select a project to load members.</p>
             </div>
-
-            <form class="message-form" data-add-member-form>
-              <label>
-                User ID (UUID)
-                <input name="user_id" placeholder="0b1c3313-fa9d-4cd6-b750-faeae256c07e" required />
-              </label>
-
-              <label>
-                Role
-                <select name="role">
-                  <option value="client">client</option>
-                  <option value="admin">admin</option>
-                </select>
-              </label>
-
-              <button class="secondary-btn" type="submit">Add Member</button>
-            </form>
           </article>
 
           <!-- Updates / Notes -->
@@ -167,7 +130,7 @@
             <p class="muted">These show up for clients as announcements.</p>
 
             <div class="message-list" data-admin-notes>
-              <p class="muted">Loading notes…</p>
+              <p class="muted">Loading updates…</p>
             </div>
 
             <form class="message-form" data-admin-note-form>
@@ -182,7 +145,7 @@
           <!-- Messages -->
           <article class="portal-card" data-panel="admin-messages" hidden>
             <h2>Project Messages</h2>
-            <p class="muted">Use this for back-and-forth communication.</p>
+            <p class="muted">Back-and-forth communication.</p>
 
             <div class="message-list" data-client-messages>
               <p class="muted">Loading messages…</p>
@@ -225,16 +188,16 @@
 
       <!-- ================= CLIENT VIEW ================= -->
       <section class="section portal" data-role="client" hidden>
-        <div class="portal-card" style="margin-bottom:16px;">
-          <h2 style="margin-bottom:10px;">Client Portal</h2>
+        <div class="portal-card" style="margin-bottom: 16px;">
+          <h2 style="margin-bottom: 10px;">Client Portal</h2>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <button class="secondary-btn" type="button" data-tab="client-overview">Overview</button>
             <button class="secondary-btn" type="button" data-tab="client-messages">Messages</button>
             <button class="secondary-btn" type="button" data-tab="client-files">Files</button>
           </div>
 
-          <p class="muted" style="margin-top:10px;">
+          <p class="muted" style="margin-top: 10px;">
             Everything here is automatically filtered to your project.
           </p>
         </div>
