@@ -1144,3 +1144,142 @@ main {
     transform: none;
   }
 }
+/* Floating sidebar */
+.floating-sidebar {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: grid;
+  gap: 10px;
+}
+
+.floating-toggle {
+  width: 100%;
+}
+
+.floating-panel {
+  display: none;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  max-width: 220px;
+}
+
+.floating-sidebar[data-open] .floating-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.floating-link {
+  display: block;
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+
+.floating-link.is-active {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.floating-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 6px 0;
+}
+
+.floating-cta {
+  text-align: center;
+}
+
+/* Video gallery */
+.video-gallery {
+  display: grid;
+  gap: 16px;
+}
+
+.video-player-wrap iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 16px;
+}
+
+.video-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.video-thumb-card {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-thumb-card[data-active="true"] {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.video-thumb-img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.video-thumb-meta {
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.video-thumb-title {
+  font-weight: 600;
+}
+
+.video-thumb-tag {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 16px;
+}
+
+.lightbox-image {
+  max-width: min(1100px, 95vw);
+  max-height: 85vh;
+  border-radius: 16px;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+/* Mobile: sidebar becomes bottom-right */
+@media (max-width: 900px) {
+  .floating-sidebar {
+    right: 12px;
+    top: auto;
+    bottom: 12px;
+    transform: none;
+  }
+}
