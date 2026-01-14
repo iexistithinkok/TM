@@ -1,28 +1,24 @@
 /**
  * supabase-files.js
- * - Client: loads files for their first project
- * - Admin: loads files for selected project (ACTIVE_PROJECT_ID) and can add new links
+ * Renders project files into ALL [data-project-files] containers (admin + client views).
+ * Admin can add files via [data-add-file-form].
  */
 (async () => {
   const supabase = window.supabaseClient;
-  const listEl = document.querySelector("[data-project-files]");
+  const listEls = Array.from(document.querySelectorAll("[data-project-files]"));
   const addForm = document.querySelector("[data-add-file-form]");
 
-  if (!listEl) return;
+  if (listEls.length === 0) return;
 
-  const setMsg = (m) => (listEl.innerHTML = `<p class="muted">${m}</p>`);
+  const setAll = (msg) => {
+    listEls.forEach((el) => (el.innerHTML = `<p class="muted">${msg}</p>`));
+  };
 
-  if (!supabase?.auth?.getSession) {
-    setMsg("Files unavailable (Supabase not ready).");
-    return;
-  }
+  if (!supabase?.auth?.getSession) return setAll("Files unavailable (Supabase not ready).");
 
   const { data: sessionData } = await supabase.auth.getSession();
   const session = sessionData?.session;
-  if (!session) {
-    window.location.href = "./portal.html";
-    return;
-  }
+  if (!session) return (window.location.href = "./portal.html");
 
   const userId = session.user.id;
 
@@ -48,58 +44,51 @@
       .eq("user_id", userId)
       .order("created_at", { ascending: true });
 
-    if (error) {
-      console.error("project_members read failed:", error);
-      return null;
-    }
+    if (error) return (console.error("project_members read failed:", error), null);
 
     const pid = memberships?.[0]?.project_id ?? null;
     return Number.isFinite(Number(pid)) ? Number(pid) : null;
   };
 
   const render = (items) => {
-    if (!items || items.length === 0) {
-      setMsg("No files yet.");
-      return;
-    }
+    if (!items || items.length === 0) return setAll("No files yet.");
 
-    listEl.innerHTML = "";
-    const ul = document.createElement("ul");
-    ul.className = "message-thread";
+    listEls.forEach((el) => {
+      el.innerHTML = "";
+      const ul = document.createElement("ul");
+      ul.className = "message-thread";
 
-    for (const f of items) {
-      const li = document.createElement("li");
-      li.className = "message-item";
+      for (const f of items) {
+        const li = document.createElement("li");
+        li.className = "message-item";
 
-      const meta = document.createElement("div");
-      meta.className = "message-meta";
-      meta.textContent = `${f.kind || "link"} • ${new Date(f.created_at).toLocaleString()}`;
+        const meta = document.createElement("div");
+        meta.className = "message-meta";
+        meta.textContent = `${f.kind || "link"} • ${f.created_at ? new Date(f.created_at).toLocaleString() : ""}`;
 
-      const body = document.createElement("div");
-      body.className = "message-body";
+        const body = document.createElement("div");
+        body.className = "message-body";
 
-      const a = document.createElement("a");
-      a.href = f.url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.textContent = f.title;
+        const a = document.createElement("a");
+        a.href = f.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = f.title;
 
-      body.appendChild(a);
-      li.appendChild(meta);
-      li.appendChild(body);
-      ul.appendChild(li);
-    }
+        body.appendChild(a);
+        li.appendChild(meta);
+        li.appendChild(body);
+        ul.appendChild(li);
+      }
 
-    listEl.appendChild(ul);
+      el.appendChild(ul);
+    });
   };
 
-  const loadFiles = async (projectId) => {
-    if (!projectId) {
-      setMsg(isAdmin ? "Select a project to view files." : "No project assigned yet.");
-      return;
-    }
+  const load = async (projectId) => {
+    if (!projectId) return setAll(isAdmin ? "Select a project to view files." : "No project assigned yet.");
 
-    setMsg("Loading files…");
+    setAll("Loading files…");
 
     const { data, error } = await supabase
       .from("project_files")
@@ -108,25 +97,20 @@
       .order("created_at", { ascending: false })
       .limit(100);
 
-    if (error) {
-      console.error("project_files load failed:", error);
-      setMsg("Unable to load files (check RLS).");
-      return;
-    }
+    if (error) return (console.error("project_files load failed:", error), setAll("Unable to load files."));
 
     render(data);
   };
 
-  const projectId = isAdmin ? getActiveProjectId() : await getClientProjectId();
-  await loadFiles(projectId);
+  const initialProjectId = isAdmin ? getActiveProjectId() : await getClientProjectId();
+  await load(initialProjectId);
 
   window.addEventListener("project:changed", async (e) => {
     const pid = Number(e.detail?.projectId);
     if (!Number.isFinite(pid)) return;
-    await loadFiles(pid);
+    await load(pid);
   });
 
-  // Admin add file
   if (isAdmin && addForm) {
     addForm.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -137,21 +121,16 @@
       const title = addForm.querySelector('input[name="title"]')?.value?.trim() || "";
       const url = addForm.querySelector('input[name="url"]')?.value?.trim() || "";
       const kind = addForm.querySelector('select[name="kind"]')?.value || "link";
-
       if (!title || !url) return alert("Title and URL are required.");
 
       const { error } = await supabase
         .from("project_files")
         .insert({ project_id: pid, user_id: userId, title, url, kind });
 
-      if (error) {
-        console.error("Insert file failed:", error);
-        alert(error.message || "Failed to add file.");
-        return;
-      }
+      if (error) return alert(error.message || "Failed to add file.");
 
       addForm.reset();
-      await loadFiles(pid);
+      await load(pid);
     });
   }
 })();
