@@ -1283,3 +1283,64 @@ main {
     transform: none;
   }
 }
+/* Floating sidebar */
+.floating-sidebar {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: grid;
+  gap: 10px;
+}
+
+.floating-toggle {
+  width: 100%;
+}
+
+.floating-panel {
+  display: none;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  max-width: 220px;
+}
+
+.floating-sidebar[data-open] .floating-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.floating-link {
+  display: block;
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.floating-link.is-active {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.floating-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 6px 0;
+}
+
+.floating-cta {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .floating-sidebar {
+    right: 12px;
+    top: auto;
+    bottom: 12px;
+    transform: none;
+  }
+}
