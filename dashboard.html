@@ -14,21 +14,22 @@
     />
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Supabase bootstrap (must be first, not deferred) -->
+    <!-- Supabase bootstrap -->
     <script src="supabase-env.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
 
-    <!-- Dashboard feature scripts (each exactly once) -->
+    <!-- App logic (each once) -->
     <script src="supabase-dashboard.js" defer></script>
     <script src="supabase-projects.js" defer></script>
     <script src="supabase-project-overview.js" defer></script>
     <script src="supabase-admin-notes.js" defer></script>
     <script src="supabase-messages.js" defer></script>
-
-    <!-- If these files exist in your repo, keep them. If not, remove to avoid 404s. -->
     <script src="supabase-members.js" defer></script>
     <script src="supabase-files.js" defer></script>
+
+    <!-- UI navigation only -->
+    <script src="dashboard-ui.js" defer></script>
   </head>
 
   <body>
@@ -41,25 +42,47 @@
           <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
           <span>Transform Multimedia</span>
         </a>
-        <button class="secondary-btn" type="button" onclick="dashboardLogout()">Logout</button>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <!-- Only shown for admins by dashboard-ui.js -->
+          <button class="secondary-btn" type="button" data-toggle-preview hidden>
+            Preview Client View
+          </button>
+
+          <button class="secondary-btn" type="button" onclick="dashboardLogout()">Logout</button>
+        </div>
       </nav>
     </header>
 
     <main>
       <section class="section page-hero">
-        <p class="eyebrow">Client Dashboard</p>
+        <p class="eyebrow">Dashboard</p>
         <h1>Your Project Workspace</h1>
         <div class="portal-note" data-role-indicator>Detected role: --</div>
         <div class="portal-note" data-project-indicator>Project: --</div>
       </section>
 
-      <!-- ================= ADMIN ================= -->
+      <!-- ================= ADMIN VIEW ================= -->
       <section class="section portal" data-role="admin" hidden>
-        <h2>Admin Control Room</h2>
+        <div class="portal-card" style="margin-bottom:16px;">
+          <h2 style="margin-bottom:10px;">Admin Tools</h2>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="secondary-btn" type="button" data-tab="admin-projects">Projects</button>
+            <button class="secondary-btn" type="button" data-tab="admin-members">Members</button>
+            <button class="secondary-btn" type="button" data-tab="admin-notes">Updates</button>
+            <button class="secondary-btn" type="button" data-tab="admin-messages">Messages</button>
+            <button class="secondary-btn" type="button" data-tab="admin-files">Files</button>
+          </div>
+
+          <p class="muted" style="margin-top:10px;">
+            Tip: pick an Active Project first. Everything you post applies to that project.
+          </p>
+        </div>
 
         <div class="portal-grid">
           <!-- Projects -->
-          <article class="portal-card">
+          <article class="portal-card" data-panel="admin-projects">
             <h2>Projects</h2>
 
             <label>
@@ -78,9 +101,10 @@
             <p class="muted" data-project-status></p>
           </article>
 
-          <!-- Project Members -->
-          <article class="portal-card">
+          <!-- Members -->
+          <article class="portal-card" data-panel="admin-members" hidden>
             <h2>Project Members</h2>
+            <p class="muted">Paste a user’s UUID (from Supabase Auth → Users).</p>
 
             <div class="message-list" data-project-members>
               <p class="muted">Select a project to load members.</p>
@@ -89,11 +113,7 @@
             <form class="message-form" data-add-member-form>
               <label>
                 User ID (UUID)
-                <input
-                  name="user_id"
-                  placeholder="0b1c3313-fa9d-4cd6-b750-faeae256c07e"
-                  required
-                />
+                <input name="user_id" placeholder="0b1c3313-fa9d-4cd6-b750-faeae256c07e" required />
               </label>
 
               <label>
@@ -108,59 +128,29 @@
             </form>
           </article>
 
-          <!-- Deliverables & Files -->
-          <article class="portal-card">
-            <h2>Deliverables & Files</h2>
+          <!-- Updates / Notes -->
+          <article class="portal-card" data-panel="admin-notes" hidden>
+            <h2>Project Updates</h2>
+            <p class="muted">These show up for clients as announcements.</p>
 
-            <div class="message-list" data-project-files>
-              <p class="muted">Loading files…</p>
-            </div>
-
-            <form class="message-form" data-add-file-form>
-              <label>
-                Title
-                <input name="title" required />
-              </label>
-
-              <label>
-                URL
-                <input name="url" required />
-              </label>
-
-              <label>
-                Type
-                <select name="kind">
-                  <option value="link">link</option>
-                  <option value="draft">draft</option>
-                  <option value="final">final</option>
-                  <option value="invoice">invoice</option>
-                </select>
-              </label>
-
-              <button class="secondary-btn" type="submit">Add File</button>
-            </form>
-          </article>
-
-          <!-- Admin Notes -->
-          <article class="portal-card">
-            <h2>Admin Notes</h2>
             <div class="message-list" data-admin-notes>
               <p class="muted">Loading notes…</p>
             </div>
 
             <form class="message-form" data-admin-note-form>
-              <!-- Only textarea[name="note"] is required by the JS we wrote -->
               <label>
-                Note
+                Update
                 <textarea name="note" required></textarea>
               </label>
-              <button class="secondary-btn" type="submit">Post Note</button>
+              <button class="secondary-btn" type="submit">Post Update</button>
             </form>
           </article>
 
-          <!-- Project Messages -->
-          <article class="portal-card">
+          <!-- Messages -->
+          <article class="portal-card" data-panel="admin-messages" hidden>
             <h2>Project Messages</h2>
+            <p class="muted">Use this for back-and-forth communication.</p>
+
             <div class="message-list" data-client-messages>
               <p class="muted">Loading messages…</p>
             </div>
@@ -173,31 +163,70 @@
               <button class="secondary-btn" type="submit">Post Message</button>
             </form>
           </article>
+
+          <!-- Files -->
+          <article class="portal-card" data-panel="admin-files" hidden>
+            <h2>Deliverables & Files</h2>
+
+            <div class="message-list" data-project-files>
+              <p class="muted">Loading files…</p>
+            </div>
+
+            <form class="message-form" data-add-file-form>
+              <label>Title<input name="title" required /></label>
+              <label>URL<input name="url" required /></label>
+              <label>
+                Type
+                <select name="kind">
+                  <option value="link">link</option>
+                  <option value="draft">draft</option>
+                  <option value="final">final</option>
+                  <option value="invoice">invoice</option>
+                </select>
+              </label>
+              <button class="secondary-btn" type="submit">Add File</button>
+            </form>
+          </article>
         </div>
       </section>
 
-      <!-- ================= CLIENT ================= -->
+      <!-- ================= CLIENT VIEW ================= -->
       <section class="section portal" data-role="client" hidden>
-        <h2>Your Project Feed</h2>
+        <div class="portal-card" style="margin-bottom:16px;">
+          <h2 style="margin-bottom:10px;">Client Portal</h2>
 
-        <article class="portal-card">
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="secondary-btn" type="button" data-tab="client-overview">Overview</button>
+            <button class="secondary-btn" type="button" data-tab="client-messages">Messages</button>
+            <button class="secondary-btn" type="button" data-tab="client-files">Files</button>
+          </div>
+
+          <p class="muted" style="margin-top:10px;">
+            Everything here is automatically filtered to your project.
+          </p>
+        </div>
+
+        <!-- Overview -->
+        <article class="portal-card" data-panel="client-overview">
+          <h2>Latest Updates</h2>
+          <div class="message-list" data-admin-notes>
+            <p class="muted">Loading updates…</p>
+          </div>
+        </article>
+
+        <!-- Messages -->
+        <article class="portal-card" data-panel="client-messages" hidden>
           <h2>Messages</h2>
           <div class="message-list" data-client-message-feed>
             <p class="muted">Loading messages…</p>
           </div>
         </article>
 
-        <article class="portal-card">
+        <!-- Files -->
+        <article class="portal-card" data-panel="client-files" hidden>
           <h2>Deliverables & Files</h2>
           <div class="message-list" data-project-files>
             <p class="muted">Loading files…</p>
-          </div>
-        </article>
-
-        <article class="portal-card">
-          <h2>Admin Notes</h2>
-          <div class="message-list" data-admin-notes>
-            <p class="muted">Loading notes…</p>
           </div>
         </article>
       </section>
@@ -208,3 +237,77 @@
     </footer>
   </body>
 </html>
+
+
+<!-- File: dashboard-ui.js -->
+<script>
+/**
+ * dashboard-ui.js
+ * - Tabs for admin/client panels
+ * - Admin-only "Preview Client View" toggle
+ *
+ * IMPORTANT:
+ * - Does not change auth/role. It only hides/shows UI.
+ */
+(() => {
+  const roleEl = document.querySelector("[data-role-indicator]");
+  const previewBtn = document.querySelector("[data-toggle-preview]");
+
+  const adminSection = document.querySelector('section[data-role="admin"]');
+  const clientSection = document.querySelector('section[data-role="client"]');
+
+  const showPanel = (scopeEl, panelName) => {
+    if (!scopeEl) return;
+    scopeEl.querySelectorAll("[data-panel]").forEach((p) => (p.hidden = p.getAttribute("data-panel") !== panelName));
+  };
+
+  const setupTabs = (scopeEl, defaultPanel) => {
+    if (!scopeEl) return;
+    const buttons = scopeEl.querySelectorAll("[data-tab]");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => showPanel(scopeEl, btn.getAttribute("data-tab")));
+    });
+    showPanel(scopeEl, defaultPanel);
+  };
+
+  // Default tabs
+  setupTabs(adminSection, "admin-projects");
+  setupTabs(clientSection, "client-overview");
+
+  // Admin can preview client UI (without changing role)
+  const getRoleText = () => (roleEl?.textContent || "").toLowerCase();
+
+  const setPreviewMode = (on) => {
+    if (!adminSection || !clientSection || !previewBtn) return;
+    if (on) {
+      adminSection.hidden = true;
+      clientSection.hidden = false;
+      previewBtn.textContent = "Back to Admin View";
+      setupTabs(clientSection, "client-overview");
+    } else {
+      adminSection.hidden = false;
+      clientSection.hidden = true;
+      previewBtn.textContent = "Preview Client View";
+      setupTabs(adminSection, "admin-projects");
+    }
+  };
+
+  // Show preview button only when role is admin (best-effort)
+  const roleLooksAdmin = () => getRoleText().includes("admin");
+
+  const boot = () => {
+    if (!previewBtn) return;
+    if (roleLooksAdmin()) {
+      previewBtn.hidden = false;
+      let previewOn = false;
+      previewBtn.addEventListener("click", () => {
+        previewOn = !previewOn;
+        setPreviewMode(previewOn);
+      });
+    }
+  };
+
+  // Role text is set by supabase-dashboard.js after async load; wait a bit.
+  setTimeout(boot, 300);
+})();
+</script>
