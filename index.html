@@ -1,189 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transform Multimedia — Cinematic Creative Studio</title>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Transform Multimedia — Cinematic Creative Studio</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
 
-    <!-- Page scripts -->
-    <script src="floating-sidebar.js" defer></script>
-    <script src="video-gallery.js" defer></script>
-    <script src="gallery-lightbox.js" defer></script>
-  </head>
+<body>
 
-  <body>
-    <div class="ambient-glow"></div>
-    <div class="ambient-grid tron-grid"></div>
+<div class="ambient-glow"></div>
+<div class="ambient-grid tron-grid"></div>
 
-    <!-- Minimal header (no nav menu) -->
-    <header class="site-header">
-      <nav class="nav">
-        <a class="logo" href="index.html">
-          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
-          <span>Transform Multimedia</span>
-        </a>
+<!-- Cinematic projector background -->
+<div class="background-reel">
+  <iframe
+    src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
+    allow="autoplay; encrypted-media"
+    loading="lazy">
+  </iframe>
+</div>
 
-        <a class="secondary-btn" href="portal.html">Client Login</a>
-      </nav>
-    </header>
-
-    <!-- Floating sidebar (replaces menu) -->
-    <aside class="floating-sidebar" data-floating-sidebar>
-      <button class="floating-toggle secondary-btn" type="button" data-floating-toggle aria-expanded="false">
-        Menu
-      </button>
-
-      <div class="floating-panel" data-floating-panel>
-        <a class="floating-link" href="#home" data-section-link="home">Home</a>
-        <a class="floating-link" href="#services" data-section-link="services">Services</a>
-        <a class="floating-link" href="#videos" data-section-link="videos">Videos</a>
-        <a class="floating-link" href="#gallery" data-section-link="gallery">Gallery</a>
-        <a class="floating-link" href="#workflow" data-section-link="workflow">Workflow</a>
-        <a class="floating-link" href="#contact" data-section-link="contact">Contact</a>
-
-        <div class="floating-divider"></div>
-        <a class="floating-cta secondary-btn" href="portal.html">Client Login</a>
-      </div>
-    </aside>
-
-    <main id="home">
-      <!-- HERO -->
-      <section class="section page-hero" id="home" data-section="home">
-        <p class="eyebrow">Cinematic Creative Studio</p>
-        <h1>Transform Multimedia</h1>
-        <p class="muted" style="max-width: 70ch;">
-          Story-first video, design, and multimedia production. Built for brands that need work that looks premium and
-          converts.
-        </p>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px;">
-          <a class="secondary-btn" href="#videos">View Work</a>
-          <a class="secondary-btn" href="#contact">Get a Quote</a>
-          <a class="secondary-btn" href="portal.html">Client Login</a>
-        </div>
-      </section>
-
-      <!-- SERVICES -->
-      <section class="section" id="services" data-section="services">
-        <div class="section-header">
-          <h2>Services</h2>
-          <p class="muted">Production, post, and motion — end-to-end.</p>
-        </div>
-
-        <div class="portal-grid">
-          <article class="portal-card">
-            <h3>Video Production</h3>
-            <p class="muted">Commercials, promos, social deliverables, documentary-style storytelling.</p>
-          </article>
-          <article class="portal-card">
-            <h3>Motion Graphics</h3>
-            <p class="muted">Launch visuals, reels, lower thirds, logo animation, explainers.</p>
-          </article>
-          <article class="portal-card">
-            <h3>Music & Sound</h3>
-            <p class="muted">Original music, sound design, mixes optimized for web + broadcast.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- VIDEO GALLERY (playlist feel + thumbnails) -->
-      <section class="section" id="videos" data-section="videos">
-        <div class="section-header">
-          <h2>Featured Work</h2>
-          <p class="muted">Click a thumbnail to switch the featured video.</p>
-        </div>
-
-        <div class="video-gallery">
-          <div class="video-player-wrap">
-            <iframe
-              data-video-player
-              title="Transform Multimedia video player"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-
-          <div class="video-thumbnails" data-video-thumbnails></div>
-        </div>
-      </section>
-
-      <!-- IMAGE GALLERY -->
-      <section class="section gallery" id="gallery" data-section="gallery">
-        <div class="section-header">
-          <h2>Image Gallery</h2>
-          <p class="muted">Click an image to view full-size.</p>
-        </div>
-
-        <div class="gallery-grid" data-gallery-grid>
-          <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
-          <img src="assets/gallery-02.webp" alt="Gallery image 2" loading="lazy" />
-          <img src="assets/gallery-03.webp" alt="Gallery image 3" loading="lazy" />
-          <img src="assets/gallery-04.webp" alt="Gallery image 4" loading="lazy" />
-          <img src="assets/gallery-05.webp" alt="Gallery image 5" loading="lazy" />
-          <img src="assets/gallery-06.webp" alt="Gallery image 6" loading="lazy" />
-        </div>
-      </section>
-
-      <!-- WORKFLOW -->
-      <section class="section" id="workflow" data-section="workflow">
-        <div class="section-header">
-          <h2>Workflow</h2>
-          <p class="muted">Clear steps, clear approvals, clean delivery.</p>
-        </div>
-
-        <div class="portal-grid">
-          <article class="portal-card">
-            <h3>1) Discovery</h3>
-            <p class="muted">We align on goals, tone, deliverables, and timeline.</p>
-          </article>
-          <article class="portal-card">
-            <h3>2) Production</h3>
-            <p class="muted">Capture + creation. Fast iteration when needed.</p>
-          </article>
-          <article class="portal-card">
-            <h3>3) Review</h3>
-            <p class="muted">Client portal updates + revisions tracked in one place.</p>
-          </article>
-          <article class="portal-card">
-            <h3>4) Delivery</h3>
-            <p class="muted">Final files + formats + handoff links organized.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="section" id="contact" data-section="contact">
-        <div class="section-header">
-          <h2>Contact</h2>
-          <p class="muted">Tell us what you’re building — we’ll reply with next steps.</p>
-        </div>
-
-        <div class="portal-card">
-          <p class="muted" style="margin:0;">
-            Email: <a href="mailto:hello@transformmultimedia.com">hello@transformmultimedia.com</a><br />
-            Client portal: <a href="portal.html">portal.html</a>
-          </p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>© Transform Multimedia</p>
-    </footer>
-
-    <!-- Lightbox -->
-    <div class="lightbox" data-lightbox hidden>
-      <button class="lightbox-close secondary-btn" type="button" data-lightbox-close>Close</button>
-      <img class="lightbox-image" data-lightbox-image alt="Expanded gallery view" />
+<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="#showcase">
+      <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
+      <span class="logo-text">Transform Multimedia</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#services">Services</a>
+      <a href="workflow.html">Workflow</a>
+      <a href="music.html">Original Music</a>
+      <a href="portal.html">Client Login</a>
+      <a href="#contact" class="nav-cta">Start a Project</a>
     </div>
-  </body>
+  </nav>
+</header>
+
+<!-- FLOATING CONTROL DOCK -->
+<div class="side-logo-link">
+  <img src="assets/logo.png" alt="Transform Multimedia logo" />
+  <a href="#showcase">View Demos</a>
+  <a href="portal.html">Client Login</a>
+  <a href="music.html">Original Music</a>
+  <a href="https://www.youtube.com/@TransformMultimedia" target="_blank">YouTube</a>
+</div>
+
+<main>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="eyebrow">Tampa Bay Area</p>
+    <h1>Full-service video, animation, and original music studio</h1>
+    <p class="hero-subtitle">
+     Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
+With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media, and provide digital media coordination and placement for organizations of all sizes.
+    </p>
+    <div class="hero-actions">
+      <a class="primary-btn" href="#showcase">View Demos</a>
+      <a class="ghost-btn" href="#contact">Let’s Work Together</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section about">
+  <div class="section-header">
+    <h2>Transform Multimedia</h2>
+    <p>
+      A full-service production studio delivering video, animation, original music,
+      and immersive digital media experiences.
+    </p>
+  </div>
+</section>
+
+<section id="showcase" class="section showcase">
+  <div class="section-header">
+    <h2>Commercial Demos</h2>
+    <p>Select a thumbnail to load the featured player.</p>
+  </div>
+
+  <div class="video-showcase">
+    <div class="featured-video">
+      <div class="featured-meta">
+        <span class="tag">Featured</span>
+        <h3 id="featured-title">Loading…</h3>
+        <p id="featured-description">Loading…</p>
+        <div class="featured-actions">
+          <button class="secondary-btn" id="prev-video">Previous</button>
+          <button class="secondary-btn" id="next-video">Next</button>
+        </div>
+      </div>
+      <div class="featured-player">
+        <div class="player-shell">
+          <iframe id="featured-iframe" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="video-grid" id="video-grid"></div>
+  </div>
+</section>
+
+<section id="gallery" class="section gallery">
+  <div class="section-header">
+    <h2>Image Gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <img src="assets/gallery-01.webp">
+    <img src="assets/gallery-02.jpeg">
+    <img src="assets/gallery-03.jpeg">
+    <img src="assets/gallery-04.jpeg">
+  </div>
+</section>
+
+<section id="services" class="section services">
+  <div class="section-header">
+    <h2>Services</h2>
+    <p>Production, editing, animation, and original music.</p>
+  </div>
+</section>
+
+<section id="contact" class="section cta">
+  <div class="cta-content">
+    <h2>Let’s Work Together</h2>
+    <p>Commercials, documentaries, branding, and sound design.</p>
+    <div class="cta-actions">
+      <a class="primary-btn" href="mailto:ahutchmedia@gmail.com">Email Us</a>
+      <a class="ghost-btn" href="portal.html">Client Login</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img class="logo-mark" src="assets/logo.png" />
+        <span>Transform Multimedia</span>
+      </div>
+      <p>Creative studio for future-forward storytelling.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://instagram.com">Instagram</a>
+      <a href="https://youtube.com">YouTube</a>
+      <a href="https://vimeo.com">Vimeo</a>
+    </div>
+  </div>
+  <p class="footer-meta">© 2024 Transform Multimedia</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
 </html>
