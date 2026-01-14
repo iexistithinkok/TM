@@ -20,6 +20,9 @@
   margin: 0;
   padding: 0;
 }
+/* Always honor the HTML `hidden` attribute */
+[hidden] { display: none !important; }
+
 
 body {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
