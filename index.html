@@ -12,6 +12,191 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- ADDITIONS: Services/Team cards + modal (kept inline so you only paste ONE file) -->
+  <style>
+    /* Always honor HTML hidden */
+    [hidden] { display: none !important; }
+
+    /* Cards */
+    .tm-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .tm-card {
+      text-align: left;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .tm-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.28);
+      background: rgba(0, 0, 0, 0.34);
+    }
+
+    .tm-card:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.55);
+      outline-offset: 3px;
+    }
+
+    .tm-card-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.25);
+      font-family: "Orbitron", sans-serif;
+      letter-spacing: 0.06em;
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .tm-card-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: 18px;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .tm-card-subtitle {
+      opacity: 0.85;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 10px 0 0 0;
+    }
+
+    .tm-card-cta {
+      display: inline-block;
+      margin-top: 14px;
+      font-family: "Orbitron", sans-serif;
+      font-size: 12px;
+      opacity: 0.9;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Team variant */
+    .tm-card--team {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .tm-card-media {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tm-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 220ms ease;
+    }
+
+    .tm-card--team:hover .tm-card-media img {
+      transform: scale(1.06);
+    }
+
+    .tm-card-pad {
+      padding: 16px 18px;
+    }
+
+    /* Modal */
+    .tm-modal-overlay {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 10000;
+    }
+
+    .tm-modal {
+      width: min(980px, 96vw);
+      max-height: 90vh;
+      overflow: auto;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+      padding: 18px;
+      animation: tmModalIn 160ms ease;
+    }
+
+    @keyframes tmModalIn {
+      from { transform: translateY(8px) scale(0.99); opacity: 0.6; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .tm-modal-close {
+      position: sticky;
+      top: 0;
+      margin-left: auto;
+      display: block;
+    }
+
+    .tm-modal-body {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+      padding-top: 12px;
+    }
+
+    .tm-modal-media {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .tm-modal-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .tm-modal-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .tm-modal-subtitle {
+      margin-top: 6px;
+      opacity: 0.85;
+    }
+
+    .tm-modal-rich {
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .tm-modal-rich ul {
+      margin: 10px 0 0 20px;
+    }
+
+    @media (min-width: 860px) {
+      .tm-modal-body {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: start;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -27,10 +212,10 @@
     </iframe>
   </div>
 
-  <!-- FLOATING RIGHT MENU (replaces top menu) -->
+  <!-- RIGHT FLOATING SIDE MENU -->
   <nav class="side-logo-link" aria-label="Site menu">
-    <a class="side-brand" href="#showcase">
-      <img src="assets/logo.png" alt="Transform Multimedia logo" />
+    <a class="side-brand" href="#showcase" style="display:flex; align-items:center; gap:10px; font-family:'Orbitron',sans-serif;">
+      <img src="assets/logo.png" alt="Transform Multimedia logo" style="width:34px; height:34px; object-fit:contain;" />
       <span>Transform Multimedia</span>
     </a>
 
@@ -38,18 +223,20 @@
     <a href="#showcase">Showcase</a>
     <a href="#gallery">Gallery</a>
     <a href="#services">Services</a>
-    <a href="workflow.html">Workflow</a>
+    <a href="#team">Team</a>
+    <a href="#workflow">Workflow</a>
+    <a href="workflow.html">Client Workflow Page</a>
     <a href="music.html">Original Music</a>
     <a href="portal.html">Client Login</a>
     <a href="#contact" class="nav-cta">Start a Project</a>
 
-    <div class="side-divider"></div>
+    <div style="height:1px; background:rgba(255,255,255,0.14); margin:6px 0;"></div>
 
     <a href="https://www.youtube.com/@TransformMultimedia" target="_blank" rel="noreferrer">YouTube</a>
   </nav>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="showcase">
       <div class="hero-content">
         <p class="eyebrow">Tampa Bay Area</p>
         <h1>Full-service video, animation, and original music studio</h1>
@@ -75,7 +262,7 @@
       </div>
     </section>
 
-    <section id="showcase" class="section showcase">
+    <section class="section showcase">
       <div class="section-header">
         <h2>Commercial Demos</h2>
         <p>Select a thumbnail to load the featured player.</p>
@@ -114,10 +301,205 @@
       </div>
     </section>
 
+    <!-- SERVICES (cards expand on click) -->
     <section id="services" class="section services">
       <div class="section-header">
         <h2>Services</h2>
         <p>Production, editing, animation, and original music.</p>
+      </div>
+
+      <div class="tm-card-grid" role="list">
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="Video Production"
+          data-tm-subtitle="From concept to delivery"
+          data-tm-body='
+            <ul>
+              <li>Pre-production: scripting, storyboards, shot planning</li>
+              <li>On-location & studio production</li>
+              <li>Interview, documentary, and branded storytelling</li>
+              <li>Broadcast-ready deliverables</li>
+            </ul>
+            <p><strong>Great for:</strong> commercials, docs, campaigns, internal video.</p>'
+        >
+          <div class="tm-card-badge">Production</div>
+          <h3 class="tm-card-title">Video Production</h3>
+          <p class="tm-card-subtitle">Cinematic shoots that tell a story</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="Editing & Post"
+          data-tm-subtitle="Pacing, polish, and finishing"
+          data-tm-body='
+            <ul>
+              <li>Short-form and long-form editorial</li>
+              <li>Color correction & cinematic grading</li>
+              <li>Audio cleanup, mix, and mastering</li>
+              <li>Graphics, captions, and platform exports</li>
+            </ul>
+            <p><strong>Great for:</strong> broadcast spots, web commercials, doc storytelling.</p>'
+        >
+          <div class="tm-card-badge">Post</div>
+          <h3 class="tm-card-title">Editing & Post</h3>
+          <p class="tm-card-subtitle">Tight cuts, clean audio, final polish</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="Animation & Motion Graphics"
+          data-tm-subtitle="Modern visuals that explain and excite"
+          data-tm-body='
+            <ul>
+              <li>Logo animation and brand motion systems</li>
+              <li>Explainers, lower-thirds, and title packages</li>
+              <li>2D motion + compositing</li>
+              <li>Social-ready animated assets</li>
+            </ul>
+            <p><strong>Great for:</strong> explainers, promos, on-screen branding.</p>'
+        >
+          <div class="tm-card-badge">Motion</div>
+          <h3 class="tm-card-title">Animation</h3>
+          <p class="tm-card-subtitle">Graphics that elevate production value</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="Original Music & Sound Design"
+          data-tm-subtitle="Custom score + impactful sound"
+          data-tm-body='
+            <ul>
+              <li>Original compositions for film, broadcast, and web</li>
+              <li>Sound design: impacts, texture, transitions</li>
+              <li>Mixing/mastering to platform specs</li>
+              <li>Brand sonic identity</li>
+            </ul>
+            <p><strong>Great for:</strong> branded films, documentaries, ads, intros/outros.</p>'
+        >
+          <div class="tm-card-badge">Audio</div>
+          <h3 class="tm-card-title">Original Music</h3>
+          <p class="tm-card-subtitle">Signature sound built for your story</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- TEAM (cards expand on click) -->
+    <section id="team" class="section team">
+      <div class="section-header">
+        <h2>Team</h2>
+        <p>Meet the creators behind Transform Multimedia.</p>
+      </div>
+
+      <div class="tm-card-grid" role="list">
+        <button class="tm-card tm-card--team" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="Your Name"
+          data-tm-subtitle="Producer • Director • Editor"
+          data-tm-image="assets/team-you.jpg"
+          data-tm-body='
+            <p><strong>Bio:</strong> Replace this with your real bio (quick + confident).</p>
+            <ul>
+              <li><strong>Experience:</strong> ___ years</li>
+              <li><strong>Specialties:</strong> commercials, documentaries, broadcast delivery</li>
+              <li><strong>Highlights:</strong> clients/networks/awards (if any)</li>
+            </ul>'
+        >
+          <div class="tm-card-media">
+            <img src="assets/team-you.jpg" alt="Your Name" loading="lazy" />
+          </div>
+          <div class="tm-card-pad">
+            <div class="tm-card-badge">Team</div>
+            <h3 class="tm-card-title">Your Name</h3>
+            <p class="tm-card-subtitle">Producer • Director • Editor</p>
+            <span class="tm-card-cta">Click for bio</span>
+          </div>
+        </button>
+
+        <button class="tm-card tm-card--team" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="Aaron"
+          data-tm-subtitle="Animator • Editor • Composer"
+          data-tm-image="assets/team-aaron.jpg"
+          data-tm-body='
+            <p><strong>Bio:</strong> Replace this with Aaron’s bio (focus on strengths + results).</p>
+            <ul>
+              <li><strong>Experience:</strong> ___ years</li>
+              <li><strong>Specialties:</strong> motion graphics, post, original music</li>
+              <li><strong>Highlights:</strong> notable work/platforms/recognitions</li>
+            </ul>'
+        >
+          <div class="tm-card-media">
+            <img src="assets/team-aaron.jpg" alt="Aaron" loading="lazy" />
+          </div>
+          <div class="tm-card-pad">
+            <div class="tm-card-badge">Team</div>
+            <h3 class="tm-card-title">Aaron</h3>
+            <p class="tm-card-subtitle">Animator • Editor • Composer</p>
+            <span class="tm-card-cta">Click for bio</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- WORKFLOW (re-added) -->
+    <section id="workflow" class="section workflow">
+      <div class="section-header">
+        <h2>Workflow</h2>
+        <p>Clear steps, clear approvals, clean delivery.</p>
+      </div>
+
+      <div class="tm-card-grid" role="list">
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="1) Discovery"
+          data-tm-subtitle="Goals, tone, deliverables, timeline"
+          data-tm-body="<p>We align on the objective, audience, creative direction, schedule, and success metrics. You’ll know exactly what’s happening and when.</p>"
+        >
+          <div class="tm-card-badge">Step 1</div>
+          <h3 class="tm-card-title">Discovery</h3>
+          <p class="tm-card-subtitle">Align on goals and plan the story</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="2) Production"
+          data-tm-subtitle="Capture + creation"
+          data-tm-body="<p>We shoot/record/create assets efficiently and with a cinematic eye—fast iteration when needed.</p>"
+        >
+          <div class="tm-card-badge">Step 2</div>
+          <h3 class="tm-card-title">Production</h3>
+          <p class="tm-card-subtitle">Capture and build the raw materials</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="3) Review"
+          data-tm-subtitle="Feedback, revisions, approvals"
+          data-tm-body="<p>We share cuts, track revisions, and keep approvals organized so you’re never guessing what’s current.</p>"
+        >
+          <div class="tm-card-badge">Step 3</div>
+          <h3 class="tm-card-title">Review</h3>
+          <p class="tm-card-subtitle">Clean feedback loops and clear approvals</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
+
+        <button class="tm-card" type="button" role="listitem"
+          data-tm-open
+          data-tm-title="4) Delivery"
+          data-tm-subtitle="Final exports + handoff"
+          data-tm-body="<p>Final files, platform formats, and handoff links delivered cleanly and labeled clearly.</p>"
+        >
+          <div class="tm-card-badge">Step 4</div>
+          <h3 class="tm-card-title">Delivery</h3>
+          <p class="tm-card-subtitle">Ready-to-publish files in the right formats</p>
+          <span class="tm-card-cta">Click for details</span>
+        </button>
       </div>
     </section>
 
@@ -151,6 +533,93 @@
     <p class="footer-meta">© 2024 Transform Multimedia</p>
   </footer>
 
+  <!-- EXPAND MODAL -->
+  <div class="tm-modal-overlay" data-tm-overlay hidden>
+    <div class="tm-modal" role="dialog" aria-modal="true" aria-labelledby="tm-modal-title">
+      <button class="tm-modal-close secondary-btn" type="button" data-tm-close aria-label="Close">Close</button>
+
+      <div class="tm-modal-body">
+        <div class="tm-modal-media" data-tm-media hidden>
+          <img data-tm-image alt="" />
+        </div>
+
+        <div>
+          <h3 class="tm-modal-title" id="tm-modal-title" data-tm-title></h3>
+          <p class="tm-modal-subtitle" data-tm-subtitle></p>
+          <div class="tm-modal-rich" data-tm-rich></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Your existing JS (video showcase, etc.) -->
   <script src="script.js"></script>
+
+  <!-- Modal logic (inline to avoid another file) -->
+  <script>
+    (() => {
+      const overlay = document.querySelector("[data-tm-overlay]");
+      const closeBtn = document.querySelector("[data-tm-close]");
+      const titleEl = document.querySelector("[data-tm-title]");
+      const subtitleEl = document.querySelector("[data-tm-subtitle]");
+      const richEl = document.querySelector("[data-tm-rich]");
+      const mediaWrap = document.querySelector("[data-tm-media]");
+      const imgEl = document.querySelector("[data-tm-image]");
+
+      if (!overlay || !closeBtn || !titleEl || !subtitleEl || !richEl || !mediaWrap || !imgEl) return;
+
+      let lastActive = null;
+
+      const open = (btn) => {
+        lastActive = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+        titleEl.textContent = btn.getAttribute("data-tm-title") || "";
+        subtitleEl.textContent = btn.getAttribute("data-tm-subtitle") || "";
+        richEl.innerHTML = btn.getAttribute("data-tm-body") || "";
+
+        const src = btn.getAttribute("data-tm-image") || "";
+        if (src) {
+          imgEl.src = src;
+          imgEl.alt = titleEl.textContent || "Expanded view";
+          mediaWrap.hidden = false;
+        } else {
+          imgEl.src = "";
+          imgEl.alt = "";
+          mediaWrap.hidden = true;
+        }
+
+        overlay.hidden = false;
+        document.documentElement.style.overflow = "hidden";
+        closeBtn.focus();
+      };
+
+      const close = () => {
+        overlay.hidden = true;
+        document.documentElement.style.overflow = "";
+        richEl.innerHTML = "";
+        imgEl.src = "";
+        imgEl.alt = "";
+        mediaWrap.hidden = true;
+        if (lastActive) lastActive.focus();
+      };
+
+      document.addEventListener("click", (e) => {
+        const target = e.target;
+
+        if (target instanceof HTMLElement && target.matches("[data-tm-open]")) {
+          open(target);
+          return;
+        }
+
+        if (target === overlay) close();
+      });
+
+      closeBtn.addEventListener("click", close);
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && overlay.hidden === false) close();
+      });
+    })();
+  </script>
 </body>
 </html>
