@@ -80,7 +80,37 @@
 
         <div class="portal-grid">
           <!-- Projects -->
-          <article class="portal-card" data-panel="admin-projects">
+<article class="portal-card" data-panel="admin-members" hidden>
+  <h2>Project Members</h2>
+  <p class="muted">Start typing an email, select it, then click Add.</p>
+
+  <label>
+    Client email
+    <input
+      list="client-list"
+      data-client-search
+      placeholder="client@email.com"
+      autocomplete="off"
+    />
+    <datalist id="client-list" data-client-datalist></datalist>
+  </label>
+
+  <form class="message-form" data-add-member-form>
+    <!-- kept for compatibility (filled automatically) -->
+    <input type="hidden" name="user_id" />
+
+    <label style="display:flex; gap:10px; align-items:center;">
+      <input type="checkbox" name="make_admin" />
+      Make admin
+    </label>
+
+    <button class="secondary-btn" type="submit">Add Member</button>
+  </form>
+
+  <div class="message-list" data-project-members>
+    <p class="muted">Select a project to load members.</p>
+  </div>
+</article>
             <h2>Projects</h2>
 
             <label>
