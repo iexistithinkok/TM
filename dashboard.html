@@ -5,81 +5,99 @@
   <title>Client Dashboard — Transform Multimedia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Supabase bootstrap -->
-  <script src="./supabase-env.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabase-client.js"></script>
 
-  <!-- Page logic -->
-  <script src="./supabase-dashboard.js" defer></script>
-  <script src="./supabase-messages.js" defer></script>
+  <!-- 🔑 MUST LOAD FIRST -->
+  <script src="supabase-env.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+
+  <!-- Dashboard logic -->
+  <script src="supabase-dashboard.js" defer></script>
+  <script src="supabase-messages.js" defer></script>
 </head>
 
 <body>
-  <div class="ambient-glow"></div>
-  <div class="ambient-grid tron-grid"></div>
+<div class="ambient-glow"></div>
+<div class="ambient-grid tron-grid"></div>
 
-  <header class="site-header">
-    <nav class="nav">
-      <a class="logo" href="./index.html">
-        <img class="logo-mark" src="./assets/logo.png" alt="Transform Multimedia Logo" />
-        <span>Transform Multimedia</span>
-      </a>
 
-      <button class="secondary-btn" type="button" onclick="dashboardLogout()">Logout</button>
-    </nav>
-  </header>
+<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="index.html">
+      <img class="logo-mark" src="assets/logo.png" />
+      <span>Transform Multimedia</span>
+    </a>
+    <button class="secondary-btn" onclick="dashboardLogout()">Logout</button>
+  </nav>
+</header>
 
-  <main>
-    <section class="section page-hero">
-      <p class="eyebrow">Client Dashboard</p>
-      <h1>Your Project Workspace</h1>
-      <div class="portal-note" data-role-indicator>Detected role: --</div>
-    </section>
 
-    <!-- ================= ADMIN ================= -->
-    <section class="section portal" data-role="admin" hidden>
-      <h2>Admin Control Room</h2>
+<main>
 
-      <div class="portal-grid">
-        <article class="portal-card">
-          <h2>Admin Notes</h2>
-          <p class="muted">
-            If you see this section, your profile role is set to <strong>admin</strong>.
-          </p>
-        </article>
+  <section class="section page-hero">
+    <p class="eyebrow">Client Dashboard</p>
+    <h1>Your Project Workspace</h1>
+    <div class="portal-note" data-role-indicator>Detected role: --</div>
+  </section>
 
-        <article class="portal-card">
-          <h2>Client Messages</h2>
-          <div class="message-list" data-admin-message-feed>
-            <p class="muted">Message feed placeholder.</p>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <!-- ================= CLIENT ================= -->
-    <section class="section portal" data-role="client" hidden>
-      <h2>Your Project Feed</h2>
+  <!-- ================= ADMIN ================= -->
+  <section class="section portal" data-role="admin" hidden>
+    <h2>Admin Control Room</h2>
 
-      <div class="portal-card">
-        <div class="message-list" data-client-message-feed>
-          <p class="muted">Message feed placeholder.</p>
-        </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <p>© Transform Multimedia</p>
-  </footer>
+    <div class="portal-grid">
+      <article class="portal-card">
+        <h2>Admin Notes</h2>
+        <div class="message-list" data-admin-notes></div>
+
+
+        <form class="message-form" data-admin-note-form>
+          <label>Title<input name="title" required /></label>
+          <label>Note<textarea name="note" required></textarea></label>
+          <label>Project ID<input name="project_id" required /></label>
+          <button class="secondary-btn">Post Note</button>
+        </form>
+      </article>
+
+
+      <article class="portal-card">
+        <h2>Client Messages</h2>
+        <div class="message-list" data-client-messages></div>
+
+
+        <form class="message-form" data-client-message-form>
+          <label>Message<textarea name="client-message" required></textarea></label>
+          <label>Project ID<input name="client-project-id" required /></label>
+          <button class="secondary-btn">Send to Client</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+
+  <!-- ================= CLIENT ================= -->
+  <section class="section portal" data-role="client" hidden>
+    <h2>Your Project Feed</h2>
+    <div class="portal-card">
+      <div class="message-list" data-client-message-feed></div>
+    </div>
+  </section>
+
+
+</main>
+
+
+<footer class="site-footer">
+  <p>© Transform Multimedia</p>
+</footer>
+
+
 </body>
 </html>
