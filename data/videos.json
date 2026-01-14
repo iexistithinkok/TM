@@ -1,5 +1,6 @@
 [
-  { "id": "4djzFPCsy_g", "title": "Transform Multimedia Reel", "tag": "Featured" },
-  { "id": "dQw4w9WgXcQ", "title": "Sample Video 2 (replace me)", "tag": "Demo" },
-  { "id": "kxopViU98Xo", "title": "Sample Video 3 (replace me)", "tag": "Demo" }
+  { "id": "YOUR_VIDEO_ID_1", "title": "Transform Multimedia Reel", "tag": "Featured" },
+  { "id": "YOUR_VIDEO_ID_2", "title": "Commercial Demo", "tag": "Demo" },
+  { "id": "YOUR_VIDEO_ID_3", "title": "Documentary Sample", "tag": "Doc" },
+  { "id": "YOUR_VIDEO_ID_4", "title": "Animation Reel", "tag": "Motion" }
 ]
