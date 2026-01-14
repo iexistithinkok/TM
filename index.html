@@ -404,90 +404,101 @@
 <!-- END SERVICES -->
 
     <!-- SERVICES (cards expand on click) -->
-    <section id="services" class="section services">
-      <div class="section-header">
-        <h2>Services</h2>
-        <p>Production, editing, animation, and original music.</p>
+<!-- BEGIN TEAM -->
+<section id="team" class="section team">
+  <div class="section-header">
+    <h2>Team</h2>
+    <p>Click a profile to open the full-screen dossier.</p>
+  </div>
+
+  <div class="service-grid">
+    <button
+      class="service-card"
+      type="button"
+      data-doc-open
+      data-doc-title="Your Name — Producer / Director / Editor"
+      data-doc-body="
+        <div class='profile-doc'>
+          <div class='profile-head'>
+            <img class='profile-photo' src='assets/team-you.jpg' alt='Your Name' />
+            <div>
+              <p class='profile-role'>Producer • Director • Editor</p>
+              <p class='profile-meta'>Tampa Bay Area • Available for projects</p>
+            </div>
+          </div>
+
+          <h4>Bio</h4>
+          <p>Replace this paragraph with your bio. Keep it confident, short, and story-driven.</p>
+
+          <h4>Experience</h4>
+          <ul>
+            <li>___ years in production, editing, and delivery</li>
+            <li>Broadcast + web campaigns</li>
+            <li>Documentary and brand storytelling</li>
+          </ul>
+
+          <h4>Highlights</h4>
+          <ul>
+            <li>Notable clients / networks / awards</li>
+            <li>Specialty: cinematic interviews + narrative structure</li>
+          </ul>
+        </div>
+      "
+    >
+      <div class="service-card-top">
+        <span class="service-chip">PROFILE</span>
+        <span class="service-meta">.bio</span>
       </div>
+      <h3 class="service-title">Your Name</h3>
+      <p class="service-subtitle">Producer • Director • Editor</p>
+      <span class="tm-card-cta">Click for resume</span>
+    </button>
 
-      <div class="tm-card-grid" role="list">
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="Video Production"
-          data-tm-subtitle="From concept to delivery"
-          data-tm-body='
-            <ul>
-              <li>Pre-production: scripting, storyboards, shot planning</li>
-              <li>On-location & studio production</li>
-              <li>Interview, documentary, and branded storytelling</li>
-              <li>Broadcast-ready deliverables</li>
-            </ul>
-            <p><strong>Great for:</strong> commercials, docs, campaigns, internal video.</p>'
-        >
-          <div class="tm-card-badge">Production</div>
-          <h3 class="tm-card-title">Video Production</h3>
-          <p class="tm-card-subtitle">Cinematic shoots that tell a story</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
+    <button
+      class="service-card"
+      type="button"
+      data-doc-open
+      data-doc-title="Aaron — Animator / Editor / Composer"
+      data-doc-body="
+        <div class='profile-doc'>
+          <div class='profile-head'>
+            <img class='profile-photo' src='assets/team-aaron.jpg' alt='Aaron' />
+            <div>
+              <p class='profile-role'>Animator • Editor • Composer</p>
+              <p class='profile-meta'>Motion + sound built for story</p>
+            </div>
+          </div>
 
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="Editing & Post"
-          data-tm-subtitle="Pacing, polish, and finishing"
-          data-tm-body='
-            <ul>
-              <li>Short-form and long-form editorial</li>
-              <li>Color correction & cinematic grading</li>
-              <li>Audio cleanup, mix, and mastering</li>
-              <li>Graphics, captions, and platform exports</li>
-            </ul>
-            <p><strong>Great for:</strong> broadcast spots, web commercials, doc storytelling.</p>'
-        >
-          <div class="tm-card-badge">Post</div>
-          <h3 class="tm-card-title">Editing & Post</h3>
-          <p class="tm-card-subtitle">Tight cuts, clean audio, final polish</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
+          <h4>Bio</h4>
+          <p>Replace this paragraph with Aaron’s bio.</p>
 
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="Animation & Motion Graphics"
-          data-tm-subtitle="Modern visuals that explain and excite"
-          data-tm-body='
-            <ul>
-              <li>Logo animation and brand motion systems</li>
-              <li>Explainers, lower-thirds, and title packages</li>
-              <li>2D motion + compositing</li>
-              <li>Social-ready animated assets</li>
-            </ul>
-            <p><strong>Great for:</strong> explainers, promos, on-screen branding.</p>'
-        >
-          <div class="tm-card-badge">Motion</div>
-          <h3 class="tm-card-title">Animation</h3>
-          <p class="tm-card-subtitle">Graphics that elevate production value</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
+          <h4>Experience</h4>
+          <ul>
+            <li>___ years in motion, post, and audio</li>
+            <li>Brand motion systems + explainer graphics</li>
+            <li>Original music and sound design</li>
+          </ul>
 
-        <button class="tm-card" type="button" role="listitem"
-          data-tm-open
-          data-tm-title="Original Music & Sound Design"
-          data-tm-subtitle="Custom score + impactful sound"
-          data-tm-body='
-            <ul>
-              <li>Original compositions for film, broadcast, and web</li>
-              <li>Sound design: impacts, texture, transitions</li>
-              <li>Mixing/mastering to platform specs</li>
-              <li>Brand sonic identity</li>
-            </ul>
-            <p><strong>Great for:</strong> branded films, documentaries, ads, intros/outros.</p>'
-        >
-          <div class="tm-card-badge">Audio</div>
-          <h3 class="tm-card-title">Original Music</h3>
-          <p class="tm-card-subtitle">Signature sound built for your story</p>
-          <span class="tm-card-cta">Click for details</span>
-        </button>
+          <h4>Highlights</h4>
+          <ul>
+            <li>Notable projects / platforms</li>
+            <li>Specialty: clean motion + punchy sound</li>
+          </ul>
+        </div>
+      "
+    >
+      <div class="service-card-top">
+        <span class="service-chip">PROFILE</span>
+        <span class="service-meta">.bio</span>
       </div>
-    </section>
+      <h3 class="service-title">Aaron</h3>
+      <p class="service-subtitle">Animator • Editor • Composer</p>
+      <span class="tm-card-cta">Click for resume</span>
+    </button>
+  </div>
+</section>
+<!-- END TEAM -->
+
 
     <!-- TEAM (cards expand on click) -->
     <section id="team" class="section team">
