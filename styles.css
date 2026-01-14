@@ -1484,3 +1484,52 @@ main {
 .docbox-content ul {
   margin: 10px 0 0 20px;
 }
+/* ===== Profile "dossier" inside docbox ===== */
+.profile-doc h4 {
+  margin: 16px 0 8px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.95;
+}
+
+.profile-head {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.profile-role {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+}
+
+.profile-meta {
+  margin: 8px 0 0;
+  opacity: 0.85;
+}
+
+@media (max-width: 520px) {
+  .profile-head {
+    grid-template-columns: 1fr;
+  }
+  .profile-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}
