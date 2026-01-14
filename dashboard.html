@@ -54,6 +54,21 @@
 <div class="portal-note" data-project-indicator>Project: --</div>
 
   <!-- ================= ADMIN ================= -->
+  <form class="message-form" data-add-file-form>
+  <label>Title<input name="title" required /></label>
+  <label>URL<input name="url" required /></label>
+  <label>
+    Type
+    <select name="kind">
+      <option value="link">link</option>
+      <option value="draft">draft</option>
+      <option value="final">final</option>
+      <option value="invoice">invoice</option>
+    </select>
+  </label>
+  <button class="secondary-btn" type="submit">Add File</button>
+</form>
+
   <section class="section portal" data-role="admin" hidden>
     <article class="portal-card">
   <h2>Project Members</h2>
@@ -79,6 +94,13 @@
     <button class="secondary-btn" type="submit">Add Member</button>
   </form>
 </article>
+    <article class="portal-card">
+  <h2>Deliverables & Files</h2>
+  <div class="message-list" data-project-files>
+    <p class="muted">Loading files…</p>
+  </div>
+</article>
+
 
     <h2>Admin Control Room</h2>
 
