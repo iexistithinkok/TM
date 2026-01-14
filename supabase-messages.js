@@ -4,6 +4,10 @@
  * - Client: reads messages for their first project (from project_members)
  * - Admin: reads + posts messages for the "active project" (window.currentProjectId / localStorage)
  *
+ * Optional:
+ * - Client can send messages if dashboard.html includes:
+ *   <form class="message-form" data-client-send-form> <textarea name="message">...</textarea> </form>
+ *
  * Requires:
  * - window.supabaseClient
  * - Tables:
@@ -21,6 +25,12 @@
   const adminTextArea =
     adminFormEl?.querySelector('textarea[name="client-message"]') ||
     adminFormEl?.querySelector("textarea");
+
+  // Client send form (optional)
+  const clientSendFormEl = document.querySelector("[data-client-send-form]");
+  const clientSendTextArea =
+    clientSendFormEl?.querySelector('textarea[name="message"]') ||
+    clientSendFormEl?.querySelector("textarea");
 
   const setFeedMessage = (el, msg) => {
     if (!el) return;
@@ -41,7 +51,7 @@
 
   const session = sessionData?.session;
   if (!session) {
-    window.location.href = "./portal.html"; // change if your login page differs
+    window.location.href = "./portal.html";
     return;
   }
 
@@ -74,6 +84,7 @@
       console.error("Failed to load project membership:", error);
       return null;
     }
+
     const first = memberships?.[0]?.project_id ?? null;
     return Number.isFinite(Number(first)) ? Number(first) : null;
   };
@@ -134,25 +145,22 @@
     renderMessages(targetEl, messages);
   };
 
-  // Decide which project to load
-  let projectId = null;
-
+  // ===== Admin view =====
   if (isAdmin) {
-    projectId = getActiveProjectIdForAdmin();
+    const projectId = getActiveProjectIdForAdmin();
+
     if (!projectId) {
       setFeedMessage(adminFeedEl, "Select a project to view messages.");
     } else {
       await fetchMessages(projectId);
     }
 
-    // When admin switches project
     window.addEventListener("project:changed", async (e) => {
       const pid = Number(e.detail?.projectId);
       if (!Number.isFinite(pid)) return;
       await fetchMessages(pid);
     });
 
-    // Admin posting
     if (adminFormEl) {
       adminFormEl.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -181,11 +189,35 @@
     return;
   }
 
-  // Client view
-  projectId = await getClientProjectId();
+  // ===== Client view =====
+  const projectId = await getClientProjectId();
   if (!projectId) {
     setFeedMessage(clientFeedEl, "No project assigned yet.");
     return;
   }
+
   await fetchMessages(projectId);
+
+  // Optional: client sending messages
+  if (clientSendFormEl) {
+    clientSendFormEl.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const text = clientSendTextArea?.value?.trim() || "";
+      if (!text) return;
+
+      const { error: insErr } = await supabase
+        .from("project_messages")
+        .insert({ project_id: projectId, user_id: userId, message: text });
+
+      if (insErr) {
+        console.error("Client message insert failed:", insErr);
+        alert(insErr.message || "Failed to send message.");
+        return;
+      }
+
+      if (clientSendTextArea) clientSendTextArea.value = "";
+      await fetchMessages(projectId);
+    });
+  }
 })();
