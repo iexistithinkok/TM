@@ -52,6 +52,31 @@
 
   <!-- ================= ADMIN ================= -->
   <section class="section portal" data-role="admin" hidden>
+    <article class="portal-card">
+  <h2>Project Members</h2>
+
+  <div class="message-list" data-project-members>
+    <p class="muted">Select a project to load members.</p>
+  </div>
+
+  <form class="message-form" data-add-member-form>
+    <label>
+      User ID (UUID)
+      <input name="user_id" placeholder="0b1c3313-fa9d-4cd6-b750-faeae256c07e" required />
+    </label>
+
+    <label>
+      Role
+      <select name="role">
+        <option value="client">client</option>
+        <option value="admin">admin</option>
+      </select>
+    </label>
+
+    <button class="secondary-btn" type="submit">Add Member</button>
+  </form>
+</article>
+
     <h2>Admin Control Room</h2>
 
 
