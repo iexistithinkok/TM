@@ -77,6 +77,25 @@
           <label>Project ID<input name="client-project-id" required /></label>
           <button class="secondary-btn">Send to Client</button>
         </form>
+        <article class="portal-card">
+  <h2>Projects</h2>
+
+  <label>
+    Active project
+    <select data-project-select></select>
+  </label>
+
+  <form class="message-form" data-create-project-form>
+    <label>
+      New project name
+      <input name="name" required />
+    </label>
+    <button class="secondary-btn" type="submit">Create Project</button>
+  </form>
+
+  <p class="muted" data-project-status></p>
+</article>
+
       </article>
     </div>
   </section>
