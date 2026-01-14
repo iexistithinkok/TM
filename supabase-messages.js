@@ -1,8 +1,9 @@
 /**
  * supabase-messages.js
  * - Admin: views + posts messages for active project.
- * - Client: views + can send messages for their project.
- * Also supports admin preview mode by rendering into both admin + client containers if present.
+ * - Client: views + sends messages for their project.
+ * - Labels: You/Admin/Client (no extra DB joins).
+ * - Auto-refresh every 10s.
  */
 (async () => {
   const supabase = window.supabaseClient;
@@ -64,6 +65,11 @@
     return Number.isFinite(Number(pid)) ? Number(pid) : null;
   };
 
+  const senderLabel = (messageUserId) => {
+    if (messageUserId === userId) return "You";
+    return isAdmin ? "Client" : "Admin";
+  };
+
   const renderMessages = (el, messages) => {
     if (!el) return;
     if (!messages || messages.length === 0) return setFeedMessage(el, "No messages yet.");
@@ -76,9 +82,12 @@
       const li = document.createElement("li");
       li.className = "message-item";
 
+      const when = m.created_at ? new Date(m.created_at) : null;
+      const ts = when ? when.toLocaleString() : "";
+
       const meta = document.createElement("div");
       meta.className = "message-meta";
-      meta.textContent = m.created_at ? new Date(m.created_at).toLocaleString() : "";
+      meta.textContent = `${senderLabel(m.user_id)} • ${ts}`;
 
       const body = document.createElement("div");
       body.className = "message-body";
@@ -91,6 +100,8 @@
 
     el.appendChild(ul);
   };
+
+  let refreshTimer = null;
 
   const fetchMessages = async (projectId) => {
     const targetEl = isAdmin ? adminFeedEl : clientFeedEl;
@@ -111,23 +122,32 @@
 
     if (isAdmin) {
       renderMessages(adminFeedEl, messages);
-      if (clientFeedEl) renderMessages(clientFeedEl, messages);
+      if (clientFeedEl) renderMessages(clientFeedEl, messages); // preview mode support
       return;
     }
 
     renderMessages(clientFeedEl, messages);
   };
 
+  const startAutoRefresh = (projectId) => {
+    if (refreshTimer) clearInterval(refreshTimer);
+    refreshTimer = setInterval(() => fetchMessages(projectId), 10_000);
+  };
+
   // ===== Admin view =====
   if (isAdmin) {
     const projectId = getActiveProjectIdForAdmin();
     if (!projectId) setFeedMessage(adminFeedEl, "Select a project to view messages.");
-    else await fetchMessages(projectId);
+    else {
+      await fetchMessages(projectId);
+      startAutoRefresh(projectId);
+    }
 
     window.addEventListener("project:changed", async (e) => {
       const pid = Number(e.detail?.projectId);
       if (!Number.isFinite(pid)) return;
       await fetchMessages(pid);
+      startAutoRefresh(pid);
     });
 
     if (adminFormEl) {
@@ -161,6 +181,7 @@
   }
 
   await fetchMessages(projectId);
+  startAutoRefresh(projectId);
 
   if (clientSendFormEl) {
     clientSendFormEl.addEventListener("submit", async (e) => {
