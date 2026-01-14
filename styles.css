@@ -1352,3 +1352,135 @@ main {
     display: none;
   }
 }
+/* ===== Services "OS Document" Cards + Lightbox ===== */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.service-card {
+  text-align: left;
+  border-radius: 16px;
+  padding: 16px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.service-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.28);
+  background: rgba(0,0,0,0.34);
+}
+
+.service-card:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.55);
+  outline-offset: 3px;
+}
+
+.service-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.service-chip {
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.25);
+  text-transform: uppercase;
+}
+
+.service-meta {
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.service-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+.service-subtitle {
+  margin-top: 8px;
+  opacity: 0.85;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Doc lightbox */
+.docbox {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.82);
+  z-index: 10000;
+}
+
+.docbox[hidden] { display: none; }
+
+.docbox-close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 10001;
+}
+
+.docbox-window {
+  width: min(980px, 96vw);
+  max-height: 86vh;
+  overflow: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.42);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+}
+
+.docbox-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(14px);
+}
+
+.docbox-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.08);
+}
+
+.docbox-title {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+}
+
+.docbox-content {
+  padding: 16px 16px 20px;
+  line-height: 1.65;
+}
+
+.docbox-content ul {
+  margin: 10px 0 0 20px;
+}
