@@ -13,6 +13,7 @@
   <!-- Keep these if they exist in your project -->
   <script src="video-gallery.js" defer></script>
   <script src="gallery-lightbox.js" defer></script>
+<script src="floating-sidebar.js" defer></script>
 
   <style>
     /* Docbox overlay (text dossier / OS window) */
@@ -55,19 +56,33 @@
   </div>
 
   <!-- Right floating menu: anchors + only a few pages -->
-  <nav class="side-logo-link" aria-label="Site menu">
-    <img src="assets/logo.png" alt="Transform Multimedia logo" />
-    <a href="#showcase">Home</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#team">Team</a>
-    <a href="#workflow">Workflow</a>
-    <a href="#contact" class="nav-cta">Start a Project</a>
-    <div style="height:1px; background:rgba(255,255,255,0.14); width:100%;"></div>
-    <a href="workflow.html">Workflow Page</a>
-    <a href="music.html">Original Music</a>
-    <a href="portal.html">Client Login</a>
+<aside class="floating-sidebar" data-floating-sidebar>
+  <button
+    class="floating-toggle secondary-btn"
+    type="button"
+    data-floating-toggle
+    aria-expanded="false"
+  >
+    Menu
+  </button>
+
+  <nav class="floating-panel" data-floating-panel aria-label="Floating menu">
+    <a class="floating-link" href="#showcase" data-section-link="showcase">Home</a>
+    <a class="floating-link" href="#services" data-section-link="services">Services</a>
+    <a class="floating-link" href="#videos" data-section-link="videos">Videos</a>
+    <a class="floating-link" href="#gallery" data-section-link="gallery">Gallery</a>
+    <a class="floating-link" href="#team" data-section-link="team">Team</a>
+    <a class="floating-link" href="#workflow" data-section-link="workflow">Workflow</a>
+
+    <div class="floating-divider"></div>
+
+    <a class="floating-link" href="workflow.html">Workflow Page</a>
+    <a class="floating-link" href="music.html">Original Music</a>
+    <a class="floating-link" href="portal.html">Client Login</a>
+
+    <a class="floating-link floating-cta nav-cta" href="#contact" data-section-link="contact">Start a Project</a>
   </nav>
+</aside>
 
   <main>
     <section class="hero" id="showcase">
@@ -89,6 +104,27 @@
   <div class="section-header">
     <h2>Featured Work</h2>
     <p class="muted">Click a thumbnail to load the featured player.</p>
+    <section id="videos" class="section" data-section="videos">
+  <div class="section-header">
+    <h2>Featured Work</h2>
+    <p class="muted">Click a thumbnail to load the featured player.</p>
+  </div>
+
+  <div class="video-gallery">
+    <div class="video-player-wrap">
+      <iframe
+        data-video-player
+        title="Transform Multimedia video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="video-thumbnails" data-video-thumbnails></div>
+  </div>
+</section>
+
   </div>
 
   <div class="video-gallery">
