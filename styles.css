@@ -1763,3 +1763,31 @@ main {
   font-family: "Orbitron", sans-serif;
   font-size: 12px;
 }
+/* ===== Team grid: reduce spacing + stop weird stretching ===== */
+#team .team-grid{
+  gap: 12px !important;                 /* smaller space between cards */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 260px)) !important;
+  justify-content: center !important;   /* keeps tiles centered */
+  align-items: stretch !important;
+}
+
+/* ===== Team cards: make consistent + less tall ===== */
+#team .team-card{
+  max-width: 260px !important;
+  min-height: 0 !important;            /* remove forced tall cards */
+}
+
+/* ===== Thumbnail: force fill + crop nicely ===== */
+#team .team-thumb{
+  width: 100%;
+  height: 170px;                       /* fixed height makes cards compact */
+  aspect-ratio: auto;                  /* override earlier aspect-ratio */
+  overflow: hidden;
+}
+
+#team .team-thumb img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;        /* fills/crops */
+  display: block !important;
+}
