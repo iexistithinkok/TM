@@ -358,43 +358,107 @@
     </section>
 
     <!-- WORKFLOW -->
-    <section id="workflow" class="section workflow" data-section="workflow">
-      <div class="section-header">
-        <h2>Workflow</h2>
-        <p>Short version here — full detail on the Workflow Page.</p>
-      </div>
+<!-- WORKFLOW (Home Page: OS-style cards → Docbox) -->
+<section id="workflow" class="section workflow" data-section="workflow">
+  <div class="section-header">
+    <h2>Project Workflow</h2>
+    <p>Click a step to open the full-screen workflow document.</p>
+  </div>
 
-      <div class="service-grid">
-        <button class="service-card" type="button" data-doc-open
-          data-doc-title="1) Project Request"
-          data-doc-body="<p>All projects begin with a written email request to ensure accuracy, accountability, and transparency.
+  <div class="service-grid">
+    <button class="service-card" type="button" data-doc-open
+      data-doc-title="1) Project Request (Email Initiation)"
+      data-doc-body="
+        <p>All projects begin with a written email request to ensure accuracy, accountability, and transparency.</p>
+        <ul>
+          <li>Project purpose (ad, banner, screen content, social, etc.)</li>
+          <li>Location(s)</li>
+          <li>Target audience</li>
+          <li>Desired length/format (e.g., 15s, 30s, banner size, screen loop)</li>
+          <li>Deadline or launch date</li>
+          <li>Budget approval or rate acknowledgment</li>
+          <li>Primary contact for feedback and approvals</li>
+        </ul>
+        <p><em>Phone conversations may occur, but must always be followed by an email summary to confirm details.</em></p>
+      ">
+      <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">01</span></div>
+      <h3 class="service-title">Project Request</h3>
+      <p class="service-subtitle">Email initiation + requirements</p>
+    </button>
 
-Project purpose (ad, banner, screen content, social, etc.)
-Location(s)
-Target audience
-Desired length/format (e.g., 15s, 30s, banner size, screen loop)
-Deadline or launch date
-Budget approval or rate acknowledgment
-Primary contact for feedback and approvals
-📌 Phone conversations may occur, but must always be followed by an email summary to confirm details.</p>">
-          <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">01</span></div>
-          <h3 class="service-title">Project Request</h3>
-          <p class="service-subtitle">Email initiation</p>
-        </button>
+    <button class="service-card" type="button" data-doc-open
+      data-doc-title="2) Pre-Production / PREVIS (Planning Stage)"
+      data-doc-body="
+        <p>Before filming or design begins, we confirm details in writing to prevent miscommunication and reshoots.</p>
+        <ul>
+          <li>Creative direction and messaging</li>
+          <li>Required logos, branding, fonts, colors</li>
+          <li>Music direction (licensed, provided, or custom)</li>
+          <li>On-screen text and spelling confirmation</li>
+          <li>Final deliverables and formats</li>
+        </ul>
+        <p><em>This step prevents unnecessary revisions.</em></p>
+      ">
+      <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">02</span></div>
+      <h3 class="service-title">Pre-Production / PREVIS</h3>
+      <p class="service-subtitle">Plan + confirm in writing</p>
+    </button>
 
-        <button class="service-card" type="button" data-doc-open
-          data-doc-title="2) PREVIS"
-          data-doc-body="<p>We confirm direction, branding, messaging, and deliverables before production.</p>">
-          <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">02</span></div>
-          <h3 class="service-title">Pre-Production</h3>
-          <p class="service-subtitle">Planning stage</p>
-        </button>
+    <button class="service-card" type="button" data-doc-open
+      data-doc-title="3) Production (Capture or Creation)"
+      data-doc-body="
+        <p>Once PREVIS is approved:</p>
+        <ul>
+          <li>Video capture, photography, animation, or design begins</li>
+          <li>Work is performed according to the approved plan</li>
+          <li>Changes after production begins may impact schedule or budget</li>
+        </ul>
+      ">
+      <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">03</span></div>
+      <h3 class="service-title">Production</h3>
+      <p class="service-subtitle">Capture or creation begins</p>
+    </button>
 
-        <a class="secondary-btn" href="workflow.html" style="display:inline-flex; align-items:center; justify-content:center;">
-          Open Full Workflow Page
-        </a>
-      </div>
-    </section>
+    <button class="service-card" type="button" data-doc-open
+      data-doc-title="4) First Draft Delivery"
+      data-doc-body="
+        <ul>
+          <li>Draft 1 is delivered via email or secure link</li>
+          <li>Feedback must be provided in writing (email preferred)</li>
+          <li>Feedback should be consolidated into one response</li>
+        </ul>
+      ">
+      <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">04</span></div>
+      <h3 class="service-title">First Draft</h3>
+      <p class="service-subtitle">Secure delivery + written feedback</p>
+    </button>
+
+    <button class="service-card" type="button" data-doc-open
+      data-doc-title="5) Revisions (Maximum of Three Drafts)"
+      data-doc-body="
+        <ul>
+          <li>Industry standard allows up to three drafts total</li>
+          <li>Each draft refines the prior version based on written feedback</li>
+          <li>Requests outside the original scope may require approval</li>
+        </ul>
+        <p><em>Projects should not continue indefinitely with open-ended revisions.</em></p>
+      ">
+      <div class="service-card-top"><span class="service-chip">STEP</span><span class="service-meta">05</span></div>
+      <h3 class="service-title">Revisions</h3>
+      <p class="service-subtitle">Up to 3 drafts total</p>
+    </button>
+
+    <button class="service-card" type="button" data-doc-open
+      data-doc-title="6) Final Approval (Written Sign-Off)"
+      data-doc-body="
+        <ul>
+          <li>Final approval must be given in writing</li>
+          <li>Files are finalized and prepared for delivery or display</li>
+          <li>Changes after approval are new revision requests</li>
+        </ul>
+      ">
+      <div class="service-card-top"><span class="service-chip">STEP</span><spa
+
 
     <!-- CONTACT -->
     <section id="contact" class="section cta" data-section="contact">
