@@ -2,36 +2,33 @@
 // VIDEO DATA (manual curation)
 // ===============================
 const videos = [
+   {
+    title: "Skydiver breaking records...",
+    description: "A fun day in the field as a news photographer turned into a front-row seat for history. We covered a skydiver pushing endurance to the limit—breaking the world record for the most jumps out of an airplane in 24 hours. Fast-paced, high-altitude, and packed with real-time moments as the record was set..",
+    youtubeId: "ybzYvrkGdDw",
+  },
   {
     title: "Day One Learning Journey",
     description: "Sullivan University’s National Center for Hospitality Studies (NCHS) took learning beyond the classroom with an immersive experience aboard Royal Caribbean’s Oasis of the Seas in the Bahamas. We followed the students throughout their journey—capturing hands-on training, behind-the-scenes moments, and the real-world lessons that shape tomorrow’s hospitality professionals.",
     youtubeId: "YherfuEabG4",
   },
+
   {
-    title: "",
-    description: "High-energy motion graphics built for digital launches.",
-    youtubeId: "_kHI49_50I8",
+    title: "Hickory Point Web Banner",
+    description: "To showcase Hickory Point’s Waterfront Park, we designed a web banner that captures the waterfront vibe and turns it into a polished, click-worthy visual—clean branding, clear messaging, and optimized for fast-loading web placements.",
+    youtubeId: "VDESxbsOuDY",
   },
   {
-    title: "Brand Narrative Film",
-    description: "A polished story-driven video for premium campaigns.",
-    youtubeId: "41BjbyHVb6o",
+    title: "The Sweetest Place on Earth turns 134",
+    description: "For Schimpff’s Confectionery’s 134th birthday, we captured the heart of a Jeffersonville icon—old-school craftsmanship, family tradition, and a community landmark still serving up joy more than a century later..",
+    youtubeId: "O38CxoRAQmw",
   },
   {
-    title: "Experimental Visuals",
-    description: "Atmospheric sequences designed for immersive screens.",
-    youtubeId: "aDBUmznHsaE",
+    title: "Digital Signage",
+    description: "Digital signage package designed for high-visibility screens—clean layouts, bold typography, and motion-ready messaging built to read fast from a distance. Optimized for multiple aspect ratios and placements, with consistent branding across slides for a polished, professional loop.",
+    youtubeId: "rsgKjv4lwaE",
   },
-  {
-    title: "Product Launch Teaser",
-    description: "Cinematic teaser edit with bold, futuristic pacing.",
-    youtubeId: "XH6nKQ3L08E",
-  },
-  {
-    title: "Short-Form Sizzle",
-    description: "Fast-cut social assets for multi-platform launches.",
-    youtubeId: "921OkRZ76t8",
-  },
+
 ];
 
 // ===============================
