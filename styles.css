@@ -1823,3 +1823,26 @@ main {
   transform: translateY(-2px);
   border-color: rgba(255,255,255,0.22);
 }
+/* Team + Workflow side-by-side (desktop), stacked (mobile) */
+.team-workflow-row{
+  display: grid;
+  gap: 22px;
+}
+
+@media (min-width: 1000px){
+  .team-workflow-row{
+    grid-template-columns: 0.9fr 1.1fr; /* team narrower, workflow wider */
+    align-items: start;
+  }
+
+  /* remove the “big vertical gaps” that happen because both are full sections */
+  .team-workflow-row > .section{
+    margin: 0;
+  }
+}
+
+/* Optional: tighten spacing on mobile too */
+.team-workflow-row > .section{
+  padding-top: 0;
+}
+
