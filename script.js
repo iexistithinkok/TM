@@ -82,10 +82,10 @@ function buildVideoCard(video, index) {
   `;
 
   card.addEventListener("click", () => {
-    updateFeaturedVideo(index);
-    document
-      .getElementById("showcase")
-document.getElementById("videos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  updateFeaturedVideo(index);
+  document.getElementById("videos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
 
   });
 
