@@ -10,13 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Keep these if they exist in your project -->
-<script src="script.js" defer></script>
+  <!-- Core JS -->
+  <script src="script.js" defer></script>
   <script src="gallery-lightbox.js" defer></script>
-<script src="floating-sidebar.js" defer></script>
+  <script src="floating-sidebar.js" defer></script>
 
   <style>
-    /* Docbox overlay (text dossier / OS window) */
+    /* =========================
+      Docbox overlay (OS dossier)
+    ========================== */
     [hidden]{display:none !important;}
     .docbox{
       position:fixed; inset:0; display:grid; place-items:center; padding:18px;
@@ -35,12 +37,66 @@
       position:sticky; top:0;
       background:rgba(0,0,0,0.55); backdrop-filter:blur(14px);
     }
-    .docbox-dot{width:10px; height:10px; border-radius:999px; border:1px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.08);}
+    .docbox-dot{
+      width:10px; height:10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,0.25);
+      background:rgba(255,255,255,0.08);
+    }
     .docbox-title{margin:0; font-family:"Orbitron",sans-serif; font-size:16px;}
     .docbox-content{padding:16px 16px 20px; line-height:1.65;}
     .docbox-content ul{margin:10px 0 0 20px;}
 
-    /* Card grid uses your existing service-card styles if you already added them */
+    /* =========================
+      Team cards (square + thumb + white text)
+    ========================== */
+    #team .team-card,
+    #team .team-card *{
+      color: rgba(255,255,255,0.92) !important;
+    }
+    #team .team-card .service-subtitle,
+    #team .team-card .service-meta{
+      color: rgba(255,255,255,0.78) !important;
+    }
+    #team .team-card{
+      padding:0 !important;
+      overflow:hidden;
+      border-radius:18px;
+      display:flex;
+      flex-direction:column;
+      min-height:320px;
+    }
+    #team .team-thumb{
+      width:100%;
+      aspect-ratio: 1 / 1; /* square thumbnail area */
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.10), rgba(0,0,0,0.35)),
+        linear-gradient(135deg, rgba(0,255,255,0.12), rgba(255,0,255,0.08));
+      border-bottom:1px solid rgba(255,255,255,0.12);
+      overflow:hidden;
+    }
+    #team .team-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.02);
+      transition:transform 220ms ease;
+    }
+    #team .team-card:hover .team-thumb img{transform:scale(1.06);}
+    #team .team-card-body{
+      padding:16px 18px 18px;
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
+    #team .tm-card-cta{
+      margin-top:auto;
+      opacity:0.9;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      font-family:"Orbitron",sans-serif;
+      font-size:12px;
+    }
   </style>
 </head>
 
@@ -48,6 +104,7 @@
   <div class="ambient-glow"></div>
   <div class="ambient-grid tron-grid"></div>
 
+  <!-- Cinematic projector background -->
   <div class="background-reel">
     <iframe
       src="https://www.youtube.com/embed/4djzFPCsy_g?autoplay=1&mute=1&controls=0&loop=1&playlist=4djzFPCsy_g&modestbranding=1&playsinline=1&rel=0"
@@ -55,211 +112,253 @@
       loading="lazy"></iframe>
   </div>
 
-  <!-- Right floating menu: anchors + only a few pages -->
-<aside class="floating-sidebar" data-floating-sidebar>
-  <button
-    class="floating-toggle secondary-btn"
-    type="button"
-    data-floating-toggle
-    aria-expanded="false"
-  >
-    Menu
-  </button>
+  <!-- Floating / collapsible sidebar -->
+  <aside class="floating-sidebar" data-floating-sidebar>
+    <button class="floating-toggle secondary-btn" type="button" data-floating-toggle aria-expanded="false">
+      Menu
+    </button>
 
-  <nav class="floating-panel" data-floating-panel aria-label="Floating menu">
-    <a class="floating-link" href="#showcase" data-section-link="showcase">Home</a>
-    <a class="floating-link" href="#services" data-section-link="services">Services</a>
-    <a class="floating-link" href="#videos" data-section-link="videos">Videos</a>
-    <a class="floating-link" href="#gallery" data-section-link="gallery">Gallery</a>
-    <a class="floating-link" href="#team" data-section-link="team">Team</a>
-    <a class="floating-link" href="#workflow" data-section-link="workflow">Workflow</a>
+    <nav class="floating-panel" data-floating-panel aria-label="Floating menu">
+      <a class="floating-link" href="#showcase" data-section-link="showcase">Home</a>
+      <a class="floating-link" href="#services" data-section-link="services">Services</a>
+      <a class="floating-link" href="#videos" data-section-link="videos">Videos</a>
+      <a class="floating-link" href="#gallery" data-section-link="gallery">Gallery</a>
+      <a class="floating-link" href="#team" data-section-link="team">Team</a>
+      <a class="floating-link" href="#workflow" data-section-link="workflow">Workflow</a>
 
-    <div class="floating-divider"></div>
+      <div class="floating-divider"></div>
 
-    <a class="floating-link" href="workflow.html">Workflow Page</a>
-    <a class="floating-link" href="music.html">Original Music</a>
-    <a class="floating-link" href="portal.html">Client Login</a>
+      <a class="floating-link" href="workflow.html">Workflow Page</a>
+      <a class="floating-link" href="music.html">Original Music</a>
+      <a class="floating-link" href="portal.html">Client Login</a>
 
-    <a class="floating-link floating-cta nav-cta" href="#contact" data-section-link="contact">Start a Project</a>
-  </nav>
-</aside>
+      <a class="floating-link floating-cta nav-cta" href="#contact" data-section-link="contact">Start a Project</a>
+    </nav>
+  </aside>
 
   <main>
-    <section id="showcase" class="section showcase" data-section="videos">
-  <div class="section-header">
-    <h2>Featured Work</h2>
-    <p>Select a thumbnail to load the featured player.</p>
-  </div>
-
-  <div class="video-showcase">
-    <div class="featured-video">
-      <div class="featured-meta">
-        <span class="tag">Featured</span>
-        <h3 id="featured-title">Loading…</h3>
-        <p id="featured-description">Loading…</p>
-        <div class="featured-actions">
-          <button class="secondary-btn" id="prev-video" type="button">Previous</button>
-          <button class="secondary-btn" id="next-video" type="button">Next</button>
+    <!-- HERO -->
+    <section class="hero" id="showcase" data-section="showcase">
+      <div class="hero-content">
+        <p class="eyebrow">Tampa Bay Area</p>
+        <h1>Full-service video, animation, and original music studio</h1>
+        <p class="hero-subtitle">
+          Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
+          With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media,
+          and provide digital media coordination and placement for organizations of all sizes.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#videos">View Work</a>
+          <a class="ghost-btn" href="#contact">Let’s Work Together</a>
         </div>
       </div>
+    </section>
 
-      <div class="featured-player">
-        <div class="player-shell">
-          <iframe id="featured-iframe" allowfullscreen title="Featured video"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-grid" id="video-grid"></div>
-  </div>
-<section id="team" class="section team" data-section="team">
-...
-</section>
-
-
-    <section id="services" class="section services">
+    <!-- SERVICES -->
+    <section id="services" class="section services" data-section="services">
       <div class="section-header">
         <h2>Services</h2>
         <p>Click a service to open the full-screen “file”.</p>
       </div>
 
-<div class="service-grid team-grid">
-  <button class="service-card team-card" type="button" data-doc-open
-    data-doc-title="Stevie Richard McCameron — Producer / Director / Editor"
-    data-doc-body="
-      <div class='profile-doc'>
-        <div class='profile-head'>
-          <img class='profile-photo' src='assets/team-stevie.jpg' alt='Stevie Richard McCameron' />
-          <div>
-            <p class='profile-role'>Producer • Director • Editor</p>
-            <p class='profile-meta'>Tampa Bay Area • Available for projects</p>
+      <div class="service-grid">
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Video Production"
+          data-doc-body="
+            <ul>
+              <li>Pre-production planning</li>
+              <li>On-location / studio shooting</li>
+              <li>Interview + documentary storytelling</li>
+              <li>Broadcast-ready exports</li>
+            </ul>
+          ">
+          <div class="service-card-top">
+            <span class="service-chip">PRODUCTION</span>
+            <span class="service-meta">.doc</span>
           </div>
-        </div>
-        <h4>Bio</h4>
-        <p>Replace with your bio.</p>
-        <h4>Experience</h4>
-        <ul>
-          <li>___ years in production, editing, and delivery</li>
-          <li>Broadcast + web campaigns</li>
-          <li>Documentary + brand storytelling</li>
-        </ul>
-      </div>
-    ">
-    <div class="team-thumb">
-      <img src="assets/team-stevie.jpg" alt="Stevie portrait" loading="lazy" onerror="this.remove()" />
-    </div>
+          <h3 class="service-title">Video Production</h3>
+          <p class="service-subtitle">Concept → shoot → deliver</p>
+        </button>
 
-
-    <div class="team-card-body">
-      <div class="service-card-top">
-        <span class="service-chip">PROFILE</span>
-        <span class="service-meta">.bio</span>
-      </div>
-      <h3 class="service-title">Aaron</h3>
-      <p class="service-subtitle">Animator • Editor • Composer</p>
-      <span class="tm-card-cta">Click for resume</span>
-    </div>
-  </button>
-</div>
-    <div class="team-card-body">
-      <div class="service-card-top">
-        <span class="service-chip">PROFILE</span>
-        <span class="service-meta">.bio</span>
-      </div>
-      <h3 class="service-title">Stevie Richard McCameron</h3>
-      <p class="service-subtitle">Producer • Director • Editor</p>
-      <span class="tm-card-cta">Click for resume</span>
-    </div>
-  </button>
-
-  <button class="service-card team-card" type="button" data-doc-open
-    data-doc-title="Aaron — Animator / Editor / Composer"
-    data-doc-body="
-      <div class='profile-doc'>
-        <div class='profile-head'>
-          <img class='profile-photo' src='assets/team-aaron.jpg' alt='Aaron' />
-          <div>
-            <p class='profile-role'>Animator • Editor • Composer</p>
-            <p class='profile-meta'>Motion + sound built for story</p>
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Editing & Post"
+          data-doc-body="
+            <ul>
+              <li>Editorial (short + long form)</li>
+              <li>Color correction + grade</li>
+              <li>Audio cleanup + mix</li>
+              <li>Captions + deliverables</li>
+            </ul>
+          ">
+          <div class="service-card-top">
+            <span class="service-chip">POST</span>
+            <span class="service-meta">.pdf</span>
           </div>
-        </div>
-        <h4>Bio</h4>
-        <p>Replace with Aaron’s bio.</p>
-        <h4>Experience</h4>
-        <ul>
-          <li>___ years in motion, post, and audio</li>
-          <li>Brand motion systems + explainer graphics</li>
-          <li>Original music and sound design</li>
-        </ul>
-      </div>
-    ">
-    <div class="team-thumb">
-      <img src="assets/team-aaron.jpg" alt="Aaron portrait" loading="lazy" onerror="this.remove()" />
-    </div>
+          <h3 class="service-title">Editing & Post</h3>
+          <p class="service-subtitle">Cut + color + clean audio</p>
+        </button>
 
+        <button class="service-card" type="button" data-doc-open
+          data-doc-title="Animation & Motion Graphics"
+          data-doc-body="
+            <ul>
+              <li>Titles + lower thirds</li>
+              <li>Explainers + brand motion</li>
+              <li>Compositing + polish</li>
+              <li>Social-ready packages</li>
+            </ul>
+          ">
+          <div class="service-card-top">
+            <span class="service-chip">MOTION</span>
+            <span class="service-meta">.sys</span>
+          </div>
+          <h3 class="service-title">Animation</h3>
+          <p class="service-subtitle">OS-native motion vibe</p>
+        </button>
+      </div>
     </section>
 
-    <section id="gallery" class="section gallery">
+    <!-- VIDEOS (Original player driven by script.js) -->
+    <section id="videos" class="section showcase" data-section="videos">
+      <div class="section-header">
+        <h2>Featured Work</h2>
+        <p>Select a thumbnail to load the featured player.</p>
+      </div>
+
+      <div class="video-showcase">
+        <div class="featured-video">
+          <div class="featured-meta">
+            <span class="tag">Featured</span>
+            <h3 id="featured-title">Loading…</h3>
+            <p id="featured-description">Loading…</p>
+            <div class="featured-actions">
+              <button class="secondary-btn" id="prev-video" type="button">Previous</button>
+              <button class="secondary-btn" id="next-video" type="button">Next</button>
+            </div>
+          </div>
+
+          <div class="featured-player">
+            <div class="player-shell">
+              <iframe id="featured-iframe" allowfullscreen title="Featured video"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-grid" id="video-grid"></div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="section gallery" data-section="gallery">
       <div class="section-header">
         <h2>Image Gallery</h2>
         <p>Click an image to view full size.</p>
       </div>
 
-      <!-- Correct filenames from snapshot: 01-06.webp -->
       <div class="gallery-grid" data-gallery-grid>
+        <!-- IMPORTANT: Make these filenames match your actual /assets files -->
         <img src="assets/gallery-01.webp" alt="Gallery image 1" loading="lazy" />
-        <img src="assets/gallery-02.jpeg" alt="Gallery image 2" loading="lazy" />
-        <img src="assets/gallery-03.jpeg" alt="Gallery image 3" loading="lazy" />
-        <img src="assets/gallery-04.jpeg" alt="Gallery image 4" loading="lazy" />
-        <img src="assets/gallery-05.jpeg" alt="Gallery image 5" loading="lazy" />
-        <img src="assets/gallery-06.jpeg" alt="Gallery image 6" loading="lazy" />
+        <img src="assets/gallery-02.webp" alt="Gallery image 2" loading="lazy" />
+        <img src="assets/gallery-03.webp" alt="Gallery image 3" loading="lazy" />
+        <img src="assets/gallery-04.webp" alt="Gallery image 4" loading="lazy" />
+        <img src="assets/gallery-05.webp" alt="Gallery image 5" loading="lazy" />
+        <img src="assets/gallery-06.webp" alt="Gallery image 6" loading="lazy" />
       </div>
 
-      <!-- Lightbox (required by gallery-lightbox.js) -->
       <div class="lightbox" data-lightbox hidden>
         <button class="lightbox-close secondary-btn" type="button" data-lightbox-close>Close</button>
         <img class="lightbox-image" data-lightbox-image alt="Expanded gallery view" />
       </div>
     </section>
 
-    <section id="team" class="section team">
+    <!-- TEAM (new square profiles + thumbnails) -->
+    <section id="team" class="section team" data-section="team">
       <div class="section-header">
         <h2>Team</h2>
         <p>Click a profile to open the full-screen dossier.</p>
       </div>
 
-      <div class="service-grid">
-        <button class="service-card" type="button" data-doc-open
-          data-doc-title="Your Name — Producer / Director / Editor"
+      <div class="service-grid team-grid">
+        <button class="service-card team-card" type="button" data-doc-open
+          data-doc-title="Stevie Richard McCameron — Producer / Director / Editor"
           data-doc-body="
-            <p><strong>Bio:</strong> Replace with your bio.</p>
-            <ul>
-              <li><strong>Experience:</strong> ___ years</li>
-              <li><strong>Specialties:</strong> commercials, docs, broadcast delivery</li>
-              <li><strong>Highlights:</strong> clients / networks / awards</li>
-            </ul>">
-          <div class="service-card-top"><span class="service-chip">PROFILE</span><span class="service-meta">.bio</span></div>
-          <h3 class="service-title">Stevie Richard McCameron</h3>
-          <p class="service-subtitle">Producer • Director • Editor</p>
+            <div class='profile-doc'>
+              <div class='profile-head'>
+                <img class='profile-photo' src='assets/team-stevie.jpg' alt='Stevie Richard McCameron' />
+                <div>
+                  <p class='profile-role'>Producer • Director • Editor</p>
+                  <p class='profile-meta'>Tampa Bay Area • Available for projects</p>
+                </div>
+              </div>
+
+              <h4>Bio</h4>
+              <p>Replace with your bio.</p>
+
+              <h4>Experience</h4>
+              <ul>
+                <li>___ years in production, editing, and delivery</li>
+                <li>Broadcast + web campaigns</li>
+                <li>Documentary + brand storytelling</li>
+              </ul>
+            </div>
+          ">
+          <div class="team-thumb">
+            <img src="assets/team-stevie.jpg" alt="Stevie portrait" loading="lazy" onerror="this.remove()" />
+          </div>
+
+          <div class="team-card-body">
+            <div class="service-card-top">
+              <span class="service-chip">PROFILE</span>
+              <span class="service-meta">.bio</span>
+            </div>
+            <h3 class="service-title">Stevie Richard McCameron</h3>
+            <p class="service-subtitle">Producer • Director • Editor</p>
+            <span class="tm-card-cta">Click for resume</span>
+          </div>
         </button>
 
-        <button class="service-card" type="button" data-doc-open
+        <button class="service-card team-card" type="button" data-doc-open
           data-doc-title="Aaron — Animator / Editor / Composer"
           data-doc-body="
-            <p><strong>Bio:</strong> Replace with Aaron’s bio.</p>
-            <ul>
-              <li><strong>Experience:</strong> ___ years</li>
-              <li><strong>Specialties:</strong> motion graphics, post, original music</li>
-              <li><strong>Highlights:</strong> notable work / platforms</li>
-            </ul>">
-          <div class="service-card-top"><span class="service-chip">PROFILE</span><span class="service-meta">.bio</span></div>
-          <h3 class="service-title">Aaron</h3>
-          <p class="service-subtitle">Animator • Editor • Composer</p>
+            <div class='profile-doc'>
+              <div class='profile-head'>
+                <img class='profile-photo' src='assets/team-aaron.jpg' alt='Aaron' />
+                <div>
+                  <p class='profile-role'>Animator • Editor • Composer</p>
+                  <p class='profile-meta'>Motion + sound built for story</p>
+                </div>
+              </div>
+
+              <h4>Bio</h4>
+              <p>Replace with Aaron’s bio.</p>
+
+              <h4>Experience</h4>
+              <ul>
+                <li>___ years in motion, post, and audio</li>
+                <li>Brand motion systems + explainer graphics</li>
+                <li>Original music and sound design</li>
+              </ul>
+            </div>
+          ">
+          <div class="team-thumb">
+            <img src="assets/team-aaron.jpg" alt="Aaron portrait" loading="lazy" onerror="this.remove()" />
+          </div>
+
+          <div class="team-card-body">
+            <div class="service-card-top">
+              <span class="service-chip">PROFILE</span>
+              <span class="service-meta">.bio</span>
+            </div>
+            <h3 class="service-title">Aaron</h3>
+            <p class="service-subtitle">Animator • Editor • Composer</p>
+            <span class="tm-card-cta">Click for resume</span>
+          </div>
         </button>
       </div>
     </section>
 
-    <section id="workflow" class="section workflow">
+    <!-- WORKFLOW -->
+    <section id="workflow" class="section workflow" data-section="workflow">
       <div class="section-header">
         <h2>Workflow</h2>
         <p>Short version here — full detail on the Workflow Page.</p>
@@ -288,7 +387,8 @@
       </div>
     </section>
 
-    <section id="contact" class="section cta">
+    <!-- CONTACT -->
+    <section id="contact" class="section cta" data-section="contact">
       <div class="cta-content">
         <h2>Let’s Work Together</h2>
         <p>Commercials, documentaries, branding, and sound design.</p>
@@ -300,7 +400,25 @@
     </section>
   </main>
 
-  <!-- DOC LIGHTBOX (single) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <img class="logo-mark" src="assets/logo.png" alt="Transform Multimedia" />
+          <span>Transform Multimedia</span>
+        </div>
+        <p>Creative studio for future-forward visual storytelling.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://vimeo.com" target="_blank" rel="noreferrer">Vimeo</a>
+      </div>
+    </div>
+    <p class="footer-meta">© 2024 Transform Multimedia</p>
+  </footer>
+
+  <!-- DOCBOX (text dossier) -->
   <div class="docbox" data-docbox hidden>
     <button class="docbox-close secondary-btn" type="button" data-docbox-close>Close</button>
 
@@ -314,7 +432,6 @@
   </div>
 
   <script>
-    // Docbox logic (self-contained)
     (() => {
       const box = document.querySelector("[data-docbox]");
       const closeBtn = document.querySelector("[data-docbox-close]");
