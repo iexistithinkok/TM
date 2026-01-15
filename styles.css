@@ -1722,7 +1722,7 @@ main {
   border-radius: 18px;
   display: flex;
   flex-direction: column;
-  min-height: 300px;
+  min-height: 100px;
 }
 
 /* Thumbnail area (placeholder if no img) */
