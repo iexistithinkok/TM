@@ -1691,3 +1691,14 @@ main {
   font-size: 13px;
   line-height: 1.5;
 }
+/* Fix: profile/service cards should use light text like the rest of the OS theme */
+.service-card,
+.service-card * {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* Optional: soften secondary text inside cards */
+.service-card .service-subtitle,
+.service-card .service-meta {
+  color: rgba(255, 255, 255, 0.78);
+}
