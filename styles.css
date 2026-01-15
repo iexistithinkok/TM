@@ -1702,3 +1702,64 @@ main {
 .service-card .service-meta {
   color: rgba(255, 255, 255, 0.78);
 }
+/* ===== Team cards: force light text + square-ish layout + thumbnail ===== */
+
+/* Strong override (your current black text is coming from a more specific rule) */
+#team .team-card,
+#team .team-card * {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+#team .team-card .service-subtitle,
+#team .team-card .service-meta {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+/* Square-ish cards */
+#team .team-card {
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+/* Thumbnail area (placeholder if no img) */
+#team .team-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* change to 1 / 1 if you want perfectly square image */
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.10), rgba(0,0,0,0.35)),
+              linear-gradient(135deg, rgba(0,255,255,0.12), rgba(255,0,255,0.08));
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  overflow: hidden;
+}
+
+#team .team-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  transition: transform 220ms ease;
+}
+
+#team .team-card:hover .team-thumb img {
+  transform: scale(1.06);
+}
+
+#team .team-card-body {
+  padding: 16px 18px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#team .tm-card-cta {
+  margin-top: auto;
+  opacity: 0.9;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+}
