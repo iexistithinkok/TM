@@ -5,7 +5,7 @@ const videos = [
   {
     title: "Day One Learning Journey",
     description: "Sullivan University’s National Center for Hospitality Studies (NCHS) took learning beyond the classroom with an immersive experience aboard Royal Caribbean’s Oasis of the Seas in the Bahamas. We followed the students throughout their journey—capturing hands-on training, behind-the-scenes moments, and the real-world lessons that shape tomorrow’s hospitality professionals.",
-    youtubeId: "ybzYvrkGdDw",
+    youtubeId: "YherfuEabG4",
   },
   {
     title: "",
