@@ -85,7 +85,8 @@ function buildVideoCard(video, index) {
     updateFeaturedVideo(index);
     document
       .getElementById("showcase")
-      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+document.getElementById("videos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+
   });
 
   return card;
