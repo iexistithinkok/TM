@@ -1563,3 +1563,131 @@ main {
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(0, 0, 0, 0.34);
 }
+/* ===== Featured Work (original player) - OS / glass card look ===== */
+
+.video-showcase {
+  margin-top: 18px;
+}
+
+.featured-video {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+@media (min-width: 920px) {
+  .featured-video {
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: start;
+  }
+}
+
+.featured-meta .tag {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.25);
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.06em;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.featured-meta h3 {
+  margin: 12px 0 8px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 18px;
+}
+
+.featured-meta p {
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.featured-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.player-shell {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.35);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.45);
+}
+
+.player-shell iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+}
+
+/* Thumbnails grid as cards */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.video-grid .video-thumb,
+.video-grid button,
+.video-grid a,
+.video-grid > * {
+  border-radius: 16px;
+}
+
+.video-grid button {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(10px);
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.video-grid button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.28);
+  background: rgba(0,0,0,0.34);
+}
+
+.video-grid button:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.55);
+  outline-offset: 3px;
+}
+
+.video-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.video-grid .thumb-title,
+.video-grid h4 {
+  margin: 10px 0 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+}
+
+.video-grid .thumb-meta,
+.video-grid p {
+  margin: 6px 0 0;
+  opacity: 0.85;
+  font-size: 13px;
+  line-height: 1.5;
+}
