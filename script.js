@@ -3,12 +3,12 @@
 // ===============================
 const videos = [
   {
-    title: "Transform Multimedia Showcase",
-    description: "A curated highlight featuring cinematic brand storytelling.",
-    youtubeId: "4djzFPCsy_g",
+    title: "Day One Learning Journey",
+    description: "Sullivan University’s National Center for Hospitality Studies (NCHS) took learning beyond the classroom with an immersive experience aboard Royal Caribbean’s Oasis of the Seas in the Bahamas. We followed the students throughout their journey—capturing hands-on training, behind-the-scenes moments, and the real-world lessons that shape tomorrow’s hospitality professionals.",
+    youtubeId: "ybzYvrkGdDw",
   },
   {
-    title: "Motion Systems Reel",
+    title: "",
     description: "High-energy motion graphics built for digital launches.",
     youtubeId: "_kHI49_50I8",
   },
