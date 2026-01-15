@@ -1726,7 +1726,7 @@ main {
 }
 
 /* Thumbnail area (placeholder if no img) */
-#team .team-thumb {
+#team .team-thumb{ aspect-ratio: 1 / 1; height: auto; }
   width: 100%;
   aspect-ratio: 16 / 9; /* change to 1 / 1 if you want perfectly square image */
   background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.10), rgba(0,0,0,0.35)),
