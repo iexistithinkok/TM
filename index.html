@@ -85,40 +85,34 @@
 </aside>
 
   <main>
-    <section class="hero" id="showcase">
-      <div class="hero-content">
-        <p class="eyebrow">Tampa Bay Area</p>
-        <h1>Full-service video, animation, and original music studio</h1>
-        <p class="hero-subtitle">
-          Transform Multimedia creates cinematic digital content, documentaries, and network and public television–ready storytelling.
-          With over 40 years of combined experience, we produce short-form and long-form projects, broadcast commercials, live media,
-          and provide digital media coordination and placement for organizations of all sizes.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-btn" href="#services">Services</a>
-          <a class="ghost-btn" href="#contact">Let’s Work Together</a>
-        </div>
-      </div>
-    </section>
-<section id="videos" class="section" data-section="videos">
+    <section id="showcase" class="section showcase" data-section="videos">
   <div class="section-header">
     <h2>Featured Work</h2>
-    <p class="muted">Click a thumbnail to load the featured player.</p>
+    <p>Select a thumbnail to load the featured player.</p>
   </div>
 
-  <div class="video-gallery">
-    <div class="video-player-wrap">
-      <iframe
-        data-video-player
-        title="Transform Multimedia video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+  <div class="video-showcase">
+    <div class="featured-video">
+      <div class="featured-meta">
+        <span class="tag">Featured</span>
+        <h3 id="featured-title">Loading…</h3>
+        <p id="featured-description">Loading…</p>
+        <div class="featured-actions">
+          <button class="secondary-btn" id="prev-video" type="button">Previous</button>
+          <button class="secondary-btn" id="next-video" type="button">Next</button>
+        </div>
+      </div>
+
+      <div class="featured-player">
+        <div class="player-shell">
+          <iframe id="featured-iframe" allowfullscreen title="Featured video"></iframe>
+        </div>
+      </div>
     </div>
 
-    <div class="video-thumbnails" data-video-thumbnails></div>
+    <div class="video-grid" id="video-grid"></div>
   </div>
+</section>
 </section>
 
 
