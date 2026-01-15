@@ -1845,4 +1845,20 @@ main {
 .team-workflow-row > .section{
   padding-top: 0;
 }
+.team-workflow-row{
+  display: grid;
+  gap: 22px;
+}
+
+@media (min-width: 1000px){
+  .team-workflow-row{
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+
+  .team-workflow-row > .section{
+    margin: 0;
+  }
+}
+
 
